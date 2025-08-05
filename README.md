@@ -1,7 +1,3 @@
-# langchain_conversational_chatbot
-
------
-
 # LangChain Conversational Chatbot
 
 ## Research Assistant App
