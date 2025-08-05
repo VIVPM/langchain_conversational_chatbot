@@ -9,7 +9,7 @@ from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 import json
-from langchain_community.tools import DuckDuckGoSearchResults
+from langchain_community.utilities import GoogleSerperAPIWrapper
 
 # File for persisting chat history
 CHAT_HISTORY_FILE = "./chat_history.json"
@@ -23,9 +23,10 @@ def extract_text_from_pdf(uploaded_file):
     doc.close()
     return text
 
-# Sidebar for API key
+# Sidebar for API keys
 st.sidebar.title("Settings")
 api_key = st.sidebar.text_input("SambaNova API Key", type="password")
+serper_api_key = st.sidebar.text_input("Serper API Key", type="password")
 
 # Main app
 st.title("Research Assistant App")
@@ -58,15 +59,15 @@ if st.button("Process Documents") and uploaded_files and api_key:
 
 # Initialize chat history if not present, and load from file if exists
 if "messages" not in st.session_state:
-    try:
-        with open(CHAT_HISTORY_FILE, "r") as f:
-            st.session_state.messages = json.load(f)
-        st.info("Chat history loaded from file.")
-    except FileNotFoundError:
-        st.session_state.messages = []
-    except Exception as e:
-        # st.error(f"Error loading chat history: {str(e)}")
-        st.session_state.messages = []
+        try:
+            with open(CHAT_HISTORY_FILE, "r") as f:
+                st.session_state.messages = json.load(f)
+            st.info("Chat history loaded from file.")
+        except FileNotFoundError:
+            st.session_state.messages = []
+        except Exception as e:
+            # st.error(f"Error loading chat history: {str(e)}")
+            st.session_state.messages = []
 
 # Initialize memory if not present, and populate from loaded messages
 if "memory" not in st.session_state:
@@ -146,26 +147,34 @@ if "vectorstore" in st.session_state and api_key:
                 
                 # Check if retrieval couldn't answer
                 if "Information not found in the provided documents." in answer:
-                    # Fallback to web search
-                    print('I am inside')
-                    search_tool = DuckDuckGoSearchResults(num_results=5)  # Limit to 5 results for efficiency
-                    search_results = search_tool.run(query)
-                    
-                    # Prompt for summarizing/answering based on search results
-                    web_prompt = PromptTemplate.from_template(
-                        "Based on the following web search results, provide a concise answer to the question. "
-                        "Include key sources.\n\nSearch Results:\n{search_results}\n\nQuestion: {question}\n\nAnswer:"
-                    )
-                    web_chain = LLMChain(llm=llm, prompt=web_prompt)
-                    web_response = web_chain({"question": query, "search_results": search_results})
-                    print(web_response)
-                    answer = web_response['text']
-                    
-                    # Format assistant response for web fallback (parse sources from results)
-                    sources = [result.split(', ')[0].strip('[') for result in search_results.split('],')]  # Extract links
-                    # print(sources)
-                    # assistant_response = f"**Answer (from web search):**\n{answer}\n\n**Web Sources used:**\n" + "\n".join([f"- {source}" for source in sources])
-                    assistant_response = f"**Answer (from web search):**\n{answer}\n\n"
+                    if not serper_api_key:
+                        answer = "Serper API key is required for web search fallback."
+                        sources = []
+                    else:
+                        # Fallback to web search using Serper
+                        print('I am inside')
+                        search_tool = GoogleSerperAPIWrapper(serper_api_key=serper_api_key, k=5)  # Limit to 5 results for efficiency
+                        search_results_dict = search_tool.results(query)  # Get dict of results
+                        
+                        # Compile snippets as search_results string
+                        organic_results = search_results_dict.get('organic', [])
+                        search_results = "\n".join([f"Snippet: {res['snippet']}\nLink: {res['link']}" for res in organic_results])
+                        
+                        # Prompt for summarizing/answering based on search results
+                        web_prompt = PromptTemplate.from_template(
+                            "Based on the following web search results, provide a concise answer to the question. "
+                            "Include key sources.\n\nSearch Results:\n{search_results}\n\nQuestion: {question}\n\nAnswer:"
+                        )
+                        web_chain = LLMChain(llm=llm, prompt=web_prompt)
+                        web_response = web_chain({"question": query, "search_results": search_results})
+                        print(web_response)
+                        answer = web_response['text']
+                        
+                        # Extract sources (links) from organic results
+                        sources = [res['link'] for res in organic_results]
+                        
+                    # Format assistant response for web fallback
+                    assistant_response = f"**Answer (from web search):**\n{answer}\n\n**Web Sources used:**\n" + "\n".join([f"- {source}" for source in sources])
                 else:
                     # Format assistant response with document sources
                     sources = set(doc.metadata['source'] for doc in source_documents)
@@ -191,6 +200,8 @@ if "vectorstore" in st.session_state and api_key:
 else:
     if not api_key:
         st.info("Please enter your SambaNova API key in the sidebar.")
+    if not serper_api_key:
+        st.info("Please enter your Serper API key in the sidebar.")
     elif not uploaded_files:
         st.info("Please upload PDF files and process them.")
     else:
