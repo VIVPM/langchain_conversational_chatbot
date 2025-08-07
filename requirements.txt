@@ -1,10 +1,7 @@
-omegaconf
-matplotlib
-PyMuPDF
-ultralytics
-doclayout-yolo
-unimernet
-paddlepaddle-gpu
-paddleocr
-struct-eqtable
-lmdeploy
+streamlit
+pymupdf
+langchain
+langchain-community
+langchain-huggingface
+faiss-cpu
+sentence-transformers
