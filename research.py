@@ -62,7 +62,7 @@ if "messages" not in st.session_state:
         try:
             with open(CHAT_HISTORY_FILE, "r") as f:
                 st.session_state.messages = json.load(f)
-            st.info("Chat history loaded from file.")
+            # st.info("Chat history loaded from file.")
         except FileNotFoundError:
             st.session_state.messages = []
         except Exception as e:
@@ -83,10 +83,22 @@ if "memory" not in st.session_state:
         elif message["role"] == "assistant":
             st.session_state.memory.chat_memory.add_ai_message(message["content"])
 
-# Display chat history
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+# # Display chat history
+# for message in st.session_state.messages:
+#     with st.chat_message(message["role"]):
+#         st.markdown(message["content"])
+
+
+# st.session_state.show_history = False
+# Sidebar for loading history
+st.sidebar.title("Chat History")
+if st.sidebar.button("Load History"):
+    st.session_state.show_history = True
+
+if "show_history" in st.session_state and st.session_state.show_history:
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
 # Query section as chatbot
 if "vectorstore" in st.session_state and api_key:
