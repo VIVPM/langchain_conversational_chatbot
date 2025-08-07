@@ -198,10 +198,8 @@ if "vectorstore" in st.session_state and api_key:
                 st.error(f"Error saving chat history: {str(e)}")
             
 else:
-    if not api_key:
-        st.info("Please enter your SambaNova API key in the sidebar.")
-    if not serper_api_key:
-        st.info("Please enter your Serper API key in the sidebar.")
+    if not api_key or not serper_api_key:
+        st.info("Please enter your SambaNova API key and Serper API keyin the sidebar.")
     elif not uploaded_files:
         st.info("Please upload PDF files and process them.")
     else:
