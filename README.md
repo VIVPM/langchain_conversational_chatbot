@@ -1,95 +1,115 @@
-# LangChain Conversational Chatbot
+# QuickBrain
 
-## Research Assistant App
+Streamlit RAG chat app with Pinecone, SambaNova LLM, and Supabase-backed auth.
 
-### Overview
+## Summary
 
-This is a Streamlit-based chatbot application that acts as a research assistant. It lets you upload multiple PDF documents, extracts and indexes their content, and allows you to have a conversational chat about them. The app uses **LangChain** for Retrieval-Augmented Generation (RAG), **SambaNova's Meta-Llama-3.3-70B-Instruct LLM** for generating responses, and a conversational memory to maintain context. If the answer isn't found in the documents, it falls back to a web search using **Serper**. The app includes user authentication (signup and login) with password hashing, and chat history is persisted in a Supabase database for continuity across sessions.
+- Upload PDFs. Text is extracted, chunked, embedded with `BAAI/bge-large-en-v1.5`, and indexed in **Pinecone**.
+- Ask questions in chat. The app answers from chat memory first, then RAG over Pinecone, then optional web search, else direct LLM.
+- Users sign up and log in. Passwords are hashed and profiles plus chats are stored in **Supabase**.
+- Sidebar controls: API keys, web-search toggle, document processing, chat search, and new chat.
 
-### Key Features
+## Architecture
 
-  * **User Authentication:** Signup and login functionality with hashed passwords, stored in Supabase.
-  * **PDF text extraction** using `PyMuPDF`.
-  * **Document chunking and embedding** with HuggingFace models (`BAAI/bge-large-en-v1.5`).
-  * **Vector database** with **FAISS** for efficient similarity search, using Maximum Marginal Relevance (MMR) for diverse results.
-  * **Conversational chain with memory** to handle follow-up questions effectively.
-  * **Fallback mechanism:** The app first checks its memory, then retrieves from the uploaded documents, and finally searches the web if needed.
-  * **Persistent chat history** is saved to a Supabase database.
-
-### Requirements
-
-  * Python 3.10+
-  * **API Keys:**
-      * SambaNova API key (for the LLM).
-      * Serper API key (for web search fallback).
-  * **Supabase Credentials:** SUPABASE_URL and SUPABASE_KEY (set in a `.env` file for database storage of user profiles and chat history).
-
-### Required Libraries
-
-Install the dependencies using the following command:
-
+```mermaid
+flowchart LR
+  U[User: Streamlit UI] -->|Login/Signup| SB[(Supabase profiles)]
+  U -->|Upload PDFs| PDF[PyMuPDF]
+  PDF --> SPLIT[TextSplitter 1000/200]
+  SPLIT --> EMB[HF Embeddings bge-large]
+  EMB --> IDX[(Pinecone Index\nnamespace = username)]
+  U -->|Ask| QW[Question Rewrite]
+  QW --> MEM{History enough?}
+  MEM -- Yes --> HANS[History Answer]
+  MEM -- No --> RET{Docs relevant?}
+  RET -- Yes --> R[VDB Retriever k=10, MMR] --> COMB[LLM combine]
+  RET -- No --> WEB{Web search on?}
+  WEB -- Yes --> SERP[Serper\nk=5] --> WSUM[LLM summarize]
+  WEB -- No --> DIRECT[Direct LLM]
+  HANS --> OUT[Answer+Sources]
+  COMB --> OUT
+  WSUM --> OUT
+  DIRECT --> OUT
+  OUT --> SB
+  OUT --> U
 ```
-pip install streamlit pymupdf langchain-huggingface langchain-community faiss-cpu langchain supabase python-dotenv
+
+## Key Components
+
+- **Streamlit UI**: chat interface, sidebar settings, chat list and search.
+- **Auth + Persistence**: Supabase table `profiles` keeps `username`, `password` (SHA‑256 hash), and a list of `chats`. Chats store `id`, `title`, `messages`, `created_at`, `updated_at`.
+- **PDF ingestion**: `PyMuPDF` for text, `RecursiveCharacterTextSplitter` with `chunk_size=1000`, `chunk_overlap=200`.
+- **Embeddings**: `HuggingFaceEmbeddings("BAAI/bge-large-en-v1.5")`.
+- **Vector store**: **Pinecone** via `PINECONE_HOST` and `PINECONE_API_KEY`. Namespace per user = `username`. IDs are SHA‑1 of content + source.
+- **LLM**: `SambaNovaCloud(model="Meta-Llama-3.3-70B-Instruct")`.
+- **Answering flow**:
+  1) Probe chat history. If enough, answer.  
+  2) Else RAG over Pinecone (k=10, MMR).  
+  3) If still insufficient and web search toggled with key present, call Serper and summarize with sources.  
+  4) Else answer directly with the LLM.
+
+## Requirements
+
+- Python 3.10+
+- Accounts/keys:
+  - **Supabase**: `SUPABASE_URL`, `SUPABASE_KEY`
+  - **Pinecone**: `PINECONE_API_KEY`, **`PINECONE_HOST`** (use host, not index name)
+  - **SambaNova** API key (entered in sidebar)
+  - **Serper** API key for optional web search (entered in sidebar)
+
+## Installation
+
+```bash
+pip install -U streamlit pymupdf langchain langchain-community langchain-huggingface pinecone-client langchain-pinecone supabase python-dotenv
 ```
 
-> **Note:** This setup uses the CPU-only version of FAISS. For GPU acceleration, install `faiss-gpu` instead.
+> If you use GPU embeddings or other models, install the matching extras separately.
 
-### Installation
+## Configuration
 
-1.  Clone or download the repository containing the app code.
-2.  Install the required libraries as listed above.
-3.  Create a `.env` file in the project root with your Supabase credentials:
-    ```
-    SUPABASE_URL=your_supabase_url
-    SUPABASE_KEY=your_supabase_key
-    ```
-4.  Make sure you have valid API keys for SambaNova and Serper.
+Create a `.env` that the app loads. By default the code calls:
+```python
+load_dotenv(dotenv_path=".env")
+```
+Options:
+- Put your variables in `.env`, or
+- Change the `dotenv_path` in `quickbrain.py` to your desired location.
 
-### Usage
+Minimum variables in .env file:
+```
+SUPABASE_URL=...
+SUPABASE_KEY=...
+PINECONE_API_KEY=...
+PINECONE_HOST=...
+```
 
-1.  Run the app from your terminal:
-    ```
-    streamlit run research.py
-    ```
-    (Replace `research.py` with your file name.)
-2.  On the initial screen, either log in with existing credentials or create a new account via the signup form. Passwords are hashed for security.
-3.  Once logged in, in the app's sidebar, enter your **SambaNova API key** and your **Serper API key**. The Serper key is necessary for web search fallback.
-4.  Upload your PDF files using the file uploader.
-5.  Click **"Process Documents"** to extract text, chunk, embed, and index your PDFs.
-6.  Once the documents are processed, use the chat input at the bottom to ask questions.
-7.  Use the sidebar's **"Load History"** button to view past conversations.
-8.  Log out via the sidebar when done.
+## Running
 
-The app will follow this logic:
+```bash
+streamlit run quickbrain.py
+```
 
-  * First, it will try to answer from your current conversation history (memory).
-  * If not found, it will retrieve relevant information from your uploaded documents.
-  * If the information is still not available, it will perform a web search using Serper and provide a summarized answer.
+In the sidebar:
+1. Paste SambaNova API key. Optionally paste Serper API key.
+2. Toggle **Web search** if you want web fallback.
+3. Upload PDFs and click **Process Documents**.
+4. Start chatting. Use **Chats** to create or open a conversation. Use **Search chats** to filter by message text.
 
-Your chat history is automatically loaded and saved to Supabase for persistence.
+## Notes and Defaults
 
-### Example Workflow
+- Chunking: 1000 tokens, 200 overlap.
+- Retrieval: MMR with `k=10`.
+- Pinecone namespace: the current `username`.
+- Password hashing: SHA‑256 for demo. For production, prefer a dedicated auth provider or salted password hashing (e.g., Argon2/bcrypt) with rate‑limiting and MFA.
+- If Serper key is missing or web search is off, the app falls back to RAG or direct LLM.
 
-1.  Upload several research papers on a specific topic, like AI algorithms.
-2.  Ask a question: "What is the Artificial Bee Colony algorithm?"
-3.  Ask a follow-up question: "How is it applied in IoT?"
-4.  If the answer isn't in your documents, the app will search the web and provide a sourced answer.
+## Troubleshooting
 
-### Code Structure
+- **Pinecone connection**: pass **`PINECONE_HOST`**. Do not pass an index name here. If you only have the index name, open the Pinecone console and copy the host for that index.
+- **“Supabase credentials not found”**: set `SUPABASE_URL` and `SUPABASE_KEY` in the `.env` that `quickbrain.py` loads.
+- **No answer from docs**: confirm documents were processed, embeddings created, and the correct namespace is used.
+- **Serper missing**: web search button can be ON, but without a Serper key the code will skip web and use LLM only.
 
-  * **User Authentication:** Handles signup/login with Supabase, including password hashing using `hashlib`.
-  * **PDF Processing:** Extracts text with `PyMuPDF`, chunks text with `RecursiveCharacterTextSplitter`, embeds with a HuggingFace model, and indexes the content in FAISS.
-  * **Memory Handling:** Uses `ConversationBufferMemory` to store context and loads/saves history from Supabase.
-  * **Query Flow:**
-      * Checks memory first using `LLMChain`.
-      * Retrieves from documents using `ConversationalRetrievalChain`.
-      * Performs web fallback with `GoogleSerperAPIWrapper`.
-  * **UI:** Built with a Streamlit chat interface, including spinners for loading states, and sidebar options for settings and history.
+## License
 
-### Contributing
-
-Feel free to fork the repository and submit pull requests. You can contribute improvements such as adding more embedding models or advanced reranking techniques.
-
-### License
-
-This project is under the **MIT License**. See `LICENSE` for more details.
+MIT. See `LICENSE`.
