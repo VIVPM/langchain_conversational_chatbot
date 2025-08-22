@@ -6,5 +6,6 @@ langchain-huggingface
 faiss-cpu
 sentence-transformers
 supabase
+pinecone
 pinecone-client 
 langchain-pinecone
