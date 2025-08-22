@@ -14,6 +14,7 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from supabase import create_client, Client
 from dotenv import load_dotenv
 import os
+import pytz
 import hashlib
 from datetime import datetime
 import uuid
@@ -31,7 +32,8 @@ else:
 st.title("QuickBrain")
 
 def now_iso():
-    return datetime.now().isoformat(timespec="seconds")
+    tz = pytz.timezone('Asia/Kolkata')
+    return datetime.now(tz).isoformat(timespec="seconds")
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
@@ -284,7 +286,13 @@ with st.sidebar:
 
 st.sidebar.title("Chats")
 if not st.session_state.is_processing_docs:
-    if st.sidebar.button("New Chat", key="new_chat_btn"):
+    disable_new_chat = False
+    if st.session_state.selected_chat_id:
+        current_chat = st.session_state.chats[st.session_state.selected_chat_id]
+        if current_chat["title"] == "New Chat" and len(current_chat.get("messages", [])) == 0:
+            disable_new_chat = True
+
+    if st.sidebar.button("New Chat", key="new_chat_btn", disabled=disable_new_chat):
         new_chat_id = str(uuid.uuid4())
         ts = now_iso()
         new_chat = {
