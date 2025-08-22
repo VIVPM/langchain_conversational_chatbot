@@ -136,6 +136,11 @@ if not st.session_state.logged_in:
                         st.session_state.show_signup = False
                         st.session_state.show_login = True
                         st.rerun()
+        if st.button("Login", key="login_acct_btn"):
+            st.session_state.show_login = True
+            st.session_state.show_signup = False
+            st.rerun()
+                
 
     if st.session_state.show_login:
         st.subheader("Login")
