@@ -12,8 +12,10 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from supabase import create_client, Client
+from collections import deque
 from dotenv import load_dotenv
 import os
+import time
 import pytz
 import hashlib
 from datetime import datetime
@@ -91,6 +93,20 @@ def _toggle_web_sidebar():
     
 def _begin_processing():
     st.session_state.is_processing_docs = True
+
+def allow(action: str, limit: int, window_sec: int) -> bool:
+    key = f"rl_{action}"
+    if key not in st.session_state:
+        st.session_state[key] = deque()
+    q = st.session_state[key]
+    now = time.time()
+    while q and now - q[0] > window_sec:
+        q.popleft()
+    if len(q) < limit:
+        q.append(now)
+        return True
+    return False
+
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -228,9 +244,20 @@ if st.sidebar.button("Logout", key="logout_btn", disabled=st.session_state.is_pr
     st.session_state.show_signup = False
     st.rerun()
 
+MAX_PDFS = 3
 uploaded_files = st.file_uploader(
-    "Upload PDF files", type="pdf", accept_multiple_files=True, disabled=st.session_state.is_processing_docs
+    "Upload up to 3 PDF files",
+    type="pdf",
+    accept_multiple_files=True,
+    disabled=st.session_state.is_processing_docs,
+    key="pdfs",
 )
+
+uploaded_files = uploaded_files or []
+if len(uploaded_files) > MAX_PDFS:
+    st.error("Select at most 3 PDFs.")
+    st.stop()
+
 
 st.button(
     "Process Documents",
@@ -373,6 +400,9 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
             st.markdown(query)
 
         with st.spinner("Generating answer..."):
+            if not allow("llm_calls", limit=50, window_sec=180):
+                st.warning("Rate limit: 50 requests per minute.")
+                st.stop()
             llm = SambaNovaCloud(model="Meta-Llama-3.3-70B-Instruct", sambanova_api_key=api_key)
 
             history_text = render_history_text(st.session_state.memory)
