@@ -9,4 +9,8 @@ supabase
 pinecone
 pinecone-client 
 langchain-pinecone
+pytesseract
+pillow
+speechrecognition
+pydub
 python-docx
