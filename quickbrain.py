@@ -25,7 +25,7 @@ import hashlib
 from datetime import datetime
 import uuid
 
-pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'  # your path may be different
+pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'  
 
 load_dotenv(dotenv_path="../crewai/.env")
 supabase_url = os.getenv("SUPABASE_URL")
