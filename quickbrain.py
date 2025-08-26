@@ -37,13 +37,23 @@ def now_iso():
     tz = pytz.timezone('Asia/Kolkata')
     return datetime.now(tz).isoformat(timespec="seconds")
 
-def extract_text_from_pdf(uploaded_file):
-    text = ""
-    doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
-    for page in doc:
-        text += page.get_text()
-    doc.close()
-    return text
+def extract_text_from_file(uploaded_file):
+    name = uploaded_file.name.lower()
+    if name.endswith(".pdf"):
+        text = ""
+        doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
+        for page in doc:
+            text += page.get_text()
+        doc.close()
+        return text
+    elif name.endswith(".txt"):
+        return uploaded_file.read().decode("utf-8")
+    elif name.endswith(".docx"):
+        from docx import Document
+        doc = Document(uploaded_file)
+        return "\n".join(para.text for para in doc.paragraphs)
+    else:
+        raise ValueError("Unsupported file type")
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -244,18 +254,18 @@ if st.sidebar.button("Logout", key="logout_btn", disabled=st.session_state.is_pr
     st.session_state.show_signup = False
     st.rerun()
 
-MAX_PDFS = 3
+MAX_FILES = 3
 uploaded_files = st.file_uploader(
-    "Upload up to 3 PDF files",
-    type="pdf",
+    "Upload up to 3 files",
+    type=["pdf", "txt", "docx"],
     accept_multiple_files=True,
     disabled=st.session_state.is_processing_docs,
-    key="pdfs",
+    key="files",
 )
 
 uploaded_files = uploaded_files or []
-if len(uploaded_files) > MAX_PDFS:
-    st.error("Select at most 3 PDFs.")
+if len(uploaded_files) > MAX_FILES:
+    st.error("Select at most 3 Files.")
     st.stop()
 
 
@@ -271,7 +281,7 @@ if st.session_state.is_processing_docs:
         all_docs = []
         splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         for uf in uploaded_files or []:
-            text = extract_text_from_pdf(uf)
+            text = extract_text_from_file(uf)
             for chunk in splitter.split_text(text):
                 all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
         
@@ -283,7 +293,6 @@ if st.session_state.is_processing_docs:
             embedding=embeddings,
             namespace=st.session_state.username, 
         )
-        
         if all_docs:
             ids = [
                 hashlib.sha1((d.page_content + d.metadata.get("source", "")).encode()).hexdigest()

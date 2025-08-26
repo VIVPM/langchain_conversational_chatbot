@@ -9,3 +9,4 @@ supabase
 pinecone
 pinecone-client 
 langchain-pinecone
+python-docx
