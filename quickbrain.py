@@ -12,6 +12,10 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from supabase import create_client, Client
+import pytesseract
+from PIL import Image
+import speech_recognition as sr
+from pydub import AudioSegment
 from collections import deque
 from dotenv import load_dotenv
 import os
@@ -20,6 +24,8 @@ import pytz
 import hashlib
 from datetime import datetime
 import uuid
+
+pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'  # your path may be different
 
 load_dotenv(dotenv_path="../crewai/.env")
 supabase_url = os.getenv("SUPABASE_URL")
@@ -52,6 +58,16 @@ def extract_text_from_file(uploaded_file):
         from docx import Document
         doc = Document(uploaded_file)
         return "\n".join(para.text for para in doc.paragraphs)
+    elif name.endswith((".jpg", ".png")):
+        img = Image.open(uploaded_file)
+        return pytesseract.image_to_string(img)
+    elif name.endswith((".mp3", ".wav")):
+        audio = AudioSegment.from_file(uploaded_file)
+        audio.export("temp.wav", format="wav")
+        recognizer = sr.Recognizer()
+        with sr.AudioFile("temp.wav") as source:
+            audio_data = recognizer.record(source)
+            return recognizer.recognize_google(audio_data)
     else:
         raise ValueError("Unsupported file type")
 
@@ -257,7 +273,7 @@ if st.sidebar.button("Logout", key="logout_btn", disabled=st.session_state.is_pr
 MAX_FILES = 3
 uploaded_files = st.file_uploader(
     "Upload up to 3 files",
-    type=["pdf", "txt", "docx"],
+    type=["pdf", "txt", "docx","jpg", "png","mp3", "wav"],
     accept_multiple_files=True,
     disabled=st.session_state.is_processing_docs,
     key="files",
