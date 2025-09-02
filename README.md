@@ -4,7 +4,7 @@ Streamlit RAG chat app with Pinecone, SambaNova LLM, and Supabase-backed auth.
 
 ## Summary
 
-- Upload PDFs. Text is extracted, chunked, embedded with `BAAI/bge-large-en-v1.5`, and indexed in **Pinecone**.
+- Upload PDF, DOCX, TXT files. Text is extracted, chunked, embedded with `BAAI/bge-large-en-v1.5`, and indexed in **Pinecone**.
 - Ask questions in chat. The app answers from chat memory first, then RAG over Pinecone, then optional web search, else direct LLM.
 - Users sign up and log in. Passwords are hashed and profiles plus chats are stored in **Supabase**.
 - Sidebar controls: API keys, web-search toggle, document processing, chat search, and new chat.
@@ -60,7 +60,7 @@ flowchart LR
 ## Installation
 
 ```bash
-pip install -U streamlit pymupdf langchain langchain-community langchain-huggingface pinecone-client langchain-pinecone supabase python-dotenv
+pip install -U streamlit pymupdf langchain langchain-community langchain-huggingface langchain-pinecone supabase python-dotenv
 ```
 
 > If you use GPU embeddings or other models, install the matching extras separately.
