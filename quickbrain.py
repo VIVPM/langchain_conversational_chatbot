@@ -2,6 +2,7 @@ import streamlit as st
 import fitz 
 from langchain_huggingface import HuggingFaceEmbeddings
 import hashlib
+import re
 from pinecone import Pinecone
 from langchain_pinecone import PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -132,7 +133,6 @@ def allow(action: str, limit: int, window_sec: int) -> bool:
         q.append(now)
         return True
     return False
-
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -494,9 +494,26 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                         direct = direct_chain({"q": resolved_q})
                         final_answer = direct["ans"].strip()
 
+            eval_prompt = PromptTemplate.from_template(
+                "Rate the answer on a scale of 1-10 for accuracy, relevance, and completeness. "
+                "Start with 'Score: X/10' where X is the floating point number, then explain briefly.\n\n"
+                "Question: {question}\nAnswer: {answer}\n\nEvaluation:"
+            )
+            eval_chain = LLMChain(llm=llm, prompt=eval_prompt, output_key="eval")
+            evaluation = eval_chain({"question": resolved_q, "answer": final_answer})["eval"]
+
+            # Extract score
+            try:
+                score_line = evaluation.split('\n')[0]
+                score_str = score_line.split(':')[1].split('/')[0].strip()
+                score = int(score_str)
+            except:
+                # Fallback regex if format fails
+                match = re.search(r'\b([1-9]|10)\b', evaluation)
+                score = int(match.group(1)) if match else 2 # Default to 5 if parsing fails
             assistant_response = f"**Answer:**\n{final_answer}{source_block}"
 
-        current_chat["messages"].append({"role": "assistant", "content": assistant_response, "date": current_time})
+        current_chat["messages"].append({"role": "assistant", "content": assistant_response, "score": score,"date": current_time})
         current_chat["updated_at"] = now_iso()
 
         st.session_state.memory.chat_memory.add_user_message(query)
