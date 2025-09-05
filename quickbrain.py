@@ -250,6 +250,13 @@ api_key = st.sidebar.text_input(
 )
 st.sidebar.caption("Don’t have one? Get it at [sambanova.ai](https://sambanova.ai/).")
 
+model_choice = st.sidebar.selectbox(
+    "Choose model",
+    options=["DeepSeek-R1-Distill-Llama-70B", "Llama-3.3-Swallow-70B-Instruct-v0.4", "Meta-Llama-3.1-8B-Instruct", "Meta-Llama-3.3-70B-Instruct"],
+    index=3,
+    disabled=st.session_state.is_processing_docs
+)
+
 serper_api_key = st.sidebar.text_input(
     "Serper API Key",
     type="password",
@@ -428,7 +435,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
             if not allow("llm_calls", limit=50, window_sec=180):
                 st.warning("Rate limit: 50 requests per minute.")
                 st.stop()
-            llm = SambaNovaCloud(model="Meta-Llama-3.3-70B-Instruct", sambanova_api_key=api_key)
+            llm = SambaNovaCloud(model=model_choice, sambanova_api_key=api_key)
 
             history_text = render_history_text(st.session_state.memory)
             resolved_q = rewrite_question(llm, history_text, query)
