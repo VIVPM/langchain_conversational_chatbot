@@ -163,6 +163,8 @@ if not st.session_state.logged_in:
             if submit:
                 if not (username and password):
                     st.error("Please fill in all fields.")
+                elif not re.fullmatch(r"^[A-Za-z0-9._%+-]+@gmail\.com$", username):
+                    st.error("Username must be a valid address ending with @gmail.com.")
                 elif supabase is None:
                     st.error("Supabase is not configured.")
                 else:
@@ -252,7 +254,7 @@ st.sidebar.caption("Don’t have one? Get it at [sambanova.ai](https://sambanova
 
 model_choice = st.sidebar.selectbox(
     "Choose model",
-    options=["DeepSeek-R1-Distill-Llama-70B", "Llama-3.3-Swallow-70B-Instruct-v0.4", "Meta-Llama-3.1-8B-Instruct", "Meta-Llama-3.3-70B-Instruct"],
+    options=["Llama-3.3-Swallow-70B-Instruct-v0.4", "Llama-4-Maverick-17B-128E-Instruct", "Meta-Llama-3.1-8B-Instruct", "Meta-Llama-3.3-70B-Instruct"],
     index=3,
     disabled=st.session_state.is_processing_docs
 )
@@ -279,7 +281,7 @@ if st.sidebar.button("Logout", key="logout_btn", disabled=st.session_state.is_pr
 
 MAX_FILES = 3
 uploaded_files = st.file_uploader(
-    "Upload up to 3 files",
+    "Upload up to 3 files each under 500KB",
     type=["pdf", "txt", "docx"],
     accept_multiple_files=True,
     disabled=st.session_state.is_processing_docs,
@@ -289,6 +291,13 @@ uploaded_files = st.file_uploader(
 uploaded_files = uploaded_files or []
 if len(uploaded_files) > MAX_FILES:
     st.error("Select at most 3 Files.")
+    st.stop()
+
+MAX_FILE_SIZE_BYTES = 500 * 1024
+oversized_files = [uf for uf in uploaded_files if getattr(uf, "size", 0) > MAX_FILE_SIZE_BYTES]
+if oversized_files:
+    names = ", ".join(f.name for f in oversized_files)
+    st.error(f"Each file must be under 500 KB. Too large: {names}")
     st.stop()
 
 
