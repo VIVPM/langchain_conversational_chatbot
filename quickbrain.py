@@ -173,12 +173,55 @@ if not st.session_state.logged_in:
                         st.error("Username already exists.")
                     else:
                         password_hash = hash_password(password)
-                        supabase.table("profiles").insert(
+                        resp = supabase.table("profiles").insert(
                             {"username": username, "password": password_hash, "chats": []}
                         ).execute()
-                        st.success("Signup successful. Please login.")
+
+                        user_row = None
+                        try:
+                            if resp and getattr(resp, "data", None):
+                                user_row = resp.data[0]
+                            else:
+                                fetched = supabase.table("profiles").select("*").eq("username", username).execute()
+                                user_row = fetched.data[0] if fetched.data else None
+                        except Exception:
+                            user_row = None
+
+                        if not user_row:
+                            st.success("Signup successful. Please login.")
+                            st.session_state.show_signup = False
+                            st.session_state.show_login = True
+                            st.rerun()
+
+                        # Auto-login and initialize default chat like login flow
+                        st.session_state.logged_in = True
+                        st.session_state.user_id = user_row["id"]
+                        st.session_state.username = username
+
+                        st.session_state.chats = {}
+                        new_chat_id = str(uuid.uuid4())
+                        ts = now_iso()
+                        new_chat = {
+                            "id": new_chat_id,
+                            "title": "New Chat",
+                            "messages": [],
+                            "created_at": ts,
+                            "updated_at": ts,
+                        }
+                        st.session_state.chats[new_chat_id] = new_chat
+                        st.session_state.selected_chat_id = new_chat_id
+                        st.session_state.memory = ensure_memory_from_chat(new_chat)
+
+                        try:
+                            supabase.table("profiles").update(
+                                {"chats": list(st.session_state.chats.values())}
+                            ).eq("id", st.session_state.user_id).execute()
+                        except Exception as e:
+                            st.error(f"Error saving chats: {str(e)}")
+
                         st.session_state.show_signup = False
-                        st.session_state.show_login = True
+                        st.session_state.show_login = False
+                        st.success("Signup successful. Welcome!")
                         st.rerun()
         if st.button("Login", key="login_acct_btn"):
             st.session_state.show_login = True
