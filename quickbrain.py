@@ -164,7 +164,7 @@ if not st.session_state.logged_in:
                 if not (username and password):
                     st.error("Please fill in all fields.")
                 elif not re.fullmatch(r"^[A-Za-z0-9._%+-]+@gmail\.com$", username):
-                    st.error("Username must be a valid address ending with @gmail.com.")
+                    st.error("Username must be a valid address ending with Gmail Account.")
                 elif supabase is None:
                     st.error("Supabase is not configured.")
                 else:
