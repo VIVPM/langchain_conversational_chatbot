@@ -102,16 +102,6 @@ def render_history_text(mem: ConversationBufferMemory) -> str:
             parts.append(m.content)
     return "\n".join(parts)
 
-def rewrite_question(llm, chat_history_text: str, question: str) -> str:
-    rewrite_prompt = PromptTemplate.from_template(
-        "Rewrite the user's question as a fully standalone question using the chat history. "
-        "Resolve pronouns like 'it', 'that', or 'the problem'. Do not add new facts.\n\n"
-        "Chat History:\n{chat_history}\n\nUser question: {question}\n\nStandalone question:"
-    )
-    rewriter = LLMChain(llm=llm, prompt=rewrite_prompt, output_key="standalone")
-    out = rewriter({"chat_history": chat_history_text, "question": question})
-    return out["standalone"].strip()
-
 def _clear_chat_search():
     st.session_state.chat_search_query = ""
     
@@ -133,6 +123,49 @@ def allow(action: str, limit: int, window_sec: int) -> bool:
         q.append(now)
         return True
     return False
+
+def check_namespace_not_empty(username: str) -> bool:
+    """Check if the user's namespace in Pinecone is not empty"""
+    try:
+        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        index = pc.Index(host=os.getenv("PINECONE_HOST"))
+        
+        # Query the namespace with a simple query to check if it has any vectors
+        stats = index.describe_index_stats()
+        namespace_stats = stats.get('namespaces', {})
+        
+        # Check if the user's namespace exists and has vectors
+        if username in namespace_stats:
+            vector_count = namespace_stats[username].get('vector_count', 0)
+            return vector_count > 0
+        return False
+    except Exception as e:
+        st.error(f"Error checking namespace: {str(e)}")
+        return False
+
+def get_or_create_vectorstore(username: str):
+    """Get existing vectorstore if namespace is not empty, otherwise create new one"""
+    try:
+        embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
+        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        index = pc.Index(host=os.getenv("PINECONE_HOST"))
+        
+        vectorstore = PineconeVectorStore(
+            index=index,
+            embedding=embeddings,
+            namespace=username, 
+        )
+        
+        # Check if namespace has vectors
+        if check_namespace_not_empty(username):
+            st.info(f"Retrieved existing vectorstore for {username}")
+        else:
+            st.info(f"Created new vectorstore for {username}")
+            
+        return vectorstore
+    except Exception as e:
+        st.error(f"Error creating/retrieving vectorstore: {str(e)}")
+        return None
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -212,6 +245,11 @@ if not st.session_state.logged_in:
                         st.session_state.selected_chat_id = new_chat_id
                         st.session_state.memory = ensure_memory_from_chat(new_chat)
 
+                        # # Retrieve or create vectorstore for the user
+                        # vectorstore = get_or_create_vectorstore(username)
+                        # if vectorstore:
+                        #     st.session_state.vectorstore = vectorstore
+
                         try:
                             supabase.table("profiles").update(
                                 {"chats": list(st.session_state.chats.values())}
@@ -267,6 +305,11 @@ if not st.session_state.logged_in:
                         st.session_state.chats[new_chat_id] = new_chat
                         st.session_state.selected_chat_id = new_chat_id
                         st.session_state.memory = ensure_memory_from_chat(new_chat)
+
+                        # Retrieve or create vectorstore for the user
+                        vectorstore = get_or_create_vectorstore(username)
+                        if vectorstore:
+                            st.session_state.vectorstore = vectorstore
 
                         try:
                             supabase.table("profiles").update(
@@ -360,14 +403,18 @@ if st.session_state.is_processing_docs:
             for chunk in splitter.split_text(text):
                 all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
         
-        embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
-        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index = pc.Index(host=os.getenv("PINECONE_HOST"))
-        vectorstore = PineconeVectorStore(
-            index=index,
-            embedding=embeddings,
-            namespace=st.session_state.username, 
-        )
+        # Use existing vectorstore if available, otherwise create new one
+        if "vectorstore" not in st.session_state or st.session_state.vectorstore is None:
+            vectorstore = get_or_create_vectorstore(st.session_state.username)
+            if vectorstore:
+                st.session_state.vectorstore = vectorstore
+            else:
+                st.error("Failed to create vectorstore")
+                st.session_state.is_processing_docs = False
+                st.rerun()
+        else:
+            vectorstore = st.session_state.vectorstore
+            
         if all_docs:
             ids = [
                 hashlib.sha1((d.page_content + d.metadata.get("source", "")).encode()).hexdigest()
@@ -375,7 +422,6 @@ if st.session_state.is_processing_docs:
             ]
             vectorstore.add_documents(all_docs, ids=ids)
 
-        st.session_state.vectorstore = vectorstore
     st.session_state.is_processing_docs = False
     st.success("Documents processed and indexed.")
     st.rerun()
@@ -487,70 +533,73 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
             if not allow("llm_calls", limit=50, window_sec=180):
                 st.warning("Rate limit: 50 requests per minute.")
                 st.stop()
-            llm = SambaNovaCloud(model=model_choice, sambanova_api_key=api_key)
+            llm = SambaNovaCloud(model=model_choice, sambanova_api_key=api_key, temperature=0.4, top_p=0.8, top_k=1000)
 
             history_text = render_history_text(st.session_state.memory)
-            resolved_q = rewrite_question(llm, history_text, query)
 
-            probe_prompt = PromptTemplate.from_template(
-                "Answer the question strictly from the chat history. "
-                "If the history lacks enough info, reply exactly: NEEDS_EXTERNAL\n\n"
-                "Chat History:\n{chat_history}\n\nQuestion: {question}\n\nAnswer:"
-            )
-            probe_chain = LLMChain(llm=llm, prompt=probe_prompt, output_key="answer")
-            probe = probe_chain({"chat_history": history_text, "question": resolved_q})
-            probe_answer = probe["answer"].strip()
-
-            if probe_answer != "NEEDS_EXTERNAL":
-                final_answer = probe_answer
-                source_block = ""
-            else:
-                final_answer, source_block = None, ""
-                rag_answer, rag_sources = None, None
-                if "vectorstore" in st.session_state:
-                    retriever = st.session_state.vectorstore.as_retriever(
-                        search_kwargs={"k": 10}, search_type="mmr"
-                    )
-                    docs = retriever.get_relevant_documents(resolved_q)
-                    context = "\n\n".join(d.page_content for d in docs)
-                    combine_prompt = PromptTemplate.from_template(
-                        "Use the context to answer the question. "
-                        "If insufficient, say 'Information not found in the provided documents.'\n\n"
-                        "{context}\n\nQuestion: {question}\n\nAnswer:"
-                    )
-                    combine_chain = LLMChain(llm=llm, prompt=combine_prompt, output_key="ans")
-                    rag = combine_chain({"context": context, "question": resolved_q})
-                    rag_answer = rag["ans"].strip()
-                    rag_sources = sorted({d.metadata.get("source", "") for d in docs if d and d.metadata.get("source")})
-
-                if rag_answer and "Information not found in the provided documents." not in rag_answer:
-                    final_answer = rag_answer
-                    if rag_sources:
-                        source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in rag_sources)
+            # Check if web search is enabled and has API key - prioritize web search
+            if st.session_state.use_web_search and serper_api_key:
+                search_tool = GoogleSerperAPIWrapper(serper_api_key=serper_api_key, k=5)
+                sr = search_tool.results(query)
+                organic = sr.get("organic", [])
+                search_results = "\n".join(
+                    f"Snippet: {o.get('snippet','')}\nLink: {o.get('link','')}" for o in organic
+                )
+                web_prompt = PromptTemplate.from_template(
+                    "Based on the following web search results, answer concisely and accurately. "
+                    "Include key sources.\n\nSearch Results:\n{search_results}\n\nQuestion: {question}\n\nAnswer:"
+                )
+                web_chain = LLMChain(llm=llm, prompt=web_prompt, output_key="ans")
+                web = web_chain({"search_results": search_results, "question": query})
+                final_answer = web["ans"].strip()
+                sources = [o.get("link","") for o in organic if o.get("link")]
+                if sources:
+                    source_block = "\n\n**Web Sources used:**\n" + "\n".join(f"- {s}" for s in sources)
                 else:
-                    if st.session_state.use_web_search and serper_api_key:
-                        search_tool = GoogleSerperAPIWrapper(serper_api_key=serper_api_key, k=5)
-                        sr = search_tool.results(resolved_q)
-                        organic = sr.get("organic", [])
-                        search_results = "\n".join(
-                            f"Snippet: {o.get('snippet','')}\nLink: {o.get('link','')}" for o in organic
+                    source_block = ""
+            else:
+                # Fallback to memory → RAG → direct LLM flow when web search is not enabled
+                probe_prompt = PromptTemplate.from_template(
+                    "Answer the question using the chat history as context. Your answers should be non-deterministic and no one should be able to guess the answer. Even though the answer might lie in context but your answer needs to get rephrased."
+                    "If the history lacks enough info, reply exactly: NEEDS_EXTERNAL\n\n"
+                    "Chat History:\n{chat_history}\n\nQuestion: {question}\n\nAnswer:"
+                )
+                probe_chain = LLMChain(llm=llm, prompt=probe_prompt, output_key="answer")
+                probe = probe_chain({"chat_history": history_text, "question": query})
+                probe_answer = probe["answer"].strip()
+
+                if probe_answer != "NEEDS_EXTERNAL":
+                    final_answer = probe_answer
+                    source_block = ""
+                else:
+                    final_answer, source_block = None, ""
+                    rag_answer, rag_sources = None, None
+                    if "vectorstore" in st.session_state:
+                        retriever = st.session_state.vectorstore.as_retriever(
+                            search_kwargs={"k": 10}, search_type="mmr"
                         )
-                        web_prompt = PromptTemplate.from_template(
-                            "Based on the following web search results, answer concisely and accurately. "
-                            "Include key sources.\n\nSearch Results:\n{search_results}\n\nQuestion: {question}\n\nAnswer:"
+                        docs = retriever.get_relevant_documents(query)
+                        context = "\n\n".join(d.page_content for d in docs)
+                        combine_prompt = PromptTemplate.from_template(
+                            "Use the context to answer the question. "
+                            "If insufficient, say 'Information not found in the provided documents.'\n\n"
+                            "{context}\n\nQuestion: {question}\n\nAnswer:"
                         )
-                        web_chain = LLMChain(llm=llm, prompt=web_prompt, output_key="ans")
-                        web = web_chain({"search_results": search_results, "question": resolved_q})
-                        final_answer = web["ans"].strip()
-                        sources = [o.get("link","") for o in organic if o.get("link")]
-                        if sources:
-                            source_block = "\n\n**Web Sources used:**\n" + "\n".join(f"- {s}" for s in sources)
+                        combine_chain = LLMChain(llm=llm, prompt=combine_prompt, output_key="ans")
+                        rag = combine_chain({"context": context, "question": query})
+                        rag_answer = rag["ans"].strip()
+                        rag_sources = sorted({d.metadata.get("source", "") for d in docs if d and d.metadata.get("source")})
+
+                    if rag_answer and "Information not found in the provided documents." not in rag_answer:
+                        final_answer = rag_answer
+                        if rag_sources:
+                            source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in rag_sources)
                     else:
                         direct_prompt = PromptTemplate.from_template(
                             "Answer clearly and concisely.\n\nQuestion: {q}\n\nAnswer:"
                         )
                         direct_chain = LLMChain(llm=llm, prompt=direct_prompt, output_key="ans")
-                        direct = direct_chain({"q": resolved_q})
+                        direct = direct_chain({"q": query})
                         final_answer = direct["ans"].strip()
 
             eval_prompt = PromptTemplate.from_template(
@@ -559,7 +608,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                 "Question: {question}\nAnswer: {answer}\n\nEvaluation:"
             )
             eval_chain = LLMChain(llm=llm, prompt=eval_prompt, output_key="eval")
-            evaluation = eval_chain({"question": resolved_q, "answer": final_answer})["eval"]
+            evaluation = eval_chain({"question": query, "answer": final_answer})["eval"]
 
             # Extract score
             try:
