@@ -335,7 +335,7 @@ if st.session_state.is_processing_docs:
         
         embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
         pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index = pc.Index('langchain-chatbot')
+        index = pc.Index(os.getenv('PINECONE_INDEX_NAME'))
         vectorstore = PineconeVectorStore(
             index=index,
             embedding=embeddings,
