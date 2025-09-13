@@ -130,11 +130,9 @@ def check_namespace_not_empty(username: str) -> bool:
         pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
         index = pc.Index(host=os.getenv("PINECONE_HOST"))
         
-        # Query the namespace with a simple query to check if it has any vectors
         stats = index.describe_index_stats()
         namespace_stats = stats.get('namespaces', {})
         
-        # Check if the user's namespace exists and has vectors
         if username in namespace_stats:
             vector_count = namespace_stats[username].get('vector_count', 0)
             return vector_count > 0
@@ -156,7 +154,6 @@ def get_or_create_vectorstore(username: str):
             namespace=username, 
         )
         
-        # Check if namespace has vectors
         if check_namespace_not_empty(username):
             st.info(f"Retrieved existing vectorstore for {username}")
         else:
@@ -226,7 +223,6 @@ if not st.session_state.logged_in:
                             st.session_state.show_login = True
                             st.rerun()
 
-                        # Auto-login and initialize default chat like login flow
                         st.session_state.logged_in = True
                         st.session_state.user_id = user_row["id"]
                         st.session_state.username = username
@@ -244,11 +240,6 @@ if not st.session_state.logged_in:
                         st.session_state.chats[new_chat_id] = new_chat
                         st.session_state.selected_chat_id = new_chat_id
                         st.session_state.memory = ensure_memory_from_chat(new_chat)
-
-                        # # Retrieve or create vectorstore for the user
-                        # vectorstore = get_or_create_vectorstore(username)
-                        # if vectorstore:
-                        #     st.session_state.vectorstore = vectorstore
 
                         try:
                             supabase.table("profiles").update(
@@ -306,7 +297,6 @@ if not st.session_state.logged_in:
                         st.session_state.selected_chat_id = new_chat_id
                         st.session_state.memory = ensure_memory_from_chat(new_chat)
 
-                        # Retrieve or create vectorstore for the user
                         vectorstore = get_or_create_vectorstore(username)
                         if vectorstore:
                             st.session_state.vectorstore = vectorstore
@@ -403,7 +393,6 @@ if st.session_state.is_processing_docs:
             for chunk in splitter.split_text(text):
                 all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
         
-        # Use existing vectorstore if available, otherwise create new one
         if "vectorstore" not in st.session_state or st.session_state.vectorstore is None:
             vectorstore = get_or_create_vectorstore(st.session_state.username)
             if vectorstore:
@@ -537,7 +526,6 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
 
             history_text = render_history_text(st.session_state.memory)
 
-            # Check if web search is enabled and has API key - prioritize web search
             if st.session_state.use_web_search and serper_api_key:
                 search_tool = GoogleSerperAPIWrapper(serper_api_key=serper_api_key, k=5)
                 sr = search_tool.results(query)
@@ -558,7 +546,6 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                 else:
                     source_block = ""
             else:
-                # Fallback to memory → RAG → direct LLM flow when web search is not enabled
                 probe_prompt = PromptTemplate.from_template(
                     "Answer the question using the chat history as context. Your answers should be non-deterministic and no one should be able to guess the answer. Even though the answer might lie in context but your answer needs to get rephrased."
                     "If the history lacks enough info, reply exactly: NEEDS_EXTERNAL\n\n"
@@ -610,13 +597,11 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
             eval_chain = LLMChain(llm=llm, prompt=eval_prompt, output_key="eval")
             evaluation = eval_chain({"question": query, "answer": final_answer})["eval"]
 
-            # Extract score
             try:
                 score_line = evaluation.split('\n')[0]
                 score_str = score_line.split(':')[1].split('/')[0].strip()
                 score = int(score_str)
             except:
-                # Fallback regex if format fails
                 match = re.search(r'\b([1-9]|10)\b', evaluation)
                 score = int(match.group(1)) if match else 2 # Default to 5 if parsing fails
             assistant_response = f"**Answer:**\n{final_answer}{source_block}"
