@@ -13,10 +13,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from supabase import create_client, Client
-# import pytesseract
-# from PIL import Image
-# import speech_recognition as sr
-# from pydub import AudioSegment
 from collections import deque
 from dotenv import load_dotenv
 import os
@@ -25,8 +21,6 @@ import pytz
 import hashlib
 from datetime import datetime
 import uuid
-
-# pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'  
 
 load_dotenv(dotenv_path="../crewai/.env")
 supabase_url = os.getenv("SUPABASE_URL")
@@ -59,16 +53,6 @@ def extract_text_from_file(uploaded_file):
         from docx import Document
         doc = Document(uploaded_file)
         return "\n".join(para.text for para in doc.paragraphs)
-    # elif name.endswith((".jpg", ".png")):
-    #     img = Image.open(uploaded_file)
-    #     return pytesseract.image_to_string(img)
-    # elif name.endswith((".mp3", ".wav")):
-    #     audio = AudioSegment.from_file(uploaded_file)
-    #     audio.export("temp.wav", format="wav")
-    #     recognizer = sr.Recognizer()
-    #     with sr.AudioFile("temp.wav") as source:
-    #         audio_data = recognizer.record(source)
-    #         return recognizer.recognize_google(audio_data)
     else:
         raise ValueError("Unsupported file type")
 
@@ -123,46 +107,6 @@ def allow(action: str, limit: int, window_sec: int) -> bool:
         q.append(now)
         return True
     return False
-
-def check_namespace_not_empty(username: str) -> bool:
-    """Check if the user's namespace in Pinecone is not empty"""
-    try:
-        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index = pc.Index(host=os.getenv("PINECONE_HOST"))
-        
-        stats = index.describe_index_stats()
-        namespace_stats = stats.get('namespaces', {})
-        
-        if username in namespace_stats:
-            vector_count = namespace_stats[username].get('vector_count', 0)
-            return vector_count > 0
-        return False
-    except Exception as e:
-        st.error(f"Error checking namespace: {str(e)}")
-        return False
-
-def get_or_create_vectorstore(username: str):
-    """Get existing vectorstore if namespace is not empty, otherwise create new one"""
-    try:
-        embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
-        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index = pc.Index(host=os.getenv("PINECONE_HOST"))
-        
-        vectorstore = PineconeVectorStore(
-            index=index,
-            embedding=embeddings,
-            namespace=username, 
-        )
-        
-        if check_namespace_not_empty(username):
-            st.info(f"Retrieved existing vectorstore for {username}")
-        else:
-            st.info(f"Created new vectorstore for {username}")
-            
-        return vectorstore
-    except Exception as e:
-        st.error(f"Error creating/retrieving vectorstore: {str(e)}")
-        return None
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -297,10 +241,6 @@ if not st.session_state.logged_in:
                         st.session_state.selected_chat_id = new_chat_id
                         st.session_state.memory = ensure_memory_from_chat(new_chat)
 
-                        vectorstore = get_or_create_vectorstore(username)
-                        if vectorstore:
-                            st.session_state.vectorstore = vectorstore
-
                         try:
                             supabase.table("profiles").update(
                                 {"chats": list(st.session_state.chats.values())}
@@ -393,17 +333,14 @@ if st.session_state.is_processing_docs:
             for chunk in splitter.split_text(text):
                 all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
         
-        if "vectorstore" not in st.session_state or st.session_state.vectorstore is None:
-            vectorstore = get_or_create_vectorstore(st.session_state.username)
-            if vectorstore:
-                st.session_state.vectorstore = vectorstore
-            else:
-                st.error("Failed to create vectorstore")
-                st.session_state.is_processing_docs = False
-                st.rerun()
-        else:
-            vectorstore = st.session_state.vectorstore
-            
+        embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
+        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        index = pc.Index('langchain-chatbot')
+        vectorstore = PineconeVectorStore(
+            index=index,
+            embedding=embeddings,
+            namespace=st.session_state.username, 
+        )
         if all_docs:
             ids = [
                 hashlib.sha1((d.page_content + d.metadata.get("source", "")).encode()).hexdigest()
@@ -411,6 +348,7 @@ if st.session_state.is_processing_docs:
             ]
             vectorstore.add_documents(all_docs, ids=ids)
 
+        st.session_state.vectorstore = vectorstore
     st.session_state.is_processing_docs = False
     st.success("Documents processed and indexed.")
     st.rerun()
@@ -547,7 +485,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                     source_block = ""
             else:
                 probe_prompt = PromptTemplate.from_template(
-                    "Answer the question using the chat history as context. Your answers should be non-deterministic and no one should be able to guess the answer. Even though the answer might lie in context but your answer needs to get rephrased."
+                    "Use chat history as context only if you can answer this question. Your answers should be non-deterministic and no one should be able to guess the answer."
                     "If the history lacks enough info, reply exactly: NEEDS_EXTERNAL\n\n"
                     "Chat History:\n{chat_history}\n\nQuestion: {question}\n\nAnswer:"
                 )
