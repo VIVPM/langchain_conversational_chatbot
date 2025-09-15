@@ -560,7 +560,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                             source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in rag_sources)
                     else:
                         direct_prompt = PromptTemplate.from_template(
-                            "Answer clearly and concisely.\n\nQuestion: {q}\n\nAnswer:"
+                            "Answer clearly and concisely. If you don't know the answer, say don't know.\n\nQuestion: {q}\n\nAnswer:"
                         )
                         direct_chain = LLMChain(llm=llm, prompt=direct_prompt, output_key="ans")
                         direct = direct_chain({"q": query})
