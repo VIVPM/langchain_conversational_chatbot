@@ -88,12 +88,20 @@ def render_history_text(mem: ConversationBufferMemory) -> str:
 
 def _clear_chat_search():
     st.session_state.chat_search_query = ""
+    st.session_state.chat_displayed_count = st.session_state.chat_page_size
     
 def _toggle_web_sidebar():
     st.session_state.use_web_search = not st.session_state.use_web_search
     
 def _begin_processing():
     st.session_state.is_processing_docs = True
+
+def _load_more_chats():
+    st.session_state.chat_loading_more = True
+    
+def _finish_loading_chats():
+    st.session_state.chat_displayed_count += st.session_state.chat_page_size
+    st.session_state.chat_loading_more = False
 
 def allow(action: str, limit: int, window_sec: int) -> bool:
     key = f"rl_{action}"
@@ -126,6 +134,12 @@ if "use_web_search" not in st.session_state:
     st.session_state.use_web_search = False
 if "chat_search_query" not in st.session_state:
     st.session_state.chat_search_query = ""
+if "chat_page_size" not in st.session_state:
+    st.session_state.chat_page_size = 10
+if "chat_displayed_count" not in st.session_state:
+    st.session_state.chat_displayed_count = 10
+if "chat_loading_more" not in st.session_state:
+    st.session_state.chat_loading_more = False
 
 if not st.session_state.logged_in:
     if st.session_state.show_signup:
@@ -417,12 +431,34 @@ if not st.session_state.is_processing_docs:
                 for m in c.get("messages", [])
             )
         ]
-    for chat in sorted_chats:
+        # Reset pagination when searching
+        st.session_state.chat_displayed_count = len(sorted_chats)
+    
+    # Handle loading more chats with simulated delay
+    if st.session_state.chat_loading_more:
+        with st.sidebar:
+            with st.spinner("Loading more chats..."):
+                time.sleep(1)  # Simulate loading delay
+        _finish_loading_chats()
+        st.rerun()
+    
+    # Display paginated chats
+    displayed_chats = sorted_chats[:st.session_state.chat_displayed_count]
+    
+    for chat in displayed_chats:
         ts = chat.get("updated_at", chat.get("created_at", ""))[:16].replace("T", " ")
         label = f"{ts} - {chat.get('title','New Chat')}"
         if st.sidebar.button(label, key=f"open_chat_{chat['id']}"):
             st.session_state.selected_chat_id = chat["id"]
             st.session_state.memory = ensure_memory_from_chat(chat)
+            st.rerun()
+    
+    # Show "Load More" button if there are more chats to display
+    if len(sorted_chats) > st.session_state.chat_displayed_count and not chat_search_q:
+        remaining_chats = len(sorted_chats) - st.session_state.chat_displayed_count
+        load_more_text = f"Load More ({remaining_chats} remaining)"
+        if st.sidebar.button(load_more_text, key="load_more_chats_btn", disabled=st.session_state.chat_loading_more):
+            _load_more_chats()
             st.rerun()
 else:
     st.sidebar.info("Processing documents. Chats hidden.")
