@@ -21,6 +21,8 @@ import pytz
 import hashlib
 from datetime import datetime
 import uuid
+import warnings
+warnings.filterwarnings("ignore")
 
 load_dotenv(dotenv_path="../crewai/.env")
 supabase_url = os.getenv("SUPABASE_URL")
@@ -348,10 +350,11 @@ if st.session_state.is_processing_docs:
                 all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
         
         embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-large-en-v1.5")
-        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index = pc.Index(os.getenv('PINECONE_INDEX_NAME'))
+        # pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        # index = pc.Index(os.getenv('PINECONE_INDEX_NAME'))
         vectorstore = PineconeVectorStore(
-            index=index,
+            index_name=os.getenv('PINECONE_INDEX_NAME'),
+            pinecone_api_key=os.getenv("PINECONE_API_KEY"),
             embedding=embeddings,
             namespace=st.session_state.username, 
         )
