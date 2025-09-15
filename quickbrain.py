@@ -459,7 +459,7 @@ if not st.session_state.is_processing_docs:
     # Show "Load More" button if there are more chats to display
     if len(sorted_chats) > st.session_state.chat_displayed_count and not chat_search_q:
         remaining_chats = len(sorted_chats) - st.session_state.chat_displayed_count
-        load_more_text = f"Load More ({remaining_chats} remaining)"
+        load_more_text = f"Load More ({remaining_chats} chats remaining)"
         if st.sidebar.button(load_more_text, key="load_more_chats_btn", disabled=st.session_state.chat_loading_more):
             _load_more_chats()
             st.rerun()
