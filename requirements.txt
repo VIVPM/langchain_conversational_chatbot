@@ -3,12 +3,7 @@ pymupdf
 langchain
 langchain-community
 langchain-huggingface
-faiss-cpu
 sentence-transformers
 supabase
 langchain-pinecone
-pytesseract
-pillow
-speechrecognition
-pydub
 python-docx
