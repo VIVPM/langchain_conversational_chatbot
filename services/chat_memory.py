@@ -1,4 +1,5 @@
 from langchain.memory import ConversationBufferMemory
+from langchain_core.messages import HumanMessage, AIMessage
 
 def ensure_memory_from_chat(chat) -> ConversationBufferMemory:
     mem = ConversationBufferMemory(
@@ -8,9 +9,9 @@ def ensure_memory_from_chat(chat) -> ConversationBufferMemory:
     )
     for m in chat.get("messages", []):
         if m["role"] == "user":
-            mem.chat_memory.add_user_message(m["content"])
+            mem.chat_memory.add_message(HumanMessage(content=m["content"]))
         elif m["role"] == "assistant":
-            mem.chat_memory.add_ai_message(m["content"])
+            mem.chat_memory.add_message(AIMessage(content=m["content"]))
     return mem
 
 def render_history_text(mem: ConversationBufferMemory) -> str:
