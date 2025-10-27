@@ -1,11 +1,11 @@
 streamlit
 pymupdf
 langchain
-langchain-community
-langchain-huggingface
-faiss-cpu
-sentence-transformers
-supabase
 langchain-openai
 langchain-pinecone
+langchain-community
+langchain-huggingface
+sentence-transformers
+supabase
+
 python-docx

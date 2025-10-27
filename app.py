@@ -3,7 +3,7 @@ from config import MAX_FILES, MAX_FILE_SIZE_BYTES, DEFAULT_MODEL
 from services.supabase_client import get_supabase
 from services.chats import init_session_state, create_new_chat, persist_chats
 from services.chat_memory import ensure_memory_from_chat, render_history_text
-from services.vectorstore import make_vectorstore
+from services.new_vectorstore import make_vectorstore
 from services.ingest import split_files, index_docs
 from services.llm import get_llm, answer_direct, answer_from_context
 from services.search import web_search_answer
