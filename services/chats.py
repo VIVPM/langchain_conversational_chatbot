@@ -1,5 +1,5 @@
 import uuid
-from services.memory import ensure_memory_from_chat
+from services.chat_memory import ensure_memory_from_chat
 from utils.time_tools import now_iso
 
 def init_session_state(st):
