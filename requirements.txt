@@ -7,5 +7,4 @@ langchain-community
 langchain-huggingface
 sentence-transformers
 supabase
-
 python-docx
