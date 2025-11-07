@@ -5,7 +5,7 @@ from langchain.evaluation.qa import QAEvalChain
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_community.llms import SambaNovaCloud
-load_dotenv(dotenv_path="../crewai/.env")
+load_dotenv()
 import os
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY")
