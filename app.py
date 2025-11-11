@@ -62,7 +62,14 @@ model_choice = st.sidebar.selectbox("Choose model", options=[
     "Llama-3.3-Swallow-70B-Instruct-v0.4",
     "Llama-4-Maverick-17B-128E-Instruct",
     "Meta-Llama-3.1-8B-Instruct",
-    "Meta-Llama-3.3-70B-Instruct"
+    "Meta-Llama-3.3-70B-Instruct",
+    "DeepSeek-V3.1-Terminus",
+    "DeepSeek-V3.1",
+    "DeepSeek-V3-0324",
+    "DeepSeek-R1-Distill-Llama-70B",
+    "DeepSeek-R1-0528",
+    "ALLaM-7B-Instruct-preview",
+    "E5-Mistral-7B-Instruct"
 ], index=3, disabled=st.session_state.is_processing_docs)
 serper_api_key = st.sidebar.text_input("Serper API Key", type="password", disabled=st.session_state.is_processing_docs)
 render_web_search_toggle(st, serper_api_key)
@@ -109,10 +116,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
     q = st.chat_input("Your question")
     if q:
         # Validate input with guardrails
-        is_valid, error_msg = InputGuardrails.validate_input(q)
-        if not is_valid:
-            st.error(f"⚠️ {error_msg}")
-            st.stop()
+        is_valid, err = InputGuardrails.validate_input(q)
         
         cur = st.session_state.chats[st.session_state.selected_chat_id]
         t = now_iso()
@@ -147,14 +151,16 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
                             source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in uniq_src)
                 if not final:
                     final = answer_direct(llm, history_text, q)
-
         assistant_response = f"**Answer:**\n{final}{source_block}"
+        if not is_valid:
+            assistant_response += f"\n\n⚠️ {err}"
         cur["messages"].append({"role": "assistant", "content": assistant_response, "date": t})
         cur["updated_at"] = now_iso()
         st.session_state.memory.chat_memory.add_user_message(q)
         st.session_state.memory.chat_memory.add_ai_message(assistant_response)
-        with st.chat_message("assistant"): st.markdown(assistant_response)
-
+        with st.chat_message("assistant"):
+            st.markdown(assistant_response)
+            
         persist_chats(supabase, st.session_state.user_id, st)
         if st.session_state.pop("_sidebar_title_just_updated", False):
             st.rerun()
