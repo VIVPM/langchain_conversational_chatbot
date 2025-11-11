@@ -8,6 +8,7 @@ from services.ingest import split_files, index_docs
 from services.llm import get_llm, answer_direct, answer_from_context
 from services.search import web_search_answer
 from services.auth import signup, login
+from services.input_guardrails import InputGuardrails
 from ui.sidebar import render_settings, render_web_search_toggle, render_auth_buttons, render_chat_search, render_chat_list
 from ui.chat_window import render_chat_history
 from utils.ratelimit import allow
@@ -107,6 +108,12 @@ else:
 if api_key and st.session_state.selected_chat_id and not st.session_state.is_processing_docs:
     q = st.chat_input("Your question")
     if q:
+        # Validate input with guardrails
+        is_valid, error_msg = InputGuardrails.validate_input(q)
+        if not is_valid:
+            st.error(f"⚠️ {error_msg}")
+            st.stop()
+        
         cur = st.session_state.chats[st.session_state.selected_chat_id]
         t = now_iso()
         if cur["title"] == "New Chat":
