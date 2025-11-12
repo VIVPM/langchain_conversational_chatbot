@@ -2,6 +2,9 @@ import streamlit as st
 from services.chats import create_new_chat
 from config import DEFAULT_CHAT_PAGE_SIZE
 
+if "chat_displayed_count" not in st.session_state:
+    st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE
+
 def toggle_ws():
     st.session_state.use_web_search = not st.session_state.use_web_search
 
@@ -31,11 +34,20 @@ def render_chat_search(st):
     st.sidebar.title("Search Chats")
     c1, c2 = st.sidebar.columns([0.85, 0.15])
     with c1:
-        q = st.text_input("Search chats", value=st.session_state.chat_search_query, label_visibility="collapsed", placeholder="Search conversations…", key="chat_search_input", disabled=st.session_state.is_processing_docs)
+        q = st.text_input(
+            "Search chats",
+            value=st.session_state.chat_search_query,
+            label_visibility="collapsed",
+            placeholder="Search conversations…",
+            key="chat_search_input",
+            disabled=st.session_state.is_processing_docs,
+        )
         if q != st.session_state.chat_search_query:
             st.session_state.chat_search_query = q
+            st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE  # reset page
     with c2:
-        if st.button("✕", key="chat_search_clear", help="Clear search", disabled=st.session_state.is_processing_docs):
+        if st.button("✕", key="chat_search_clear", help="Clear search",
+                     disabled=st.session_state.is_processing_docs):
             st.session_state.chat_search_query = ""
             st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE
             st.rerun()
@@ -45,24 +57,50 @@ def render_chat_list(st, on_open_chat):
     if st.session_state.is_processing_docs:
         st.sidebar.info("Processing documents. Chats hidden.")
         return
+
+    # "New Chat" button
     disable_new = False
     cur = st.session_state.selected_chat_id and st.session_state.chats[st.session_state.selected_chat_id]
     if cur and cur["title"] == "New Chat" and not cur.get("messages"):
         disable_new = True
     if st.sidebar.button("New Chat", key="new_chat_btn", disabled=disable_new):
         create_new_chat(st)
+        st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE  # reset after creation
         st.rerun()
 
-    sorted_chats = sorted(st.session_state.chats.values(), key=lambda x: x.get("updated_at", x.get("created_at", "")), reverse=True)
+    # Sort and filter
+    sorted_chats = sorted(
+        st.session_state.chats.values(),
+        key=lambda x: x.get("updated_at", x.get("created_at", "")),
+        reverse=True,
+    )
     q = st.session_state.chat_search_query.strip().lower()
     if q:
-        sorted_chats = [c for c in sorted_chats if any(q in (m.get("content","").lower()) for m in c.get("messages", []))]
-        st.session_state.chat_displayed_count = len(sorted_chats)
+        sorted_chats = [
+            c for c in sorted_chats
+            if any(q in (m.get("content", "").lower()) for m in c.get("messages", []))
+               or q in (c.get("title") or "").lower()
+        ]
 
-    displayed = sorted_chats[:st.session_state.chat_displayed_count]
+    # Slice for current page
+    start = 0
+    end = st.session_state.chat_displayed_count
+    displayed = sorted_chats[start:end]
+
+    # Render buttons for displayed chats
     for chat in displayed:
         title = chat.get("title") or "New Chat"
         label = title[:60]
         if st.sidebar.button(label, key=f"open_chat_{chat['id']}"):
             on_open_chat(chat["id"])
             st.rerun()
+
+    # Pager: show more button if more remain
+    remaining = max(0, len(sorted_chats) - end)
+    if remaining > 0:
+        show_n = min(remaining, DEFAULT_CHAT_PAGE_SIZE)
+        if st.sidebar.button(f"Show more ({show_n})", key="show_more_chats"):
+            st.session_state.chat_displayed_count += DEFAULT_CHAT_PAGE_SIZE
+            st.rerun()
+    else:
+        st.sidebar.caption("No more chats.")

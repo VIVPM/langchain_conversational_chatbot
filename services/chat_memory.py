@@ -19,7 +19,6 @@ def ensure_memory_from_chat(chat) -> ConversationSummaryBufferMemory:
 
 def render_history_text(mem: ConversationSummaryBufferMemory) -> str:
     msgs = mem.load_memory_variables({}).get("chat_history", [])
-    print(msgs)
     parts = []
     for m in msgs:
         t = getattr(m, "type", None) or m.__class__.__name__.lower()

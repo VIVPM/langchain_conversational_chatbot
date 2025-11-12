@@ -14,5 +14,5 @@ MAX_FILE_SIZE_BYTES = 500 * 1024
 DEFAULT_CHAT_PAGE_SIZE = 10
 
 # UI/LLM defaults
-DEFAULT_MODEL = "Meta-Llama-3.3-70B-Instruct"
+DEFAULT_MODEL = "DeepSeek-V3.1"
 TIMEZONE = "Asia/Kolkata"

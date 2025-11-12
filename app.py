@@ -116,7 +116,7 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
     q = st.chat_input("Your question")
     if q:
         # Validate input with guardrails
-        is_valid, err = InputGuardrails.validate_input(q)
+        is_valid, err = InputGuardrails.check_toxicity_and_explicit(q)
         
         cur = st.session_state.chats[st.session_state.selected_chat_id]
         t = now_iso()
