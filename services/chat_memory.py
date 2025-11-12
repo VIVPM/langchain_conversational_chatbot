@@ -1,10 +1,11 @@
 from langchain.memory import ConversationSummaryBufferMemory
-from langchain_community.llms import SambaNovaCloud
-import os
+from services.llm import get_llm
+from config import DEFAULT_MODEL
+from app import api_key,model_choice
 
 def ensure_memory_from_chat(chat) -> ConversationSummaryBufferMemory:
     mem = ConversationSummaryBufferMemory(
-        llm = SambaNovaCloud(model='DeepSeek-R1-Distill-Llama-70B',sambanova_api_key=os.getenv('SAMBANOVA_API_KEY'),max_tokens=1000,temperature=0.4),
+        llm = get_llm(model_choice or DEFAULT_MODEL,api_key),
         memory_key="chat_history",
         return_messages=True,
         output_key="answer",
