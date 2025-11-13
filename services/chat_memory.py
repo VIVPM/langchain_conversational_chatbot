@@ -20,10 +20,13 @@ def ensure_memory_from_chat(chat) -> ConversationSummaryBufferMemory:
 
 def render_history_text(mem: ConversationSummaryBufferMemory) -> str:
     msgs = mem.load_memory_variables({}).get("chat_history", [])
+    print(f"New message: {msgs}\n")
     parts = []
     for m in msgs:
         t = getattr(m, "type", None) or m.__class__.__name__.lower()
-        if t in ("human", "humanmessage"):
+        if t in ("system", "systemmessage"):
+            parts.append(f"Summary of previous chat messages: {m.content}")
+        elif t in ("human", "humanmessage"):
             parts.append(f"User: {m.content}")
         elif t in ("ai", "aimessage"):
             parts.append(f"Assistant: {m.content}")

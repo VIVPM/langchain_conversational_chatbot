@@ -156,8 +156,25 @@ if api_key and st.session_state.selected_chat_id and not st.session_state.is_pro
             assistant_response += f"\n\n⚠️ {err}"
         cur["messages"].append({"role": "assistant", "content": assistant_response, "date": t})
         cur["updated_at"] = now_iso()
-        st.session_state.memory.chat_memory.add_user_message(q)
-        st.session_state.memory.chat_memory.add_ai_message(assistant_response)
+        
+        # if conversation buffer memory is used
+        # st.session_state.memory.chat_memory.add_user_message(q)
+        # st.session_state.memory.chat_memory.add_ai_message(assistant_response)
+        
+        # if conversation summary buffer memory is used
+        st.session_state.memory.save_context(
+            {"input": q},                 # default input key is "input"
+            {"answer": assistant_response}  # output_key="answer" in ensure_memory_from_chat
+        )
+        
+        msgs = st.session_state.memory.load_memory_variables({}).get("chat_history", [])
+        for m in msgs:
+            t_msg = getattr(m, "type", None) or m.__class__.__name__.lower()
+            if t_msg in ("system", "systemmessage"):
+                # first system message is the running summary
+                cur["summary"] = m.content
+                break
+            
         with st.chat_message("assistant"):
             st.markdown(assistant_response)
             
