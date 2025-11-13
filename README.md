@@ -17,13 +17,13 @@ flowchart LR
   U -->|Upload PDFs| PDF[PyMuPDF]
   PDF --> SPLIT[TextSplitter 512/128]
   SPLIT --> EMB[HF Embeddings bge-large]
-  EMB --> IDX[(Pinecone Index\nnamespace = username)]
+  EMB --> IDX[(Pinecone Index<br/>namespace = username)]
   U -->|Ask| Q[Question]
   Q --> WEB{Web search enabled?}
   WEB -- Yes --> SERP[Serper k=5] --> WSUM[LLM summarize]
   WEB -- No --> RET{Docs indexed?}
   RET -- Yes --> R[VDB Retriever k=10, MMR] --> COMB[LLM combine]
-  RET -- No --> DIRECT[Direct LLM\n(with conversation facts)]
+  RET -- No --> DIRECT[Direct LLM with conversation facts]
   WSUM --> OUT[Answer+Sources]
   COMB --> OUT
   DIRECT --> OUT
