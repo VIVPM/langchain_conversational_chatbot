@@ -18,7 +18,7 @@ def signup(supabase, username: str, password: str, st):
         {"username": username, "password": password_hash, "chats": []}
     ).execute()
     # fetch created row
-    user_row = (resp.data or supabase.table("profiles").select("*").eq("username", username).execute().data)[0]
+    user_row = (resp.data or supabase.table("profiles").select("*").eq("username", username).execute().data)[0] #-> return dict if 0 not used then it returns list of dicts
     st.session_state.logged_in = True
     st.session_state.user_id = user_row["id"]
     st.session_state.username = username

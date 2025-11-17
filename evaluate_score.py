@@ -50,7 +50,7 @@ for i in range(len(examples)):
     gt = ground_truths[i]['text']
     pred = predicted_answers[i]
     examples_for_eval.append({'query': q, 'answer': gt})
-    predictions.append({'query': q, 'result': pred})
+    predictions.append({'result': pred})
 
 custom_prompt = ChatPromptTemplate.from_template(
     "You are an expert scorer. Given the question, the correct answer, and the predicted answer, give a score from 1 to 10 on how well the predicted answer matches the correct answer in terms of accuracy, completeness, and relevance.\n"
