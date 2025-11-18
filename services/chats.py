@@ -12,7 +12,6 @@ def init_session_state(st):
     st.session_state.setdefault("is_processing_docs", False)
     st.session_state.setdefault("use_web_search", False)
     st.session_state.setdefault("chat_search_query", "")
-    st.session_state.setdefault("chat_page_size", 10)
     st.session_state.setdefault("chat_displayed_count", 10)
     st.session_state.setdefault("chat_loading_more", False)
 
