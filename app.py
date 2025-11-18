@@ -76,13 +76,13 @@ render_web_search_toggle(st, serper_api_key)
 render_auth_buttons(st)
 
 # Upload + process
-uploaded_files = st.file_uploader("Upload up to 3 files each under 500KB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
+uploaded_files = st.file_uploader("Upload up to 3 files each under 1MB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
 if len(uploaded_files) > MAX_FILES:
     st.error("Select at most 3 Files.")
     st.stop()
 oversized = [uf for uf in uploaded_files if getattr(uf, "size", 0) > MAX_FILE_SIZE_BYTES]
 if oversized:
-    st.error("Each file must be under 500KB: " + ", ".join(f.name for f in oversized))
+    st.error("Each file must be under 1MB: " + ", ".join(f.name for f in oversized))
 else:
     if st.button("Process Documents", disabled=st.session_state.is_processing_docs or not (uploaded_files and api_key)):
         st.session_state.is_processing_docs = True
@@ -184,5 +184,4 @@ if api_key and not st.session_state.is_processing_docs:
         if st.session_state.pop("_sidebar_title_just_updated", False):
             st.rerun()
 else:
-    if not api_key:
-        st.info("Enter your SambaNova API key in the sidebar.")
+    st.info("Enter your SambaNova API key in the sidebar.")
