@@ -119,7 +119,7 @@ if api_key and not st.session_state.is_processing_docs:
             
         # Validate input with guardrails
         is_valid, err = InputGuardrails.check_toxicity_and_explicit(q)
-        
+        final, source_block = None, ""
         cur = st.session_state.chats[st.session_state.selected_chat_id]
         t = now_iso()
         if cur["title"] == "New Chat":
@@ -133,27 +133,30 @@ if api_key and not st.session_state.is_processing_docs:
             if not allow("llm_calls", limit=50, window_sec=180):
                 st.warning("Rate limit: 50 requests per minute.")
                 st.stop()
-            llm = get_llm(model_choice or DEFAULT_MODEL, api_key)
-            history_text = render_history_text(st.session_state.memory)
+            if not err:
+                llm = get_llm(model_choice or DEFAULT_MODEL, api_key)
+                history_text = render_history_text(st.session_state.memory)
 
-            if st.session_state.use_web_search and serper_api_key:
-                final, sources = web_search_answer(llm, serper_api_key, q)
-                source_block = "\n\n**Web Sources used:**\n" + "\n".join(f"- {s}" for s in sources) if sources else ""
+                if st.session_state.use_web_search and serper_api_key:
+                    final, sources = web_search_answer(llm, serper_api_key, q)
+                    source_block = "\n\n**Web Sources used:**\n" + "\n".join(f"- {s}" for s in sources) if sources else ""
+                else:
+                    if "vectorstore" in st.session_state:
+                        retriever = st.session_state.vectorstore.as_retriever(search_kwargs={"k": 10}, search_type="mmr")
+                        docs = retriever.get_relevant_documents(q)
+                        context = "\n\n".join(d.page_content for d in docs)
+                        rag = answer_from_context(llm, context, q)
+                        if rag and "Information not found in the provided documents." not in rag:
+                            final = rag
+                            uniq_src = sorted({d.metadata.get("source","") for d in docs if d.metadata.get("source")})
+                            if uniq_src:
+                                source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in uniq_src)
+                    if not final:
+                        final = answer_direct(llm, history_text, q)
             else:
-                final, source_block = None, ""
-                if "vectorstore" in st.session_state:
-                    retriever = st.session_state.vectorstore.as_retriever(search_kwargs={"k": 10}, search_type="mmr")
-                    docs = retriever.get_relevant_documents(q)
-                    context = "\n\n".join(d.page_content for d in docs)
-                    rag = answer_from_context(llm, context, q)
-                    if rag and "Information not found in the provided documents." not in rag:
-                        final = rag
-                        uniq_src = sorted({d.metadata.get("source","") for d in docs if d.metadata.get("source")})
-                        if uniq_src:
-                            source_block = "\n\n**Sources used:**\n" + "\n".join(f"- {s}" for s in uniq_src)
-                if not final:
-                    final = answer_direct(llm, history_text, q)
-        assistant_response = f"**Answer:**\n{final}{source_block}"
+                final = "You are not entitled to get answers to such questions"
+                
+            assistant_response = f"**Answer:**\n{final}{source_block}"            
         if not is_valid:
             assistant_response += f"\n\n⚠️ {err}"
         cur["messages"].append({"role": "assistant", "content": assistant_response, "date": t})
