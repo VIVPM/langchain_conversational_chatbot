@@ -29,15 +29,15 @@ def signup(supabase, username: str, password: str, st):
 def login(supabase, username: str, password: str, st):
     if not supabase:
         return "Supabase not configured."
-    user = supabase.table("profiles").select("*").eq("username", username).execute()
-    if not user.data or sha256(password) != user.data[0]["password"]:
+    user = (supabase.table("profiles").select("*").eq("username", username).execute().data)[0]
+    if not user['username'] or sha256(password) != user["password"]:
         return "Invalid username or password."
 
     st.session_state.logged_in = True
-    st.session_state.user_id = user.data[0]["id"]
+    st.session_state.user_id = user["id"]
     st.session_state.username = username
 
-    chats = user.data[0].get("chats", []) or []
+    chats = user.get("chats", []) or []
     for c in chats:
         c.setdefault("created_at", c.get("date", now_iso()))
         c.setdefault("updated_at", c.get("created_at"))
