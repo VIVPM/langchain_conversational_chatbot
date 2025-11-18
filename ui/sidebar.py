@@ -58,19 +58,17 @@ def render_chat_list(st, on_open_chat):
         st.sidebar.info("Processing documents. Chats hidden.")
         return
 
-    # "New Chat" button
-    disable_new = False
-    cur = st.session_state.selected_chat_id and st.session_state.chats[st.session_state.selected_chat_id]
-    if cur and cur["title"] == "New Chat" and not cur.get("messages"):
-        disable_new = True
-    if st.sidebar.button("New Chat", key="new_chat_btn", disabled=disable_new):
-        create_new_chat(st)
-        st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE  # reset after creation
+    # "New Chat" button - always enabled
+    if st.sidebar.button("New Chat", key="new_chat_btn"):
+        # Just clear the selection - don't create anything yet
+        st.session_state.selected_chat_id = None
+        st.session_state.memory = None
+        st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE
         st.rerun()
 
-    # Sort and filter
+    # Sort and filter - only show chats that actually have messages
     sorted_chats = sorted(
-        st.session_state.chats.values(),
+        [c for c in st.session_state.chats.values() if c.get("messages")],  # ← Filter out empty chats
         key=lambda x: x.get("updated_at", x.get("created_at", "")),
         reverse=True,
     )
@@ -103,4 +101,5 @@ def render_chat_list(st, on_open_chat):
             st.session_state.chat_displayed_count += DEFAULT_CHAT_PAGE_SIZE
             st.rerun()
     else:
-        st.sidebar.caption("No more chats.")
+        if sorted_chats:
+            st.sidebar.caption("No more chats.")

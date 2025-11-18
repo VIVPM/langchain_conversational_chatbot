@@ -23,7 +23,7 @@ def create_new_chat(st) -> str:
     st.session_state.chats[new_chat_id] = chat
     st.session_state.selected_chat_id = new_chat_id
     st.session_state.memory = ensure_memory_from_chat(chat)
-    return new_chat_id
+    return None
 
 def upsert_and_select_most_recent(st):
     if st.session_state.chats:

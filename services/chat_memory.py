@@ -8,19 +8,20 @@ def ensure_memory_from_chat(chat) -> ConversationSummaryBufferMemory:
         llm = SambaNovaCloud(model=DEFAULT_MODEL,sambanova_api_key=os.getenv('SAMBANOVA_API_KEY'),max_tokens=1000,temperature=0.4),
         memory_key="chat_history",
         return_messages=True,
-        output_key="answer",
-        max_token_limit=1000
+        max_token_limit=1000,
+        input_key="input",    # ← Explicit
+        output_key="answer"   # ← Explicit
     )
     for m in chat.get("messages", []):
         if m["role"] == "user":
             mem.chat_memory.add_user_message(m["content"])
         elif m["role"] == "assistant":
             mem.chat_memory.add_ai_message(m["content"])
+    
     return mem
 
 def render_history_text(mem: ConversationSummaryBufferMemory) -> str:
     msgs = mem.load_memory_variables({}).get("chat_history", [])
-    print(f"New message: {msgs}\n")
     parts = []
     for m in msgs:
         t = getattr(m, "type", None) or m.__class__.__name__.lower()
