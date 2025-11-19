@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
 def get_llm(model_name: str, api_key: str):
-    return SambaNovaCloud(model=model_name, sambanova_api_key=api_key, temperature=0.4, top_p=0.8, top_k=1000)
+    return SambaNovaCloud(model=model_name, sambanova_api_key=api_key)
 
 def answer_direct(llm, history_text: str, question: str) -> str:
     prompt = PromptTemplate.from_template(

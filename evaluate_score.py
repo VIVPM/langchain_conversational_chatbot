@@ -1,6 +1,7 @@
 from supabase import create_client
 from dotenv import load_dotenv
 import re
+import json
 from langchain.evaluation.qa import QAEvalChain
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
@@ -23,7 +24,8 @@ for profile in response.data:
         all_chats.extend(profile['chats'])
 
 examples = []
-predicted_answers = []
+predictions = []
+
 for chat in all_chats:
     messages = chat['messages']
     i = 0
@@ -34,23 +36,27 @@ for chat in all_chats:
             if i < len(messages) and messages[i]['role'] == 'assistant':
                 result = messages[i]['content']
                 examples.append({'query': query})
-                predicted_answers.append(result)
+                result = result.strip('**Answer:**\n')
+                predictions.append({'result':result})
                 i += 1
             else:
                 i += 1
         else:
             i += 1
-
+            
+with open('questions.json','w') as f:
+    f.write(json.dumps(examples))
+    
 ground_truths = qa.apply(examples)
 
 examples_for_eval = []
-predictions = []
 for i in range(len(examples)):
     q = examples[i]['query']
     gt = ground_truths[i]['text']
-    pred = predicted_answers[i]
     examples_for_eval.append({'query': q, 'answer': gt})
-    predictions.append({'result': pred})
+
+with open('dataset.json','w') as f:
+    f.write(json.dumps(examples_for_eval))
 
 custom_prompt = ChatPromptTemplate.from_template(
     "You are an expert scorer. Given the question, the correct answer, and the predicted answer, give a score from 1 to 10 on how well the predicted answer matches the correct answer in terms of accuracy, completeness, and relevance.\n"
@@ -79,7 +85,6 @@ for i, eg in enumerate(examples_for_eval):
     print()
 average = sum(scores) / len(scores) if scores else 0
 print(f"Average Score: {round(average*10,2)}")
-
 
 # score = 0
 # count = 0

@@ -69,7 +69,9 @@ model_choice = st.sidebar.selectbox("Choose model", options=[
     "DeepSeek-R1-Distill-Llama-70B",
     "DeepSeek-R1-0528",
     "ALLaM-7B-Instruct-preview",
-    "E5-Mistral-7B-Instruct"
+    "E5-Mistral-7B-Instruct",
+    "Qwen3-32B",
+    "gpt-oss-120b"
 ], index=5, disabled=st.session_state.is_processing_docs)
 serper_api_key = st.sidebar.text_input("Serper API Key", type="password", disabled=st.session_state.is_processing_docs)
 render_web_search_toggle(st, serper_api_key)
