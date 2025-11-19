@@ -44,7 +44,7 @@ for chat in all_chats:
         else:
             i += 1
             
-with open('questions.json','w') as f:
+with open('datasets/questions.json','w') as f:
     f.write(json.dumps(examples))
     
 ground_truths = qa.apply(examples)
@@ -55,7 +55,7 @@ for i in range(len(examples)):
     gt = ground_truths[i]['text']
     examples_for_eval.append({'query': q, 'answer': gt})
 
-with open('dataset.json','w') as f:
+with open('datasets/dataset.json','w') as f:
     f.write(json.dumps(examples_for_eval))
 
 custom_prompt = ChatPromptTemplate.from_template(
@@ -85,15 +85,3 @@ for i, eg in enumerate(examples_for_eval):
     print()
 average = sum(scores) / len(scores) if scores else 0
 print(f"Average Score: {round(average*10,2)}")
-
-# score = 0
-# count = 0
-# response = supabase.table("profiles").select("chats").execute()
-# all_chats = [chat for user in response.data for chat in user["chats"]]
-# for i in range(len(all_chats)):
-#     for j in range(len(all_chats[i]["messages"])):
-#         if all_chats[i]['messages'][j]['role'] == 'assistant':
-#             if 'score' in all_chats[i]['messages'][j]:  
-#                 score += all_chats[i]['messages'][j]['score']
-#                 count += 1
-# print('Accuarcy:',round((score/count),2)/10*100)
