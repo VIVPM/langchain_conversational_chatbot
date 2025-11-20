@@ -1,7 +1,7 @@
 import streamlit as st
-from services.chats import create_new_chat
 from config import DEFAULT_CHAT_PAGE_SIZE
 
+# --- Sidebar ---
 if "chat_displayed_count" not in st.session_state:
     st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE
 
@@ -103,3 +103,9 @@ def render_chat_list(st, on_open_chat):
     else:
         if sorted_chats:
             st.sidebar.caption("No more chats.")
+
+# --- Chat Window ---
+def render_chat_history(current_chat):
+    for message in current_chat.get("messages", []):
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])

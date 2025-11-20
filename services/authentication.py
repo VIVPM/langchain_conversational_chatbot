@@ -1,6 +1,12 @@
 import re
-from utils.crypto import sha256
-from utils.time_tools import now_iso
+from supabase import create_client, Client
+from config import SUPABASE_URL, SUPABASE_KEY
+from utils.common_utils import sha256, now_iso
+
+def get_supabase() -> Client | None:
+    if SUPABASE_URL and SUPABASE_KEY:
+        return create_client(SUPABASE_URL, SUPABASE_KEY)
+    return None
 
 def valid_username(u: str) -> bool:
     return bool(re.fullmatch(r"^[A-Za-z0-9._%+-]+@gmail\.com$", u))
@@ -17,19 +23,23 @@ def signup(supabase, username: str, password: str, st):
         {"username": username, "password": password_hash, "chats": []}
     ).execute()
     
-    user_row = (resp.data or supabase.table("profiles").select("*").eq("username", username).execute().data)[0] # -> return dict if 0 not used then it returns list of dicts
+    user_row = (resp.data or supabase.table("profiles").select("*").eq("username", username).execute().data)[0]
     st.session_state.logged_in = True
     st.session_state.user_id = user_row["id"]
     st.session_state.username = username
     st.session_state.chats = {}
-    st.session_state.selected_chat_id = None  # ← No chat selected
+    st.session_state.selected_chat_id = None
     st.session_state.memory = None
     return None
 
 def login(supabase, username: str, password: str, st):
     if not supabase:
         return "Supabase not configured."
-    user = (supabase.table("profiles").select("*").eq("username", username).execute().data)[0]
+    user_data = supabase.table("profiles").select("*").eq("username", username).execute().data
+    if not user_data:
+         return "Invalid username or password."
+    user = user_data[0]
+    
     if not user['username'] or sha256(password) != user["password"]:
         return "Invalid username or password."
 
@@ -64,4 +74,3 @@ def login(supabase, username: str, password: str, st):
     st.session_state.memory = None
     
     return None
-
