@@ -89,11 +89,12 @@ def handle_file_upload(api_key):
             st.success(f"Indexed {n} chunks.")
             st.rerun()
 
+def on_open_chat(chat_id: str):
+    st.session_state.selected_chat_id = chat_id
+    st.session_state.memory = ensure_memory_from_chat(st.session_state.chats[chat_id])
+
 def render_chat_interface():
     render_chat_search(st)
-    def on_open_chat(chat_id: str):
-        st.session_state.selected_chat_id = chat_id
-        st.session_state.memory = ensure_memory_from_chat(st.session_state.chats[chat_id])
     render_chat_list(st, on_open_chat)
 
     if st.session_state.selected_chat_id:

@@ -8,3 +8,5 @@ sentence-transformers==5.0.0
 supabase==2.16.0
 python-docx==1.2.0
 detoxify==0.5.2
+requests==2.31.0
+schedule==1.2.0

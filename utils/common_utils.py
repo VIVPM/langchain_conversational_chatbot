@@ -6,6 +6,7 @@ import pytz
 import fitz
 import streamlit as st
 from config import TIMEZONE
+from docx import Document
 
 # --- Crypto ---
 def sha256(s: str) -> str:
@@ -27,7 +28,6 @@ def extract_text_from_file(uploaded_file) -> str:
     elif name.endswith(".txt"):
         return uploaded_file.read().decode("utf-8")
     elif name.endswith(".docx"):
-        from docx import Document
         doc = Document(uploaded_file)
         return "\n".join(p.text for p in doc.paragraphs)
     raise ValueError("Unsupported file type")
