@@ -2,8 +2,8 @@ name: Keep Streamlit App Alive
 
 on:
   schedule:
-    # Runs every 5 minutes
-    - cron: '*/5 * * * *'
+    # Runs every 1 hour
+    - cron: '0 * * * *'
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         run: |
           # Make multiple requests to ensure app stays active
           for i in {1..3}; do
-            curl -s https://YOUR-APP-URL.streamlit.app > /dev/null
+            curl -s https://quickbrain.streamlit.app/ > /dev/null
             sleep 2
           done
           echo "Keep-alive ping completed"
