@@ -70,7 +70,7 @@ def render_sidebar_config():
     return api_key, model_choice, serper_api_key
 
 def handle_file_upload(api_key):
-    uploaded_files = st.file_uploader("Upload up to 3 files each under 1MB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
+    uploaded_files = st.file_uploader("Upload up to 3 files each under 2MB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
     if len(uploaded_files) > MAX_FILES:
         st.error("Select at most 3 Files.")
         st.stop()
