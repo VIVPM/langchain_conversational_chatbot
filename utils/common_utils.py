@@ -3,7 +3,6 @@ import time
 from collections import deque
 from datetime import datetime
 import pytz
-import fitz
 import streamlit as st
 from config import TIMEZONE
 from docx import Document
@@ -18,14 +17,7 @@ def chunk_id(text: str, source: str) -> str:
 # --- Files ---
 def extract_text_from_file(uploaded_file) -> str:
     name = uploaded_file.name.lower()
-    if name.endswith(".pdf"):
-        text = ""
-        doc = fitz.open(stream=uploaded_file.read(), filetype="pdf")
-        for page in doc:
-            text += page.get_text()
-        doc.close()
-        return text
-    elif name.endswith(".txt"):
+    if name.endswith(".txt"):
         return uploaded_file.read().decode("utf-8")
     elif name.endswith(".docx"):
         doc = Document(uploaded_file)

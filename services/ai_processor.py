@@ -48,12 +48,19 @@ def make_vectorstore(username: str):
         namespace=username,
     )
 
+from services.pdf_processor import extract_pdf_content
+
 # --- Ingest ---
-def split_files(uploaded_files):
+def split_files(uploaded_files, llm=None):
     splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=128)
     all_docs = []
     for uf in uploaded_files or []:
-        text = extract_text_from_file(uf)
+        name = uf.name.lower()
+        if name.endswith(".pdf"):
+            text = extract_pdf_content(uf, llm)
+        else:
+            text = extract_text_from_file(uf)
+            
         for chunk in splitter.split_text(text):
             all_docs.append(Document(page_content=chunk, metadata={"source": uf.name}))
     return all_docs

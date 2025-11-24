@@ -69,7 +69,7 @@ def render_sidebar_config():
     render_auth_buttons(st)
     return api_key, model_choice, serper_api_key
 
-def handle_file_upload(api_key):
+def handle_file_upload(api_key, model_choice):
     uploaded_files = st.file_uploader("Upload up to 3 files each under 2MB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
     if len(uploaded_files) > MAX_FILES:
         st.error("Select at most 3 Files.")
@@ -82,7 +82,8 @@ def handle_file_upload(api_key):
             st.session_state.is_processing_docs = True
             with st.spinner("Processing documents..."):
                 vs = make_vectorstore(st.session_state.username)
-                docs = split_files(uploaded_files)
+                llm = get_llm(model_choice or DEFAULT_MODEL, api_key)
+                docs = split_files(uploaded_files, llm)
                 n = index_docs(vs, docs)
                 st.session_state.vectorstore = vs
             st.session_state.is_processing_docs = False
@@ -172,7 +173,7 @@ def main():
     handle_auth(supabase)
 
     api_key, model_choice, serper_api_key = render_sidebar_config()
-    handle_file_upload(api_key)
+    handle_file_upload(api_key, model_choice)
     render_chat_interface()
     
     if api_key:

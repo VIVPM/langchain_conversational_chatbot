@@ -1,5 +1,5 @@
 streamlit==1.46.1
-PyMuPDF==1.24.14
+pdfplumber==0.11.4
 langchain==0.3.26
 langchain-pinecone==0.2.11
 langchain-community==0.3.27
