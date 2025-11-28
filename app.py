@@ -49,7 +49,6 @@ def handle_auth(supabase):
 def render_sidebar_config():
     render_settings(st)
     api_key = st.sidebar.text_input("SambaNova API Key", type="password", disabled=st.session_state.is_processing_docs)
-    st.sidebar.caption("Don't have an API key? [Get SambaNova API Key](https://cloud.sambanova.ai/)")
     model_choice = st.sidebar.selectbox("Choose model", options=[
         "Llama-3.3-Swallow-70B-Instruct-v0.4",
         "Llama-4-Maverick-17B-128E-Instruct",
@@ -65,10 +64,10 @@ def render_sidebar_config():
         "Qwen3-32B",
         "gpt-oss-120b"
     ], index=5, disabled=st.session_state.is_processing_docs)
-    firecrawl_api_key = st.sidebar.text_input("Firecrawl API Key", type="password", disabled=st.session_state.is_processing_docs)
-    render_web_search_toggle(st, firecrawl_api_key)
+    serper_api_key = st.sidebar.text_input("Serper API Key", type="password", disabled=st.session_state.is_processing_docs)
+    render_web_search_toggle(st, serper_api_key)
     render_auth_buttons(st)
-    return api_key, model_choice, firecrawl_api_key
+    return api_key, model_choice, serper_api_key
 
 def handle_file_upload(api_key, model_choice):
     uploaded_files = st.file_uploader("Upload up to 3 files each under 2MB", type=["pdf","txt","docx"], accept_multiple_files=True, disabled=st.session_state.is_processing_docs) or []
@@ -105,7 +104,7 @@ def render_chat_interface():
             st.session_state.memory = ensure_memory_from_chat(current_chat)
         render_chat_history(current_chat)
 
-def handle_chat_interaction(api_key, model_choice, firecrawl_api_key, supabase):
+def handle_chat_interaction(api_key, model_choice, serper_api_key, supabase):
     if not st.session_state.is_processing_docs:
         q = st.chat_input("Your question")
         if q:
@@ -131,8 +130,8 @@ def handle_chat_interaction(api_key, model_choice, firecrawl_api_key, supabase):
                 if not err:
                     history_text = render_history_text(st.session_state.memory)
 
-                    if st.session_state.use_web_search and firecrawl_api_key:
-                        final, sources = web_search_answer(llm, firecrawl_api_key, q)
+                    if st.session_state.use_web_search and serper_api_key:
+                        final, sources = web_search_answer(llm, serper_api_key, q)
                         source_block = "\n\n**Web Sources used:**\n" + "\n".join(f"- {s}" for s in sources) if sources else ""
                     else:
                         if "vectorstore" in st.session_state:
@@ -173,12 +172,12 @@ def main():
     
     handle_auth(supabase)
 
-    api_key, model_choice, firecrawl_api_key = render_sidebar_config()
+    api_key, model_choice, serper_api_key = render_sidebar_config()
     handle_file_upload(api_key, model_choice)
     render_chat_interface()
     
     if api_key:
-        handle_chat_interaction(api_key, model_choice, firecrawl_api_key, supabase)
+        handle_chat_interaction(api_key, model_choice, serper_api_key, supabase)
     else:
         st.info("Enter your SambaNova API key in the sidebar.")
 
