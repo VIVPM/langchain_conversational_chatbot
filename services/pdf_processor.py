@@ -93,7 +93,8 @@ def extract_pdf_content(file_stream, llm=None) -> str:
                 # Ideally we'd filter it, but for now, having it twice (once in raw text, once in structured table) 
                 # is acceptable and might even help retrieval. 
                 # However, to be cleaner, we can just append the raw text.
-                text = page.extract_text()
+                # Using x_tolerance=1 to prevent words from being joined together (default is 3)
+                text = page.extract_text(x_tolerance=1)
                 if text:
                     page_content.append(text)
                 

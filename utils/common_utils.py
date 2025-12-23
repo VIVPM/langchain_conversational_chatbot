@@ -16,13 +16,18 @@ def chunk_id(text: str, source: str) -> str:
 
 # --- Files ---
 def extract_text_from_file(uploaded_file) -> str:
-    name = uploaded_file.name.lower()
-    if name.endswith(".txt"):
-        return uploaded_file.read().decode("utf-8")
-    elif name.endswith(".docx"):
-        doc = Document(uploaded_file)
-        return "\n".join(p.text for p in doc.paragraphs)
-    raise ValueError("Unsupported file type")
+    try:
+        name = uploaded_file.name.lower()
+        if name.endswith(".txt"):
+            return uploaded_file.read().decode("utf-8")
+        elif name.endswith(".docx"):
+            doc = Document(uploaded_file)
+            return "\n".join(p.text for p in doc.paragraphs)
+        raise ValueError("Unsupported file type")
+    except UnicodeDecodeError:
+        raise ValueError(f"File '{uploaded_file.name}' has encoding issues. Please use UTF-8 encoded files.")
+    except Exception as e:
+        raise ValueError(f"Failed to read file '{uploaded_file.name}': {str(e)[:50]}")
 
 # --- Rate Limit ---
 def allow(action: str, limit: int, window_sec: int) -> bool:

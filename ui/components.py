@@ -30,6 +30,10 @@ def render_web_search_toggle(st, serper_api_key: str | None):
     if not serper_api_key:
         st.sidebar.caption("Add a Serper API key to enable web search.")
 
+def on_open_chat(chat_id: str):
+    st.session_state.selected_chat_id = chat_id
+    st.session_state.memory = None
+
 def render_chat_search(st):
     st.sidebar.title("Search Chats")
     c1, c2 = st.sidebar.columns([0.85, 0.15])
@@ -52,7 +56,7 @@ def render_chat_search(st):
             st.session_state.chat_displayed_count = DEFAULT_CHAT_PAGE_SIZE
             st.rerun()
 
-def render_chat_list(st, on_open_chat):
+def render_chat_list(st):
     st.sidebar.title("Chats")
     if st.session_state.is_processing_docs:
         st.sidebar.info("Processing documents. Chats hidden.")

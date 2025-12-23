@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from config import MAX_FILES, MAX_FILE_SIZE_BYTES, DEFAULT_MODEL
 from services.authentication import get_supabase, signup, login
 from services.chat_manager import init_session_state, create_new_chat, persist_chats, ensure_memory_from_chat, render_history_text
@@ -74,35 +75,50 @@ def handle_file_upload(api_key, model_choice):
     if len(uploaded_files) > MAX_FILES:
         st.error("Select at most 3 Files.")
         st.stop()
-    oversized = [uf for uf in uploaded_files if getattr(uf, "size", 0) > MAX_FILE_SIZE_BYTES]
+    oversized = [uf for uf in uploaded_files if uf.size > MAX_FILE_SIZE_BYTES]
     if oversized:
         st.error("Each file must be under 1MB: " + ", ".join(f.name for f in oversized))
     else:
         if st.button("Process Documents", disabled=st.session_state.is_processing_docs or not (uploaded_files and api_key)):
             st.session_state.is_processing_docs = True
-            with st.spinner("Processing documents..."):
-                vs = make_vectorstore(st.session_state.username)
-                llm = get_llm(model_choice or DEFAULT_MODEL, api_key)
-                docs = split_files(uploaded_files, llm)
-                n = index_docs(vs, docs)
-                st.session_state.vectorstore = vs
-            st.session_state.is_processing_docs = False
-            st.success(f"Indexed {n} chunks.")
+            try:
+                with st.spinner("Processing documents..."):
+                    vs = make_vectorstore(st.session_state.username)
+                    llm = get_llm(model_choice or DEFAULT_MODEL, api_key)
+                    docs = split_files(uploaded_files, llm)
+                    n = index_docs(vs, docs)
+                    st.session_state.vectorstore = vs
+                st.success(f"Indexed {n} chunks.")
+            except Exception as e:
+                st.error(f"Failed to process documents: {str(e)[:150]}")
+            finally:
+                st.session_state.is_processing_docs = False
             st.rerun()
-
-def on_open_chat(chat_id: str):
-    st.session_state.selected_chat_id = chat_id
-    st.session_state.memory = ensure_memory_from_chat(st.session_state.chats[chat_id])
 
 def render_chat_interface():
     render_chat_search(st)
-    render_chat_list(st, on_open_chat)
+    render_chat_list(st)
 
+    if st.session_state.selected_chat_id and st.session_state.memory is None:
+        # Pass LLM for summarization if API key is available
+        llm_for_memory = None
+        api_key = os.getenv('SAMBANOVA_API_KEY')
+        if api_key:
+            try:
+                llm_for_memory = get_llm(DEFAULT_MODEL, api_key)
+            except ConnectionError as e:
+                st.sidebar.warning(f"Memory LLM connection failed: {str(e)[:50]}")
+            except ValueError as e:
+                st.sidebar.warning(f"Invalid API key for memory: {str(e)[:50]}")
+            except Exception as e:
+                # Log unexpected errors for debugging
+                st.sidebar.caption(f"Memory LLM unavailable: {type(e).__name__}")
+        st.session_state.memory = ensure_memory_from_chat(
+            st.session_state.chats[st.session_state.selected_chat_id], 
+            llm=llm_for_memory
+        )
     if st.session_state.selected_chat_id:
-        current_chat = st.session_state.chats[st.session_state.selected_chat_id]
-        if st.session_state.memory is None:
-            st.session_state.memory = ensure_memory_from_chat(current_chat)
-        render_chat_history(current_chat)
+        render_chat_history(st.session_state.chats[st.session_state.selected_chat_id])
 
 def handle_chat_interaction(api_key, model_choice, serper_api_key, supabase):
     if not st.session_state.is_processing_docs:
@@ -124,7 +140,7 @@ def handle_chat_interaction(api_key, model_choice, serper_api_key, supabase):
             with st.chat_message("user"): st.markdown(q)
 
             with st.spinner("Generating answer..."):
-                if not allow("llm_calls", limit=50, window_sec=180):
+                if not allow("llm_calls", limit=50, window_sec=60):
                     st.warning("Rate limit: 50 requests per minute.")
                     st.stop()
                 if not err:
@@ -149,7 +165,7 @@ def handle_chat_interaction(api_key, model_choice, serper_api_key, supabase):
                 else:
                     final = answer_direct(llm, err, q)
                     
-                assistant_response = f"**Answer:**\n{final}{source_block}"            
+                assistant_response = f"{final}{source_block}"            
             if not is_valid:
                 assistant_response += f"\n\n⚠️ {err}"
             cur["messages"].append({"role": "assistant", "content": assistant_response, "date": t})
