@@ -1,0 +1,402 @@
+[
+  {
+    "question": "Can transfer learning be applied to NLP tasks?",
+    "summary": "User previously asked about the F1 score and when to prioritize recall over precision. I explained that recall is prioritized in medical or fraud detection scenarios where false negatives are costly.",
+    "answer": "Absolutely. Transfer learning is heavily used in NLP. Models like BERT, GPT, and RoBERTa are pre-trained on massive text corpora and fine-tuned for tasks like sentiment analysis, named entity recognition, and question answering.",
+    "follow_up": true,
+    "follow_up_question": "Which pre-trained NLP model should I use for sentiment analysis?",
+    "id": 1
+  },
+  {
+    "question": "How do I choose the right value of k in k-means clustering?",
+    "summary": "User previously asked about the EBITDA metric and how it differs from net profit. I explained that EBITDA excludes interest, taxes, and non-cash charges making it better for cross-company comparison.",
+    "answer": "Use the Elbow Method \u2014 plot inertia vs. number of clusters and look for the point where improvement slows. You can also use the Silhouette Score to measure how well each point fits its assigned cluster.",
+    "follow_up": true,
+    "follow_up_question": "What is the silhouette score and how do I interpret it?",
+    "id": 2
+  },
+  {
+    "question": "Which ecommerce platforms support dynamic pricing out of the box?",
+    "summary": "User previously asked about the Big O complexity of common algorithms including quicksort, merge sort, and binary search. I explained their average and worst-case complexities.",
+    "answer": "Most platforms don't offer dynamic pricing natively. Shopify supports it via apps like Prisync or Bold Price Rules. Magento and WooCommerce have dynamic pricing plugins. Amazon and Flipkart have proprietary built-in dynamic pricing engines.",
+    "follow_up": true,
+    "follow_up_question": "Is dynamic pricing legal and ethical for all product categories?",
+    "id": 3
+  },
+  {
+    "question": "What is the Big O complexity of binary search?",
+    "summary": "User previously asked about inflation and which investments best beat it. I explained that equities have the best long-term track record and also mentioned real estate, gold, and inflation-indexed bonds.",
+    "answer": "Binary search has a time complexity of O(log n) because it halves the search space at each step. It requires a sorted array. Space complexity is O(1) for iterative and O(log n) for recursive implementation.",
+    "follow_up": true,
+    "follow_up_question": "Can binary search be applied to non-sorted data?",
+    "id": 4
+  },
+  {
+    "question": "Which blockchain platform is best for deploying smart contracts?",
+    "summary": "User previously asked about the Duckworth-Lewis-Stern method in cricket and whether it is considered fair. I explained that while mathematically sound, players sometimes question it in low-scoring matches.",
+    "answer": "Ethereum is the most widely used platform for smart contracts due to its large developer community and tooling. Solana is great for speed and low fees. BNB Chain is popular for DeFi. Polygon is good for lower-cost Ethereum-compatible contracts.",
+    "follow_up": true,
+    "follow_up_question": "What programming language is used to write smart contracts on Ethereum?",
+    "id": 5
+  },
+  {
+    "question": "What is the largest stock exchange in the world by market cap?",
+    "summary": "User previously asked about memoization vs tabulation in dynamic programming and which is more memory efficient.",
+    "answer": "The New York Stock Exchange (NYSE) is the largest stock exchange in the world by market capitalization, followed by NASDAQ.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 6
+  },
+  {
+    "question": "How do members vote in a DAO?",
+    "summary": "User previously asked about regularization in machine learning and how Elastic Net combines L1 and L2. I explained it adds both penalties to balance sparsity and weight shrinkage.",
+    "answer": "DAO members vote using governance tokens \u2014 each token typically equals one vote. Proposals are submitted on-chain, a voting period is set, and if the proposal reaches quorum and passes the threshold, the smart contract automatically executes the decision.",
+    "follow_up": true,
+    "follow_up_question": "What happens if voter turnout is very low in a DAO vote?",
+    "id": 7
+  },
+  {
+    "question": "What are the common reasons customers abandon their carts?",
+    "summary": "User previously asked about the attention mechanism in transformers and the difference between self-attention and cross-attention. I explained that self-attention captures relationships within a sequence while cross-attention connects encoder and decoder.",
+    "answer": "Common reasons include unexpected shipping costs, mandatory account creation, long checkout process, payment security concerns, price comparison with competitors, slow website, and distractions. Simplifying checkout and showing total costs upfront reduces abandonment.",
+    "follow_up": true,
+    "follow_up_question": "What is a good cart abandonment recovery strategy using email?",
+    "id": 8
+  },
+  {
+    "question": "When should I use L1 regularization over L2?",
+    "summary": "User previously asked about the differences between REST API and GraphQL and when to use each. I explained that REST is simpler for standard APIs while GraphQL suits complex, nested data requirements.",
+    "answer": "Use L1 (Lasso) when you want feature selection \u2014 it zeros out irrelevant features producing a sparse model. Use L2 (Ridge) when all features are potentially useful and you want to shrink weights without elimination. Elastic Net combines both.",
+    "follow_up": true,
+    "follow_up_question": "What is Elastic Net and when is it better than L1 or L2 alone?",
+    "id": 9
+  },
+  {
+    "question": "How do I calculate CLV for my ecommerce store?",
+    "summary": "User previously asked about regularization techniques in machine learning and when to use L1 over L2. I explained that L1 produces sparse models useful for feature selection while L2 shrinks all weights.",
+    "answer": "CLV = Average Order Value \u00d7 Purchase Frequency \u00d7 Customer Lifespan. For example, if a customer spends \u20b92,000 per order, buys 4 times a year, and stays for 3 years, CLV = 2000 \u00d7 4 \u00d7 3 = \u20b924,000.",
+    "follow_up": true,
+    "follow_up_question": "How can I increase CLV for existing customers?",
+    "id": 10
+  },
+  {
+    "question": "What is the difference between EBITDA and net profit?",
+    "summary": "User previously asked about the stack and queue data structures and their real-world use cases. I gave examples like browser history for stacks and print job scheduling for queues.",
+    "answer": "EBITDA excludes interest, taxes, depreciation, and amortization \u2014 making it useful for comparing operational performance across companies. Net profit is the bottom line after all expenses. A company can have positive EBITDA but negative net profit.",
+    "follow_up": true,
+    "follow_up_question": "Which metric is more useful for comparing companies across different industries?",
+    "id": 11
+  },
+  {
+    "question": "How does a hash table handle collisions?",
+    "summary": "User previously asked about customer lifetime value and how to calculate it for an ecommerce store. I explained the formula: CLV = Average Order Value \u00d7 Purchase Frequency \u00d7 Customer Lifespan.",
+    "answer": "Collisions (two keys hashing to the same index) are resolved using: Chaining \u2014 each bucket holds a linked list of entries, or Open Addressing \u2014 probe for the next empty slot using linear, quadratic, or double hashing.",
+    "follow_up": true,
+    "follow_up_question": "Which collision resolution technique is more memory efficient?",
+    "id": 12
+  },
+  {
+    "question": "What Python libraries do you recommend for EDA?",
+    "summary": "User previously asked about proof of stake consensus mechanism and how Ethereum uses it after The Merge. I explained that validators stake 32 ETH and are randomly chosen to propose and attest blocks.",
+    "answer": "For EDA, the go-to Python libraries are: pandas for data manipulation, Matplotlib and Seaborn for static visualizations, Plotly for interactive charts, and ydata-profiling for automated EDA reports.",
+    "follow_up": true,
+    "follow_up_question": "How do I generate an automated EDA report using ydata-profiling?",
+    "id": 13
+  },
+  {
+    "question": "How can I prevent overfitting in my neural network?",
+    "summary": "User previously asked about cart abandonment rate in ecommerce and what strategies reduce it. I explained that simplifying checkout and showing upfront costs are among the most effective approaches.",
+    "answer": "To prevent overfitting in neural networks you can use dropout layers, L1/L2 regularization, early stopping, data augmentation, reduce model complexity, or gather more training data.",
+    "follow_up": true,
+    "follow_up_question": "What dropout rate should I start with for a typical deep learning model?",
+    "id": 14
+  },
+  {
+    "question": "What programming language is primarily used for data science?",
+    "summary": "User previously asked about the Duckworth-Lewis method in cricket and whether it has ever decided a major World Cup match.",
+    "answer": "Python is the most widely used programming language in data science due to its simplicity and vast ecosystem of libraries like pandas, NumPy, scikit-learn, and TensorFlow.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 15
+  },
+  {
+    "question": "What is the full form of API?",
+    "summary": "User previously asked about the risks of DeFi platforms including rug pulls, smart contract vulnerabilities, and impermanent loss.",
+    "answer": "API stands for Application Programming Interface. It is a set of rules that allows different software applications to communicate with each other.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 16
+  },
+  {
+    "question": "Which embedding model should I use for semantic search?",
+    "summary": "User previously asked about the SOLID principles in OOP and I explained all five \u2014 Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion with examples.",
+    "answer": "For semantic search, popular embedding models include OpenAI's text-embedding-ada-002, Sentence-BERT (all-MiniLM-L6-v2) from Hugging Face, Cohere Embed, and Google's text-embedding-gecko. Choose based on cost, latency, and accuracy needs.",
+    "follow_up": true,
+    "follow_up_question": "How do I measure the quality of embeddings for my use case?",
+    "id": 17
+  },
+  {
+    "question": "What payment gateways are most popular in India?",
+    "summary": "User previously asked about transfer learning and whether it applies to NLP. I explained that BERT and GPT are pre-trained and fine-tuned for downstream tasks like sentiment analysis and NER.",
+    "answer": "The most popular payment gateways in India are Razorpay, PayU, Cashfree, CCAvenue, and Paytm Payment Gateway. Razorpay is widely preferred by startups for its easy integration, UPI support, and developer-friendly APIs.",
+    "follow_up": true,
+    "follow_up_question": "How do I integrate Razorpay into a Python Flask application?",
+    "id": 18
+  },
+  {
+    "question": "Who won the FIFA World Cup 2022?",
+    "summary": "User previously asked about gradient descent variants and what learning rate to start with for mini-batch training. I suggested starting with 0.001 and using a learning rate scheduler.",
+    "answer": "Argentina won the FIFA World Cup 2022, defeating France on penalties in the final held in Qatar. Lionel Messi won the Golden Ball award.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 19
+  },
+  {
+    "question": "Can you give me an example of how to use memory in LangChain?",
+    "summary": "User previously asked about the differences between Ethereum and Solana blockchains. I explained that Ethereum is more decentralized while Solana offers higher throughput and lower fees.",
+    "answer": "Sure! In LangChain, you can use ConversationBufferMemory to retain chat history. You attach it to a ConversationChain, and it automatically passes previous messages as context to the LLM on every call.",
+    "follow_up": true,
+    "follow_up_question": "Does ConversationBufferMemory store the full history or just a summary?",
+    "id": 20
+  },
+  {
+    "question": "Who created Python?",
+    "summary": "User previously asked about which ecommerce platforms support dynamic pricing and whether it is legal and ethical across all product categories.",
+    "answer": "Python was created by Guido van Rossum and first released in 1991. It was designed for code readability and simplicity.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 21
+  },
+  {
+    "question": "Which types of investments are best for beating inflation?",
+    "summary": "User previously asked about dynamic programming and the difference between memoization and tabulation. I explained that memoization is top-down recursive while tabulation is bottom-up iterative.",
+    "answer": "Investments that historically beat inflation include equities/stocks, real estate, gold, inflation-indexed bonds, and REITs. Equities have the best long-term track record of outpacing inflation over a 10+ year horizon.",
+    "follow_up": true,
+    "follow_up_question": "Is gold a good inflation hedge compared to equities?",
+    "id": 22
+  },
+  {
+    "question": "What is the difference between memoization and tabulation?",
+    "summary": "User previously asked about popular payment gateways in India and how to integrate Razorpay into a Flask app. I outlined the steps: install SDK, create an order, generate a payment link, and verify the signature.",
+    "answer": "Memoization is top-down \u2014 starts with the original problem, recurses, and caches results as they are computed. Tabulation is bottom-up \u2014 builds a table from the smallest subproblems up iteratively without recursion.",
+    "follow_up": true,
+    "follow_up_question": "Which approach is more memory efficient \u2014 memoization or tabulation?",
+    "id": 23
+  },
+  {
+    "question": "How many Grand Slams has Novak Djokovic won?",
+    "summary": "User previously asked about hash table collision resolution and whether chaining or open addressing is more memory efficient.",
+    "answer": "Novak Djokovic has won 24 Grand Slam titles, the most by any male tennis player in history.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 24
+  },
+  {
+    "question": "What is Bitcoin?",
+    "summary": "User previously asked about the F1 score formula and when to prioritize recall over precision. I explained medical and fraud detection as typical recall-priority use cases.",
+    "answer": "Bitcoin is the first and most widely known cryptocurrency, created in 2009 by Satoshi Nakamoto. It operates on a decentralized blockchain allowing peer-to-peer transactions without intermediaries.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 25
+  },
+  {
+    "question": "Is the singleton pattern considered an anti-pattern?",
+    "summary": "User previously asked about which investments beat inflation and whether gold is a better hedge than equities. I explained that equities outperform over the long term while gold is better as a short-term safe haven.",
+    "answer": "Yes, many developers consider singleton an anti-pattern because it introduces global state making testing hard, creates tight coupling, and violates the Single Responsibility Principle. Dependency injection is often preferred as a cleaner alternative.",
+    "follow_up": true,
+    "follow_up_question": "How does dependency injection solve the problems of the singleton pattern?",
+    "id": 26
+  },
+  {
+    "question": "Is the DLS method considered fair by players and analysts?",
+    "summary": "User previously asked about overfitting and how dropout helps prevent it in neural networks. I explained that dropout randomly deactivates neurons during training to force the network to learn robust features.",
+    "answer": "Opinions are mixed. Many analysts consider DLS mathematically sound and fairer than older methods. However, players sometimes question it in low-scoring matches or when rain interrupts multiple times.",
+    "follow_up": true,
+    "follow_up_question": "Has DLS ever been a deciding factor in a major World Cup match?",
+    "id": 27
+  },
+  {
+    "question": "What is the difference between fine-tuning and prompt engineering?",
+    "summary": "User previously asked about DAO governance and how members vote using governance tokens. I explained that proposals go on-chain, a voting period is set, and smart contracts automatically execute if quorum is reached.",
+    "answer": "Prompt engineering shapes model behavior through crafted inputs without changing model weights \u2014 fast and cheap but limited. Fine-tuning updates model weights on domain-specific data for deeper adaptation \u2014 more powerful but expensive and time-consuming.",
+    "follow_up": true,
+    "follow_up_question": "Can I use both prompt engineering and fine-tuning together?",
+    "id": 28
+  },
+  {
+    "question": "What are the risks of using DeFi platforms?",
+    "summary": "User previously asked about EDA libraries in Python. I recommended pandas, Matplotlib, Seaborn, Plotly, and ydata-profiling for different stages of exploratory analysis.",
+    "answer": "DeFi risks include smart contract bugs, rug pulls, liquidation risk, regulatory uncertainty, impermanent loss for liquidity providers, and high gas fees during network congestion.",
+    "follow_up": true,
+    "follow_up_question": "How can I audit a DeFi smart contract for safety before investing?",
+    "id": 29
+  },
+  {
+    "question": "What is the full form of SQL?",
+    "summary": "User previously asked about the compound interest formula and calculated returns on a \u20b91,00,000 investment at 8% compounded monthly for 5 years.",
+    "answer": "SQL stands for Structured Query Language. It is the standard language used to manage, query, and manipulate relational databases.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 30
+  },
+  {
+    "question": "What is the full form of OOP?",
+    "summary": "User previously asked about how DAOs handle low voter turnout and whether quorum requirements can be changed by governance votes.",
+    "answer": "OOP stands for Object-Oriented Programming, a paradigm based on objects, classes, inheritance, and encapsulation.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 31
+  },
+  {
+    "question": "What does NFT stand for?",
+    "summary": "User previously asked about encapsulation vs abstraction in OOP and I gave a Python example using abstract base classes to demonstrate the difference.",
+    "answer": "NFT stands for Non-Fungible Token. It is a unique digital asset stored on a blockchain representing ownership of a specific item like art, music, or collectibles.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 32
+  },
+  {
+    "question": "What is the difference between self-attention and cross-attention?",
+    "summary": "User previously asked about cart abandonment and the best email recovery strategies. I suggested personalized reminder emails with discount codes within 1 hour, 24 hours, and 72 hours of abandonment.",
+    "answer": "Self-attention computes relationships within the same sequence \u2014 how each word relates to others in the same input. Cross-attention computes relationships between two sequences \u2014 in a decoder, how each output token attends to the encoder's representations.",
+    "follow_up": true,
+    "follow_up_question": "Where exactly is cross-attention used in the original transformer architecture?",
+    "id": 33
+  },
+  {
+    "question": "What does UPI stand for in India?",
+    "summary": "User previously asked about cross-attention in transformers and where exactly it appears in the encoder-decoder architecture.",
+    "answer": "UPI stands for Unified Payments Interface. It is a real-time payment system developed by NPCI that enables instant bank-to-bank transfers via mobile.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 34
+  },
+  {
+    "question": "How does Ethereum use proof of stake after its merge?",
+    "summary": "User previously asked about the P/E ratio and what a good range looks like for tech companies. I explained that 20\u201340 is typical and introduced the PEG ratio as a more holistic valuation metric.",
+    "answer": "After The Merge in September 2022, Ethereum fully switched from Proof of Work to Proof of Stake. Validators stake 32 ETH to participate. They are randomly selected to propose blocks while others attest, earning staking rewards in return.",
+    "follow_up": true,
+    "follow_up_question": "How much ETH do I need to become a validator on Ethereum?",
+    "id": 35
+  },
+  {
+    "question": "What does ETL stand for in data engineering?",
+    "summary": "User previously asked about the singleton pattern and how dependency injection is a better alternative for managing shared resources.",
+    "answer": "ETL stands for Extract, Transform, Load. It is the process of extracting data from source systems, transforming it into the required format, and loading it into a target data warehouse.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 36
+  },
+  {
+    "question": "What does ROI stand for?",
+    "summary": "User previously asked about the Ethereum proof of stake system and how much ETH is required to become a validator.",
+    "answer": "ROI stands for Return on Investment, a metric that measures the profitability of an investment relative to its cost.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 37
+  },
+  {
+    "question": "What vector database should I use for a RAG pipeline?",
+    "summary": "User previously asked about the offside rule in football and how VAR technology has changed its enforcement. I explained that VAR uses multiple camera angles to make precise offside decisions.",
+    "answer": "For a RAG pipeline, popular vector databases include Pinecone (managed, easy to set up), Weaviate (open-source, flexible), Qdrant (fast and efficient), and ChromaDB (lightweight, great for local development).",
+    "follow_up": true,
+    "follow_up_question": "How does Pinecone compare to ChromaDB for a production setup?",
+    "id": 38
+  },
+  {
+    "question": "Can you give a real-world use case for stack and queue data structures?",
+    "summary": "User previously asked about the Sensex and NIFTY 50 indices and how they differ. I explained that Sensex tracks 30 companies on BSE while NIFTY 50 tracks 50 companies on NSE.",
+    "answer": "Stack use cases: browser back button, undo/redo in editors, function call stack. Queue use cases: print job scheduling, customer service ticketing, message queues in distributed systems like Kafka.",
+    "follow_up": true,
+    "follow_up_question": "Is a priority queue the same as a regular queue?",
+    "id": 39
+  },
+  {
+    "question": "How many players are on a basketball court per team?",
+    "summary": "User previously asked about ROI calculation for digital marketing campaigns and what benchmark to aim for in the Indian market.",
+    "answer": "Each basketball team has 5 players on the court at a time during a game.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 40
+  },
+  {
+    "question": "What is considered a good P/E ratio for a tech company?",
+    "summary": "User previously asked about k-means clustering and how to choose the right value of k. I explained the elbow method and silhouette score as ways to determine optimal cluster count.",
+    "answer": "For tech companies, a P/E ratio between 20\u201340 is generally considered reasonable, though high-growth tech firms can have ratios of 50\u2013100+. Context matters \u2014 compare the P/E to industry peers and growth rate (PEG ratio) for better insight.",
+    "follow_up": true,
+    "follow_up_question": "What is the PEG ratio and how is it different from P/E?",
+    "id": 41
+  },
+  {
+    "question": "How do I calculate ROI for a digital marketing campaign?",
+    "summary": "User previously asked about clustering algorithms and how to interpret the silhouette score. I explained that a score close to 1 means well-clustered, near 0 means overlapping clusters, and negative means misclassified points.",
+    "answer": "For a digital marketing campaign: ROI = ((Revenue from campaign - Cost of campaign) / Cost of campaign) \u00d7 100. For example, if you spent \u20b950,000 and earned \u20b91,50,000, ROI = (1,00,000 / 50,000) \u00d7 100 = 200%.",
+    "follow_up": true,
+    "follow_up_question": "What is a good ROI benchmark for digital marketing campaigns in India?",
+    "id": 42
+  },
+  {
+    "question": "How do I calculate the F1 score from a confusion matrix?",
+    "summary": "User previously asked about the singleton design pattern and whether it is considered an anti-pattern. I explained that it introduces global state making testing hard and dependency injection is preferred.",
+    "answer": "From the confusion matrix: Precision = TP / (TP + FP), Recall = TP / (TP + FN), and F1 Score = 2 \u00d7 (Precision \u00d7 Recall) / (Precision + Recall). F1 balances precision and recall into a single metric.",
+    "follow_up": true,
+    "follow_up_question": "When should I prioritize recall over precision?",
+    "id": 43
+  },
+  {
+    "question": "Can you show me the formula for calculating compound interest?",
+    "summary": "User previously asked about transfer learning in deep learning and whether it can be applied to NLP. I explained that models like BERT and GPT are pre-trained on large corpora and fine-tuned for specific NLP tasks.",
+    "answer": "The compound interest formula is: A = P \u00d7 (1 + r/n)^(n\u00d7t), where A = final amount, P = principal, r = annual interest rate (decimal), n = compounding frequency per year, t = time in years.",
+    "follow_up": true,
+    "follow_up_question": "If I invest \u20b91,00,000 at 8% compounded monthly for 5 years, what will I get?",
+    "id": 44
+  },
+  {
+    "question": "What is the difference between batch, mini-batch, and stochastic gradient descent?",
+    "summary": "User previously asked about the role of a payment gateway in ecommerce and which ones are popular in India. I mentioned Razorpay, PayU, Cashfree, and CCAvenue as leading options.",
+    "answer": "Batch GD uses the entire dataset per update (slow but stable). Stochastic GD uses one sample per update (fast but noisy). Mini-batch GD uses a small subset per update \u2014 the most commonly used approach, balancing speed and stability.",
+    "follow_up": true,
+    "follow_up_question": "What is a good starting learning rate for mini-batch gradient descent?",
+    "id": 45
+  },
+  {
+    "question": "What is the difference between REST API and GraphQL?",
+    "summary": "User previously asked about the hash table data structure and how it handles collisions using chaining and open addressing. I explained both techniques with their tradeoffs.",
+    "answer": "REST has fixed endpoints returning predefined data structures. GraphQL uses a single endpoint where clients specify exactly what data they need, avoiding over-fetching and under-fetching. REST is simpler; GraphQL is more flexible for complex data needs.",
+    "follow_up": true,
+    "follow_up_question": "When would you choose GraphQL over REST for a project?",
+    "id": 46
+  },
+  {
+    "question": "Can you explain the Single Responsibility Principle with an example?",
+    "summary": "User previously asked about DeFi risks including smart contract bugs, rug pulls, and impermanent loss. I explained each risk and suggested auditing contracts before investing.",
+    "answer": "The Single Responsibility Principle says a class should have only one reason to change. For example, an Invoice class should only handle invoice logic \u2014 not printing or saving to a database. Separate those into InvoicePrinter and InvoiceRepository classes.",
+    "follow_up": true,
+    "follow_up_question": "What happens if I violate the Single Responsibility Principle in a large codebase?",
+    "id": 47
+  },
+  {
+    "question": "Which one is better for clustering customer data \u2014 supervised or unsupervised?",
+    "summary": "User previously asked about compound interest and how it differs from simple interest. I explained that compound interest grows exponentially by calculating on principal plus accumulated interest.",
+    "answer": "For clustering customer data, unsupervised learning is the right choice since you typically don't have predefined labels. Algorithms like k-means or DBSCAN can group customers by behavior, demographics, or purchase patterns.",
+    "follow_up": true,
+    "follow_up_question": "What is the best algorithm for customer segmentation specifically?",
+    "id": 48
+  },
+  {
+    "question": "How is encapsulation different from abstraction?",
+    "summary": "User previously asked about dynamic pricing in ecommerce and which platforms support it. I explained that Shopify supports it via apps like Prisync while Amazon has a built-in proprietary engine.",
+    "answer": "Encapsulation is about hiding internal data and protecting it via access modifiers. Abstraction is about hiding implementation complexity and exposing only what is necessary. Encapsulation is the mechanism through which abstraction is achieved.",
+    "follow_up": true,
+    "follow_up_question": "Can you show me a Python example of abstraction using abstract classes?",
+    "id": 49
+  },
+  {
+    "question": "What is Sachin Tendulkar known for?",
+    "summary": "User previously asked about vector embeddings and which embedding model to use for semantic search. I recommended OpenAI's text-embedding-ada-002 and Sentence-BERT.",
+    "answer": "Sachin Tendulkar is known as the God of Cricket and holds the record for the most international centuries (100) and most runs in both Test and ODI cricket.",
+    "follow_up": false,
+    "follow_up_question": "",
+    "id": 50
+  }
+]

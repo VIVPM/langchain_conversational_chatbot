@@ -1,0 +1,2642 @@
+[
+  {
+    "question": "What is RAG?",
+    "expected_answer": "RAG (Retrieval Augmented Generation) combines information retrieval with text generation, allowing LLMs to access external knowledge bases to improve accuracy.",
+    "predicted_answer": "RAG (Retrieval Augmented Generation) combines information retrieval with text generation, allowing LLMs to access external knowledge bases to improve accuracy.",
+    "correct": 1,
+    "type": "document",
+    "id": 1
+  },
+  {
+    "question": "What is method overriding?",
+    "expected_answer": "Method overriding is when a subclass provides a specific implementation of a method already defined in its parent.",
+    "predicted_answer": "Method overriding is when a subclass provides a specific implementation of a method already defined in its parent.",
+    "correct": 1,
+    "type": "document",
+    "id": 2
+  },
+  {
+    "question": "What is SKU?",
+    "expected_answer": "A SKU (Stock Keeping Unit) is a unique identifier assigned to each product for tracking inventory and sales.",
+    "predicted_answer": "A SKU (Stock Keeping Unit) is a unique identifier assigned to each product for tracking inventory and sales.",
+    "correct": 1,
+    "type": "document",
+    "id": 3
+  },
+  {
+    "question": "What is GraphQL?",
+    "expected_answer": "GraphQL allows clients to request exactly the data they need, reducing over-fetching and under-fetching compared to REST.",
+    "predicted_answer": "GraphQL allows clients to request exactly the data they need, reducing over-fetching and under-fetching compared to REST.",
+    "correct": 1,
+    "type": "search",
+    "id": 4
+  },
+  {
+    "question": "What is the metaverse in blockchain context?",
+    "expected_answer": "In blockchain, the metaverse refers to virtual worlds where users own digital assets and identities secured by blockchain.",
+    "predicted_answer": "In blockchain, the metaverse refers to virtual worlds where users own digital assets and identities secured by blockchain.",
+    "correct": 1,
+    "type": "search",
+    "id": 5
+  },
+  {
+    "question": "What is ONDC?",
+    "expected_answer": "ONDC (Open Network for Digital Commerce) is an Indian government initiative creating an open network for any buyer or seller app.",
+    "predicted_answer": "ONDC (Open Network for Digital Commerce) is an Indian government initiative creating an open network for any buyer or seller app.",
+    "correct": 1,
+    "type": "search",
+    "id": 6
+  },
+  {
+    "question": "What is ETL?",
+    "expected_answer": "ETL (Extract, Transform, Load) is the process of extracting data from sources, transforming it, and loading into a target system.",
+    "predicted_answer": "ETL (Extract, Transform, Load) is the process of extracting data from sources, transforming it, and loading into a target system.",
+    "correct": 1,
+    "type": "search",
+    "id": 7
+  },
+  {
+    "question": "What is Tether (USDT)?",
+    "expected_answer": "Tether (USDT) is a stablecoin pegged to the US dollar, used to maintain stable value in the volatile crypto market.",
+    "predicted_answer": "Tether (USDT) is a cryptocurrency backed by gold reserves to maintain price stability.",
+    "correct": 0,
+    "type": "search",
+    "id": 8
+  },
+  {
+    "question": "What is liquidity?",
+    "expected_answer": "Liquidity is the ease with which an asset can be converted into cash without affecting its market price.",
+    "predicted_answer": "Liquidity is the ease with which an asset can be converted into cash without affecting its market price.",
+    "correct": 1,
+    "type": "document",
+    "id": 9
+  },
+  {
+    "question": "What is LangChain?",
+    "expected_answer": "LangChain is a framework for building LLM-powered applications, providing tools for chaining prompts, memory, agents, and external integrations.",
+    "predicted_answer": "LangChain is a framework for building LLM-powered applications, providing tools for chaining prompts, memory, agents, and external integrations.",
+    "correct": 1,
+    "type": "document",
+    "id": 10
+  },
+  {
+    "question": "What is Ollama?",
+    "expected_answer": "Ollama is a tool that allows users to run open-source LLMs locally on their machines without requiring cloud services.",
+    "predicted_answer": "Ollama is a tool that allows users to run open-source LLMs locally on their machines without requiring cloud services.",
+    "correct": 1,
+    "type": "search",
+    "id": 11
+  },
+  {
+    "question": "What is CI/CD?",
+    "expected_answer": "CI/CD automates building, testing, and deploying software to enable frequent and reliable releases.",
+    "predicted_answer": "CI/CD automates building, testing, and deploying software to enable frequent and reliable releases.",
+    "correct": 1,
+    "type": "search",
+    "id": 12
+  },
+  {
+    "question": "What is BERT?",
+    "expected_answer": "BERT is a pre-trained NLP model by Google that understands context from both directions in text using bidirectional transformers.",
+    "predicted_answer": "BERT is a pre-trained NLP model by Google that understands context from both directions in text using bidirectional transformers.",
+    "correct": 1,
+    "type": "search",
+    "id": 13
+  },
+  {
+    "question": "What is Keras?",
+    "expected_answer": "Keras is a high-level neural network API that runs on top of TensorFlow, making it easy to build and prototype deep learning models.",
+    "predicted_answer": "Keras is a standalone deep learning framework developed by Meta that competes directly with TensorFlow.",
+    "correct": 0,
+    "type": "search",
+    "id": 14
+  },
+  {
+    "question": "What is an average order value (AOV)?",
+    "expected_answer": "AOV is the average amount spent per order, calculated as total revenue divided by number of orders.",
+    "predicted_answer": "AOV is the total revenue a store earns in a month divided by number of products sold.",
+    "correct": 0,
+    "type": "document",
+    "id": 15
+  },
+  {
+    "question": "What is the difference between OLTP and OLAP?",
+    "expected_answer": "OLTP handles real-time transactional operations while OLAP is optimized for complex analytical queries on large datasets.",
+    "predicted_answer": "The difference between OLTP and OLAP is OLTP handles real-time transactional operations while OLAP is optimized for complex analytical queries on large datasets.",
+    "correct": 0,
+    "type": "search",
+    "id": 16
+  },
+  {
+    "question": "What is Web3?",
+    "expected_answer": "Web3 is a decentralized internet built on blockchain emphasizing user ownership of data and digital assets.",
+    "predicted_answer": "Web3 is a decentralized internet built on blockchain emphasizing user ownership of data and digital assets.",
+    "correct": 1,
+    "type": "search",
+    "id": 17
+  },
+  {
+    "question": "What is headless commerce?",
+    "expected_answer": "Headless commerce decouples the frontend presentation from backend ecommerce functionality for customized multi-channel experiences.",
+    "predicted_answer": "Headless commerce decouples the frontend presentation from backend ecommerce functionality for customized multi-channel experiences.",
+    "correct": 1,
+    "type": "search",
+    "id": 18
+  },
+  {
+    "question": "What is JWT?",
+    "expected_answer": "JWT (JSON Web Token) is a compact token format for securely transmitting information between parties, commonly used for authentication.",
+    "predicted_answer": "JWT (JSON Web Token) is a compact token format for securely transmitting information between parties, commonly used for authentication.",
+    "correct": 1,
+    "type": "search",
+    "id": 19
+  },
+  {
+    "question": "What is a histogram?",
+    "expected_answer": "A histogram shows the distribution of numerical data by displaying frequency of data points within specified ranges (bins).",
+    "predicted_answer": "A histogram shows the distribution of numerical data by displaying frequency of data points within specified ranges (bins).",
+    "correct": 1,
+    "type": "document",
+    "id": 20
+  },
+  {
+    "question": "What is the current RBI repo rate?",
+    "expected_answer": "The RBI repo rate is the interest rate at which the RBI lends money to commercial banks; it was 6.5% as of 2024.",
+    "predicted_answer": "The RBI repo rate is fixed at 4% and has not changed since 2020.",
+    "correct": 0,
+    "type": "search",
+    "id": 21
+  },
+  {
+    "question": "What is a public vs private blockchain?",
+    "expected_answer": "A public blockchain is open to anyone while a private blockchain restricts access to authorized participants only.",
+    "predicted_answer": "A public blockchain is open to anyone while a private blockchain restricts access to authorized participants only.",
+    "correct": 1,
+    "type": "document",
+    "id": 22
+  },
+  {
+    "question": "What is a decision tree?",
+    "expected_answer": "A decision tree is a supervised learning algorithm that splits data based on feature conditions in a tree structure to make predictions.",
+    "predicted_answer": "A decision tree is a supervised learning algorithm that splits data based on feature conditions in a tree structure to make predictions.",
+    "correct": 1,
+    "type": "document",
+    "id": 23
+  },
+  {
+    "question": "What is an eagle in golf?",
+    "expected_answer": "An eagle is a score of two strokes under par for a hole.",
+    "predicted_answer": "An eagle is a score of one stroke under par for a hole.",
+    "correct": 0,
+    "type": "document",
+    "id": 24
+  },
+  {
+    "question": "What is the difference between T20 and ODI?",
+    "expected_answer": "T20 cricket consists of 20 overs per side while ODI consists of 50 overs per side.",
+    "predicted_answer": "T20 cricket consists of 20 overs per side while ODI consists of 50 overs per side.",
+    "correct": 1,
+    "type": "document",
+    "id": 25
+  },
+  {
+    "question": "What is the flyweight pattern?",
+    "expected_answer": "The flyweight pattern minimizes memory by sharing data between similar objects, useful when many similar objects are created.",
+    "predicted_answer": "The flyweight pattern minimizes memory by sharing data between similar objects, useful when many similar objects are created.",
+    "correct": 1,
+    "type": "search",
+    "id": 26
+  },
+  {
+    "question": "What is dbt?",
+    "expected_answer": "dbt (data build tool) is a transformation tool that enables analysts to write modular SQL and run it as a data pipeline.",
+    "predicted_answer": "dbt (data build tool) is a transformation tool that enables analysts to write modular SQL and run it as a data pipeline.",
+    "correct": 1,
+    "type": "search",
+    "id": 27
+  },
+  {
+    "question": "What is Redis?",
+    "expected_answer": "Redis is an in-memory data structure store used as database, cache, and message broker with extremely fast read/write operations.",
+    "predicted_answer": "Redis is an in-memory data structure store used as database, cache, and message broker with extremely fast read/write operations.",
+    "correct": 1,
+    "type": "search",
+    "id": 28
+  },
+  {
+    "question": "What is multihead attention?",
+    "expected_answer": "Multihead attention runs the attention mechanism multiple times in parallel with different learned projections, capturing diverse relationships.",
+    "predicted_answer": "Multihead attention runs the attention mechanism multiple times in parallel with different learned projections, capturing diverse relationships.",
+    "correct": 1,
+    "type": "document",
+    "id": 29
+  },
+  {
+    "question": "What is serverless computing?",
+    "expected_answer": "Serverless computing lets developers run code without provisioning servers, as the cloud provider manages infrastructure automatically.",
+    "predicted_answer": "Serverless computing lets developers run code without provisioning servers, as the cloud provider manages infrastructure automatically.",
+    "correct": 1,
+    "type": "search",
+    "id": 30
+  },
+  {
+    "question": "What is BigQuery?",
+    "expected_answer": "BigQuery is Google Cloud's fully managed serverless data warehouse for large-scale SQL analytics.",
+    "predicted_answer": "BigQuery is Google Cloud's fully managed serverless data warehouse for large-scale SQL analytics.",
+    "correct": 1,
+    "type": "search",
+    "id": 31
+  },
+  {
+    "question": "What is Anthropic's mission?",
+    "expected_answer": "Anthropic's mission is to develop AI systems that are safe, beneficial, and understandable, with a focus on AI safety research.",
+    "predicted_answer": "Anthropic's mission is to develop AI systems that are safe, beneficial, and understandable, with a focus on AI safety research.",
+    "correct": 1,
+    "type": "search",
+    "id": 32
+  },
+  {
+    "question": "What is missing data?",
+    "expected_answer": "Missing data refers to absent values in a dataset, which can be handled by deletion, imputation, or model-based approaches.",
+    "predicted_answer": "Missing data refers to absent values in a dataset, which can be handled by deletion, imputation, or model-based approaches.",
+    "correct": 1,
+    "type": "document",
+    "id": 33
+  },
+  {
+    "question": "What is polymorphism?",
+    "expected_answer": "Polymorphism allows objects of different classes to be treated as a common superclass type, with methods behaving differently based on the actual object.",
+    "predicted_answer": "Polymorphism allows objects of different classes to be treated as a common superclass type, with methods behaving differently based on the actual object.",
+    "correct": 1,
+    "type": "document",
+    "id": 34
+  },
+  {
+    "question": "What is wide vs long data format?",
+    "expected_answer": "Wide format has one row per subject with multiple columns; long format has multiple rows per subject with one value column.",
+    "predicted_answer": "Wide format has one row per subject with multiple columns; long format has multiple rows per subject with one value column.",
+    "correct": 1,
+    "type": "search",
+    "id": 35
+  },
+  {
+    "question": "What is working capital?",
+    "expected_answer": "Working capital is current assets minus current liabilities, measuring a company's short-term liquidity.",
+    "predicted_answer": "Working capital is long-term assets minus total liabilities, measuring a company's overall debt capacity.",
+    "correct": 0,
+    "type": "document",
+    "id": 36
+  },
+  {
+    "question": "What is the difference between a process and a thread?",
+    "expected_answer": "A process is an independent program with its own memory, while a thread is a lightweight unit of execution within a process sharing memory.",
+    "predicted_answer": "A process is an independent program with its own memory, while a thread is a lightweight unit of execution within a process sharing memory.",
+    "correct": 1,
+    "type": "document",
+    "id": 37
+  },
+  {
+    "question": "What is gas in Ethereum?",
+    "expected_answer": "Gas measures computational work required to execute transactions or smart contracts on Ethereum, paid in ETH.",
+    "predicted_answer": "Gas measures computational work required to execute transactions or smart contracts on Ethereum, paid in ETH.",
+    "correct": 1,
+    "type": "document",
+    "id": 38
+  },
+  {
+    "question": "What is DuckDB?",
+    "expected_answer": "DuckDB is an in-process analytical SQL database optimized for fast query performance on local files like CSV and Parquet.",
+    "predicted_answer": "DuckDB is an in-process analytical SQL database optimized for fast query performance on local files like CSV and Parquet.",
+    "correct": 1,
+    "type": "search",
+    "id": 39
+  },
+  {
+    "question": "What is a deadlock?",
+    "expected_answer": "A deadlock is when two or more processes are blocked, each waiting for resources held by the other, indefinitely.",
+    "predicted_answer": "A deadlock is when two or more processes are blocked, each waiting for resources held by the other, indefinitely.",
+    "correct": 1,
+    "type": "document",
+    "id": 40
+  },
+  {
+    "question": "What is overfitting?",
+    "expected_answer": "Overfitting occurs when a model learns training data too well including noise, causing poor generalization to new data.",
+    "predicted_answer": "Overfitting occurs when a model learns training data too well including noise, causing poor generalization to new data.",
+    "correct": 1,
+    "type": "document",
+    "id": 41
+  },
+  {
+    "question": "What is FastAPI?",
+    "expected_answer": "FastAPI is a modern Python web framework for building APIs, known for high performance and automatic documentation.",
+    "predicted_answer": "FastAPI is a modern Python web framework for building APIs, known for high performance and automatic documentation.",
+    "correct": 1,
+    "type": "search",
+    "id": 42
+  },
+  {
+    "question": "What is temperature in LLMs?",
+    "expected_answer": "Temperature controls randomness of outputs; higher values produce more creative responses while lower values produce more deterministic outputs.",
+    "predicted_answer": "Temperature controls randomness of outputs; higher values produce more creative responses while lower values produce more deterministic outputs.",
+    "correct": 1,
+    "type": "document",
+    "id": 43
+  },
+  {
+    "question": "What is a smart contract?",
+    "expected_answer": "A smart contract is a self-executing program on a blockchain that automatically enforces agreement terms when predefined conditions are met.",
+    "predicted_answer": "A smart contract is a self-executing program on a blockchain that automatically enforces agreement terms when predefined conditions are met.",
+    "correct": 1,
+    "type": "document",
+    "id": 44
+  },
+  {
+    "question": "What is data cleaning?",
+    "expected_answer": "Data cleaning identifies and corrects errors and inconsistencies in a dataset to improve quality for analysis.",
+    "predicted_answer": "Data cleaning identifies and corrects errors and inconsistencies in a dataset to improve quality for analysis.",
+    "correct": 1,
+    "type": "search",
+    "id": 45
+  },
+  {
+    "question": "What is Streamlit?",
+    "expected_answer": "Streamlit is a Python framework for rapidly building interactive data science and ML web applications.",
+    "predicted_answer": "Streamlit is a Python framework for rapidly building interactive data science and ML web applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 46
+  },
+  {
+    "question": "What is Razorpay?",
+    "expected_answer": "Razorpay is an Indian payment gateway enabling businesses to accept and process payments through multiple methods.",
+    "predicted_answer": "Razorpay is an Indian payment gateway enabling businesses to accept and process payments through multiple methods.",
+    "correct": 1,
+    "type": "search",
+    "id": 47
+  },
+  {
+    "question": "What is a token in NLP?",
+    "expected_answer": "A token is the basic unit of text that an LLM processes, which can be a word, subword, or character depending on the tokenizer.",
+    "predicted_answer": "A token is the basic unit of text that an LLM processes, which can be a word, subword, or character depending on the tokenizer.",
+    "correct": 1,
+    "type": "document",
+    "id": 48
+  },
+  {
+    "question": "What is a vector database?",
+    "expected_answer": "A vector database stores and indexes high-dimensional vector embeddings to enable fast similarity search, commonly used in RAG pipelines.",
+    "predicted_answer": "A vector database stores and indexes high-dimensional vector embeddings to enable fast similarity search, commonly used in RAG pipelines.",
+    "correct": 1,
+    "type": "document",
+    "id": 49
+  },
+  {
+    "question": "What is AI21 Labs?",
+    "expected_answer": "AI21 Labs is an AI company that develops large language models and writing assistance tools including the Jurassic model family.",
+    "predicted_answer": "AI21 Labs is an AI company that develops large language models and writing assistance tools including the Jurassic model family.",
+    "correct": 1,
+    "type": "search",
+    "id": 50
+  },
+  {
+    "question": "Who is the all-time top scorer in the Premier League?",
+    "expected_answer": "Alan Shearer is the all-time top scorer in the Premier League with 260 goals.",
+    "predicted_answer": "Alan Shearer is the all-time top scorer in the Premier League with 260 goals.",
+    "correct": 1,
+    "type": "search",
+    "id": 51
+  },
+  {
+    "question": "What is a 51% attack?",
+    "expected_answer": "A 51% attack is when an entity gains over 50% mining power enabling them to manipulate transactions on the blockchain.",
+    "predicted_answer": "A 51% attack is when 51 users simultaneously try to withdraw funds from a DeFi protocol.",
+    "correct": 0,
+    "type": "document",
+    "id": 52
+  },
+  {
+    "question": "What is merge sort?",
+    "expected_answer": "Merge sort is a divide-and-conquer algorithm that splits an array into halves, sorts each, and merges them with O(n log n) complexity.",
+    "predicted_answer": "Merge sort is a divide-and-conquer algorithm that splits an array into halves, sorts each, and merges them with O(n log n) complexity.",
+    "correct": 1,
+    "type": "document",
+    "id": 53
+  },
+  {
+    "question": "What is the elbow method in clustering?",
+    "expected_answer": "The elbow method determines the optimal number of clusters by plotting inertia vs. k and finding the point where reduction slows.",
+    "predicted_answer": "The elbow method determines the optimal number of clusters by plotting inertia vs. k and finding the point where reduction slows.",
+    "correct": 1,
+    "type": "document",
+    "id": 54
+  },
+  {
+    "question": "What is a graph data structure?",
+    "expected_answer": "A graph consists of nodes (vertices) and edges connecting them, used to represent relationships between entities.",
+    "predicted_answer": "This approach increases model complexity and is generally discouraged.",
+    "correct": 0,
+    "type": "document",
+    "id": 55
+  },
+  {
+    "question": "What is a design pattern?",
+    "expected_answer": "A design pattern is a reusable solution to a commonly occurring problem in software design, categorized as creational, structural, or behavioral.",
+    "predicted_answer": "A design pattern is a reusable solution to a commonly occurring problem in software design, categorized as creational, structural, or behavioral.",
+    "correct": 1,
+    "type": "document",
+    "id": 56
+  },
+  {
+    "question": "What is Shopify?",
+    "expected_answer": "Shopify is a cloud-based ecommerce platform for creating and managing online stores with payment, shipping, and inventory tools.",
+    "predicted_answer": "Shopify is a cloud-based ecommerce platform for creating and managing online stores with payment, shipping, and inventory tools.",
+    "correct": 1,
+    "type": "search",
+    "id": 57
+  },
+  {
+    "question": "What is ESG investing?",
+    "expected_answer": "ESG investing considers a company's Environmental, Social, and Governance practices alongside financial returns.",
+    "predicted_answer": "ESG investing considers a company's Environmental, Social, and Governance practices alongside financial returns.",
+    "correct": 1,
+    "type": "search",
+    "id": 58
+  },
+  {
+    "question": "What is Weaviate?",
+    "expected_answer": "Weaviate is an open-source vector database for storing and querying embeddings in semantic search and AI applications.",
+    "predicted_answer": "Weaviate is an open-source vector database for storing and querying embeddings in semantic search and AI applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 59
+  },
+  {
+    "question": "What is Cardano?",
+    "expected_answer": "Cardano is a proof-of-stake blockchain platform by IOHK focused on security, scalability, and peer-reviewed research.",
+    "predicted_answer": "Cardano is a proof-of-stake blockchain platform by IOHK focused on security, scalability, and peer-reviewed research.",
+    "correct": 1,
+    "type": "search",
+    "id": 60
+  },
+  {
+    "question": "What is fine-tuning in LLMs?",
+    "expected_answer": "Fine-tuning is further training a pre-trained LLM on domain-specific data to improve performance on targeted tasks.",
+    "predicted_answer": "Fine-tuning is further training a pre-trained LLM on domain-specific data to improve performance on targeted tasks.",
+    "correct": 1,
+    "type": "document",
+    "id": 61
+  },
+  {
+    "question": "What is Perplexity AI?",
+    "expected_answer": "Perplexity AI is an AI-powered search engine that provides direct answers with cited sources using large language models.",
+    "predicted_answer": "Perplexity AI is an AI-powered search engine that provides direct answers with cited sources using large language models.",
+    "correct": 1,
+    "type": "search",
+    "id": 62
+  },
+  {
+    "question": "What is a pair plot?",
+    "expected_answer": "A pair plot creates a grid of scatter plots for all pairs of numerical variables to identify patterns quickly.",
+    "predicted_answer": "A pair plot creates a grid of scatter plots for all pairs of numerical variables to identify patterns quickly.",
+    "correct": 1,
+    "type": "search",
+    "id": 63
+  },
+  {
+    "question": "What is Apache Kafka?",
+    "expected_answer": "Apache Kafka is a distributed event streaming platform for building real-time data pipelines and streaming applications.",
+    "predicted_answer": "Apache Kafka is a distributed event streaming platform for building real-time data pipelines and streaming applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 64
+  },
+  {
+    "question": "What is recall in ML?",
+    "expected_answer": "Recall is the proportion of actual positives correctly identified, calculated as TP / (TP + FN).",
+    "predicted_answer": "Recall is the proportion of actual positives correctly identified, calculated as TP / (TP + FN).",
+    "correct": 1,
+    "type": "document",
+    "id": 65
+  },
+  {
+    "question": "What is a hyperparameter?",
+    "expected_answer": "A hyperparameter is a configuration set before training that controls the learning process, such as learning rate or number of trees.",
+    "predicted_answer": "A hyperparameter is a configuration set before training that controls the learning process, such as learning rate or number of trees.",
+    "correct": 1,
+    "type": "document",
+    "id": 66
+  },
+  {
+    "question": "What is seaborn?",
+    "expected_answer": "Seaborn is a Python visualization library built on matplotlib providing a high-level interface for statistical graphics.",
+    "predicted_answer": "Seaborn is a Python visualization library built on matplotlib providing a high-level interface for statistical graphics.",
+    "correct": 1,
+    "type": "search",
+    "id": 67
+  },
+  {
+    "question": "What is conversion rate?",
+    "expected_answer": "Conversion rate is the percentage of visitors completing a desired action (like purchase), calculated as (conversions / visitors) \u00d7 100.",
+    "predicted_answer": "Conversion rate is the percentage of visitors completing a desired action (like purchase), calculated as (conversions / visitors) \u00d7 100.",
+    "correct": 1,
+    "type": "document",
+    "id": 68
+  },
+  {
+    "question": "What is reinforcement learning?",
+    "expected_answer": "Reinforcement learning trains an agent to make decisions by receiving rewards or penalties based on its actions in an environment.",
+    "predicted_answer": "Reinforcement learning trains an agent to make decisions by receiving rewards or penalties based on its actions in an environment.",
+    "correct": 1,
+    "type": "search",
+    "id": 69
+  },
+  {
+    "question": "What is dollar cost averaging?",
+    "expected_answer": "Dollar cost averaging invests a fixed amount at regular intervals regardless of price, reducing the impact of volatility.",
+    "predicted_answer": "Dollar cost averaging invests a fixed amount at regular intervals regardless of price, reducing the impact of volatility.",
+    "correct": 1,
+    "type": "document",
+    "id": 70
+  },
+  {
+    "question": "What is data imputation?",
+    "expected_answer": "Data imputation replaces missing values with substituted values such as mean, median, mode, or predicted values.",
+    "predicted_answer": "Data imputation replaces missing values with substituted values such as mean, median, mode, or predicted values.",
+    "correct": 1,
+    "type": "document",
+    "id": 71
+  },
+  {
+    "question": "What is the difference between open-source and closed-source LLMs?",
+    "expected_answer": "Open-source LLMs like LLaMA have publicly available weights, while closed-source LLMs like GPT-4 are proprietary and accessed via API.",
+    "predicted_answer": "Open-source LLMs like LLaMA have publicly available weights, while closed-source LLMs like GPT-4 are proprietary and accessed via API.",
+    "correct": 1,
+    "type": "search",
+    "id": 72
+  },
+  {
+    "question": "What is depreciation?",
+    "expected_answer": "Depreciation is the gradual reduction in the value of an asset over time, recorded as an expense on financial statements.",
+    "predicted_answer": "Depreciation is the gradual reduction in the value of an asset over time, recorded as an expense on financial statements.",
+    "correct": 1,
+    "type": "document",
+    "id": 73
+  },
+  {
+    "question": "What is the difference between stocks and bonds?",
+    "expected_answer": "Stocks are ownership shares with variable returns; bonds are debt instruments paying fixed interest over a period.",
+    "predicted_answer": "Stocks are ownership shares with variable returns; bonds are debt instruments paying fixed interest over a period.",
+    "correct": 1,
+    "type": "document",
+    "id": 74
+  },
+  {
+    "question": "What is customer lifetime value?",
+    "expected_answer": "CLV predicts the total revenue a business can expect from a single customer throughout their entire relationship.",
+    "predicted_answer": "CLV predicts the total revenue a business can expect from a single customer throughout their entire relationship.",
+    "correct": 1,
+    "type": "document",
+    "id": 75
+  },
+  {
+    "question": "What is gradient descent?",
+    "expected_answer": "Gradient descent is an optimization algorithm that iteratively adjusts model parameters in the direction of steepest descent of the loss function.",
+    "predicted_answer": "Gradient descent is an optimization algorithm that iteratively adjusts model parameters in the direction of steepest descent of the loss function.",
+    "correct": 1,
+    "type": "document",
+    "id": 76
+  },
+  {
+    "question": "What is a grand slam in tennis?",
+    "expected_answer": "A grand slam means winning all four major tournaments \u2014 Australian Open, French Open, Wimbledon, and US Open \u2014 in a single calendar year.",
+    "predicted_answer": "This is equivalent to supervised learning with labeled datasets.",
+    "correct": 0,
+    "type": "document",
+    "id": 77
+  },
+  {
+    "question": "What is Kubernetes?",
+    "expected_answer": "Kubernetes is an open-source container orchestration system that automates deployment, scaling, and management of containerized applications.",
+    "predicted_answer": "Kubernetes is an open-source container orchestration system that automates deployment, scaling, and management of containerized applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 78
+  },
+  {
+    "question": "What is Solana known for?",
+    "expected_answer": "Solana is known for high throughput and low transaction costs, capable of processing thousands of transactions per second.",
+    "predicted_answer": "Solana is known for high throughput and low transaction costs, capable of processing thousands of transactions per second.",
+    "correct": 1,
+    "type": "search",
+    "id": 79
+  },
+  {
+    "question": "What is an IPO?",
+    "expected_answer": "An IPO (Initial Public Offering) is when a private company offers shares to the public for the first time to raise capital.",
+    "predicted_answer": "An IPO (Initial Public Offering) is when a private company offers shares to the public for the first time to raise capital.",
+    "correct": 1,
+    "type": "search",
+    "id": 80
+  },
+  {
+    "question": "What is a stack?",
+    "expected_answer": "A stack follows the Last In First Out (LIFO) principle where elements are added and removed from the same end (top).",
+    "predicted_answer": "A stack follows the Last In First Out (LIFO) principle where elements are added and removed from the same end (top).",
+    "correct": 1,
+    "type": "document",
+    "id": 81
+  },
+  {
+    "question": "What is a payment gateway?",
+    "expected_answer": "A payment gateway captures and transfers payment data from customer to acquiring bank, enabling secure online transactions.",
+    "predicted_answer": "A payment gateway captures and transfers payment data from customer to acquiring bank, enabling secure online transactions.",
+    "correct": 1,
+    "type": "document",
+    "id": 82
+  },
+  {
+    "question": "What is the factory pattern?",
+    "expected_answer": "The factory pattern defines an interface for creating objects but lets subclasses decide which class to instantiate.",
+    "predicted_answer": "The factory pattern defines an interface for creating objects but lets subclasses decide which class to instantiate.",
+    "correct": 1,
+    "type": "document",
+    "id": 83
+  },
+  {
+    "question": "What is immutability in blockchain?",
+    "expected_answer": "Immutability means once data is recorded on a blockchain it cannot be altered or deleted, ensuring data integrity.",
+    "predicted_answer": "Immutability means once data is recorded on a blockchain it cannot be altered or deleted, ensuring data integrity.",
+    "correct": 1,
+    "type": "document",
+    "id": 84
+  },
+  {
+    "question": "What is a credit score?",
+    "expected_answer": "A credit score numerically rates a person's creditworthiness based on credit history, used by lenders for loan decisions.",
+    "predicted_answer": "A credit score numerically rates a person's creditworthiness based on credit history, used by lenders for loan decisions.",
+    "correct": 1,
+    "type": "search",
+    "id": 85
+  },
+  {
+    "question": "What is cross-chain interoperability?",
+    "expected_answer": "Cross-chain interoperability is the ability of different blockchains to communicate, share data, and transfer assets between each other.",
+    "predicted_answer": "Cross-chain interoperability is the ability of different blockchains to communicate, share data, and transfer assets between each other.",
+    "correct": 1,
+    "type": "search",
+    "id": 86
+  },
+  {
+    "question": "What is Google Gemini?",
+    "expected_answer": "Google Gemini is Google's multimodal AI model family capable of processing text, images, audio, and video.",
+    "predicted_answer": "Google Gemini is Google's multimodal AI model family capable of processing text, images, audio, and video.",
+    "correct": 1,
+    "type": "search",
+    "id": 87
+  },
+  {
+    "question": "What is a hash function in blockchain?",
+    "expected_answer": "A hash function converts input data into a fixed-size output, used to link blocks and ensure data integrity.",
+    "predicted_answer": "A hash function encrypts wallet passwords to protect user accounts.",
+    "correct": 0,
+    "type": "document",
+    "id": 88
+  },
+  {
+    "question": "How many Grand Slams has Novak Djokovic won?",
+    "expected_answer": "Novak Djokovic has won 24 Grand Slam titles, the most by any male tennis player.",
+    "predicted_answer": "Novak Djokovic has won 24 Grand Slam titles, the most by any male tennis player.",
+    "correct": 1,
+    "type": "search",
+    "id": 89
+  },
+  {
+    "question": "What is skewness?",
+    "expected_answer": "Skewness measures distribution asymmetry; positive skew has a longer right tail while negative skew has a longer left tail.",
+    "predicted_answer": "Skewness measures distribution asymmetry; positive skew has a longer right tail while negative skew has a longer left tail.",
+    "correct": 1,
+    "type": "document",
+    "id": 90
+  },
+  {
+    "question": "What is TensorFlow?",
+    "expected_answer": "TensorFlow is an open-source machine learning framework developed by Google for building and training deep learning models.",
+    "predicted_answer": "TensorFlow is an open-source machine learning framework developed by Google for building and training deep learning models.",
+    "correct": 1,
+    "type": "search",
+    "id": 91
+  },
+  {
+    "question": "What is data wrangling?",
+    "expected_answer": "Data wrangling cleans, structures, and enriches raw data into a desired format for better analysis.",
+    "predicted_answer": "Data wrangling cleans, structures, and enriches raw data into a desired format for better analysis.",
+    "correct": 1,
+    "type": "document",
+    "id": 92
+  },
+  {
+    "question": "What is a mixin in Python?",
+    "expected_answer": "A mixin is a class providing methods to others through multiple inheritance without being intended for standalone instantiation.",
+    "predicted_answer": "A mixin is a class providing methods to others through multiple inheritance without being intended for standalone instantiation.",
+    "correct": 1,
+    "type": "search",
+    "id": 93
+  },
+  {
+    "question": "What is feature scaling?",
+    "expected_answer": "Feature scaling normalizes or standardizes the range of variables to ensure all features contribute equally to model training.",
+    "predicted_answer": "Feature scaling normalizes or standardizes the range of variables to ensure all features contribute equally to model training.",
+    "correct": 1,
+    "type": "document",
+    "id": 94
+  },
+  {
+    "question": "What is a constructor?",
+    "expected_answer": "A constructor is a special method automatically called when an object is created, used to initialize properties.",
+    "predicted_answer": "A constructor is a special method automatically called when an object is created, used to initialize properties.",
+    "correct": 1,
+    "type": "document",
+    "id": 95
+  },
+  {
+    "question": "What is return rate in ecommerce?",
+    "expected_answer": "Return rate is the percentage of sold products returned by customers, measuring product quality and satisfaction.",
+    "predicted_answer": "Return rate is the percentage of sold products returned by customers, measuring product quality and satisfaction.",
+    "correct": 1,
+    "type": "document",
+    "id": 96
+  },
+  {
+    "question": "What is Databricks?",
+    "expected_answer": "Databricks is a unified analytics platform built on Apache Spark for data engineering, ML, and collaborative data science.",
+    "predicted_answer": "Databricks is a unified analytics platform built on Apache Spark for data engineering, ML, and collaborative data science.",
+    "correct": 1,
+    "type": "search",
+    "id": 97
+  },
+  {
+    "question": "What is Plotly?",
+    "expected_answer": "Plotly is a Python graphing library for creating interactive publication-quality charts and dashboards.",
+    "predicted_answer": "Plotly is a Python graphing library for creating interactive publication-quality charts and dashboards.",
+    "correct": 1,
+    "type": "search",
+    "id": 98
+  },
+  {
+    "question": "What is virtual memory?",
+    "expected_answer": "Virtual memory extends physical RAM by using disk storage as additional memory, allowing larger programs to run than physical RAM permits.",
+    "predicted_answer": "Virtual memory is a type of RAM that runs faster than regular RAM due to caching mechanisms.",
+    "correct": 0,
+    "type": "document",
+    "id": 99
+  },
+  {
+    "question": "What is the groupby function?",
+    "expected_answer": "groupby splits data into groups based on columns, applies a function to each group, and combines results.",
+    "predicted_answer": "groupby splits data into groups based on columns, applies a function to each group, and combines results.",
+    "correct": 1,
+    "type": "search",
+    "id": 100
+  },
+  {
+    "question": "What is a Roth IRA?",
+    "expected_answer": "A Roth IRA is a US retirement account with after-tax contributions allowing tax-free growth and withdrawals.",
+    "predicted_answer": "A Roth IRA is a US retirement account with after-tax contributions allowing tax-free growth and withdrawals.",
+    "correct": 1,
+    "type": "search",
+    "id": 101
+  },
+  {
+    "question": "What is Cohere?",
+    "expected_answer": "Cohere is an AI company providing NLP models and APIs for text generation, classification, and semantic search for enterprise applications.",
+    "predicted_answer": "Cohere is an AI company providing NLP models and APIs for text generation, classification, and semantic search for enterprise applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 102
+  },
+  {
+    "question": "What is standard deviation?",
+    "expected_answer": "Standard deviation measures the spread of data around the mean; a higher value indicates more variability in the data.",
+    "predicted_answer": "Standard deviation measures the spread of data around the mean; a higher value indicates more variability in the data.",
+    "correct": 1,
+    "type": "document",
+    "id": 103
+  },
+  {
+    "question": "What is SEBI?",
+    "expected_answer": "SEBI (Securities and Exchange Board of India) is the regulatory body for the securities market in India.",
+    "predicted_answer": "SEBI (Securities and Exchange Board of India) is the regulatory body for the securities market in India.",
+    "correct": 1,
+    "type": "search",
+    "id": 104
+  },
+  {
+    "question": "What is a system prompt?",
+    "expected_answer": "A system prompt is an instruction given to an LLM at the start of a conversation to define its role, behavior, and constraints.",
+    "predicted_answer": "This refers to a hardware component, not a software concept.",
+    "correct": 0,
+    "type": "document",
+    "id": 105
+  },
+  {
+    "question": "What is a random forest?",
+    "expected_answer": "A random forest is an ensemble method that builds multiple decision trees and combines their predictions through voting or averaging.",
+    "predicted_answer": "A random forest is an ensemble method that builds multiple decision trees and combines their predictions through voting or averaging.",
+    "correct": 1,
+    "type": "document",
+    "id": 106
+  },
+  {
+    "question": "What is variance?",
+    "expected_answer": "Variance measures the spread of data around the mean, calculated as the average of squared differences from the mean.",
+    "predicted_answer": "Variance measures the spread of data around the mean, calculated as the average of squared differences from the mean.",
+    "correct": 1,
+    "type": "search",
+    "id": 107
+  },
+  {
+    "question": "What is a REST API?",
+    "expected_answer": "A REST API uses HTTP methods (GET, POST, PUT, DELETE) and stateless communication between client and server.",
+    "predicted_answer": "A REST API uses HTTP methods (GET, POST, PUT, DELETE) and stateless communication between client and server.",
+    "correct": 1,
+    "type": "document",
+    "id": 108
+  },
+  {
+    "question": "What is the time complexity of quicksort?",
+    "expected_answer": "Quicksort has average O(n log n) and worst case O(n\u00b2) time complexity when the pivot is always the smallest or largest element.",
+    "predicted_answer": "Quicksort has average O(n log n) and worst case O(n\u00b2) time complexity when the pivot is always the smallest or largest element.",
+    "correct": 1,
+    "type": "document",
+    "id": 109
+  },
+  {
+    "question": "What is the abstract class vs interface?",
+    "expected_answer": "An abstract class can have abstract and concrete methods with state, while an interface only defines method signatures.",
+    "predicted_answer": "An abstract class can have abstract and concrete methods with state, while an interface only defines method signatures.",
+    "correct": 1,
+    "type": "document",
+    "id": 110
+  },
+  {
+    "question": "What are AI agents?",
+    "expected_answer": "AI agents are autonomous systems powered by LLMs that can plan, use tools, and execute multi-step tasks to achieve a goal.",
+    "predicted_answer": "AI agents are autonomous systems powered by LLMs that can plan, use tools, and execute multi-step tasks to achieve a goal.",
+    "correct": 1,
+    "type": "document",
+    "id": 111
+  },
+  {
+    "question": "What is n8n?",
+    "expected_answer": "n8n is an open-source workflow automation tool that connects apps and services to automate repetitive tasks.",
+    "predicted_answer": "n8n is an open-source workflow automation tool that connects apps and services to automate repetitive tasks.",
+    "correct": 1,
+    "type": "search",
+    "id": 112
+  },
+  {
+    "question": "What is Binance Smart Chain?",
+    "expected_answer": "Binance Smart Chain (now BNB Chain) supports smart contracts and is compatible with Ethereum tools.",
+    "predicted_answer": "Binance Smart Chain (now BNB Chain) supports smart contracts and is compatible with Ethereum tools.",
+    "correct": 1,
+    "type": "search",
+    "id": 113
+  },
+  {
+    "question": "What is an outlier?",
+    "expected_answer": "An outlier is a data point that significantly differs from other observations and may indicate error or a novel finding.",
+    "predicted_answer": "This is a deprecated technique replaced by more modern approaches.",
+    "correct": 0,
+    "type": "document",
+    "id": 114
+  },
+  {
+    "question": "What is hallucination in LLMs?",
+    "expected_answer": "Hallucination refers to when an LLM generates factually incorrect or fabricated information with apparent confidence.",
+    "predicted_answer": "Hallucination refers to when an LLM generates factually incorrect or fabricated information with apparent confidence.",
+    "correct": 1,
+    "type": "document",
+    "id": 115
+  },
+  {
+    "question": "What is method overloading?",
+    "expected_answer": "Method overloading allows a class to have multiple methods with the same name but different parameter lists.",
+    "predicted_answer": "Method overloading allows a class to have multiple methods with the same name but different parameter lists.",
+    "correct": 1,
+    "type": "document",
+    "id": 116
+  },
+  {
+    "question": "What is pandas?",
+    "expected_answer": "Pandas is a Python library for data manipulation providing DataFrames to handle structured data efficiently.",
+    "predicted_answer": "Pandas is a Python library for data manipulation providing DataFrames to handle structured data efficiently.",
+    "correct": 1,
+    "type": "search",
+    "id": 117
+  },
+  {
+    "question": "What is MLflow?",
+    "expected_answer": "MLflow is an open-source platform for managing the ML lifecycle including experimentation, reproducibility, and model registry.",
+    "predicted_answer": "MLflow is an open-source platform for managing the ML lifecycle including experimentation, reproducibility, and model registry.",
+    "correct": 1,
+    "type": "search",
+    "id": 118
+  },
+  {
+    "question": "What is a system prompt used for?",
+    "expected_answer": "A system prompt defines the model's role, behavior, and constraints at the start of a conversation.",
+    "predicted_answer": "A system prompt is used to increase the temperature setting of a language model.",
+    "correct": 0,
+    "type": "document",
+    "id": 119
+  },
+  {
+    "question": "What is an interface in OOP?",
+    "expected_answer": "An interface defines a contract of methods a class must implement without providing implementation.",
+    "predicted_answer": "An interface defines a contract of methods a class must implement without providing implementation.",
+    "correct": 1,
+    "type": "document",
+    "id": 120
+  },
+  {
+    "question": "What is transfer learning?",
+    "expected_answer": "Transfer learning adapts a model pre-trained on one task for a different but related task, reducing training time and data requirements.",
+    "predicted_answer": "Transfer learning adapts a model pre-trained on one task for a different but related task, reducing training time and data requirements.",
+    "correct": 1,
+    "type": "document",
+    "id": 121
+  },
+  {
+    "question": "What is microservices architecture?",
+    "expected_answer": "Microservices structures an application as independent deployable services each responsible for a specific business function.",
+    "predicted_answer": "Microservices structures an application as independent deployable services each responsible for a specific business function.",
+    "correct": 1,
+    "type": "search",
+    "id": 122
+  },
+  {
+    "question": "What is min-max normalization?",
+    "expected_answer": "Min-max normalization scales values to a fixed range (0 to 1) using (value - min) / (max - min).",
+    "predicted_answer": "Min-max normalization scales values to a fixed range (0 to 1) using (value - min) / (max - min).",
+    "correct": 1,
+    "type": "search",
+    "id": 123
+  },
+  {
+    "question": "What is the difference between bagging and boosting?",
+    "expected_answer": "Bagging trains models in parallel on random subsets and averages results; boosting trains sequentially where each model corrects previous errors.",
+    "predicted_answer": "Bagging trains models in parallel on random subsets and averages results; boosting trains sequentially where each model corrects previous errors.",
+    "correct": 1,
+    "type": "document",
+    "id": 124
+  },
+  {
+    "question": "What is coupling?",
+    "expected_answer": "Coupling is the degree of dependency between modules; low coupling is preferred as it makes modules more independent.",
+    "predicted_answer": "Coupling is the degree of dependency between modules; low coupling is preferred as it makes modules more independent.",
+    "correct": 1,
+    "type": "document",
+    "id": 125
+  },
+  {
+    "question": "What is the Mistral AI model?",
+    "expected_answer": "Mistral is a family of efficient open-source LLMs known for strong performance relative to their small size.",
+    "predicted_answer": "Mistral is a family of efficient open-source LLMs known for strong performance relative to their small size.",
+    "correct": 1,
+    "type": "search",
+    "id": 126
+  },
+  {
+    "question": "What is the purpose of value_counts()?",
+    "expected_answer": "value_counts() returns counts of unique values in a pandas column, useful for understanding categorical distributions.",
+    "predicted_answer": "value_counts() returns counts of unique values in a pandas column, useful for understanding categorical distributions.",
+    "correct": 1,
+    "type": "search",
+    "id": 127
+  },
+  {
+    "question": "What is a birdie in golf?",
+    "expected_answer": "A birdie is a score of one stroke under par for a hole.",
+    "predicted_answer": "This is primarily used in image processing, not tabular data analysis.",
+    "correct": 0,
+    "type": "document",
+    "id": 128
+  },
+  {
+    "question": "What is Spark?",
+    "expected_answer": "Apache Spark is a distributed computing framework for processing large-scale data with in-memory computation.",
+    "predicted_answer": "Apache Spark is a distributed computing framework for processing large-scale data with in-memory computation.",
+    "correct": 1,
+    "type": "search",
+    "id": 129
+  },
+  {
+    "question": "What is Git?",
+    "expected_answer": "Git is a distributed version control system that tracks changes in source code and enables collaboration among developers.",
+    "predicted_answer": "Git is a distributed version control system that tracks changes in source code and enables collaboration among developers.",
+    "correct": 1,
+    "type": "search",
+    "id": 130
+  },
+  {
+    "question": "What is Tableau used for?",
+    "expected_answer": "Tableau is a data visualization platform that allows users to create interactive dashboards and reports from various data sources.",
+    "predicted_answer": "Tableau is a data visualization platform that allows users to create interactive dashboards and reports from various data sources.",
+    "correct": 1,
+    "type": "search",
+    "id": 131
+  },
+  {
+    "question": "What is inheritance?",
+    "expected_answer": "Inheritance allows a child class to derive properties and behaviors from a parent class, promoting code reuse.",
+    "predicted_answer": "Inheritance allows a child class to derive properties and behaviors from a parent class, promoting code reuse.",
+    "correct": 1,
+    "type": "document",
+    "id": 132
+  },
+  {
+    "question": "What is a data mesh?",
+    "expected_answer": "A data mesh is a decentralized data architecture where domain teams own and manage their own data products.",
+    "predicted_answer": "A data mesh is a decentralized data architecture where domain teams own and manage their own data products.",
+    "correct": 1,
+    "type": "search",
+    "id": 133
+  },
+  {
+    "question": "Who won the 2023 Cricket World Cup?",
+    "expected_answer": "India won the 2023 Cricket World Cup held in India.",
+    "predicted_answer": "Australia won the 2023 Cricket World Cup held in India.",
+    "correct": 0,
+    "type": "search",
+    "id": 134
+  },
+  {
+    "question": "What is market capitalization?",
+    "expected_answer": "Market cap is the total market value of a company's outstanding shares (share price \u00d7 total shares).",
+    "predicted_answer": "Market cap is the total market value of a company's outstanding shares (share price \u00d7 total shares).",
+    "correct": 1,
+    "type": "document",
+    "id": 135
+  },
+  {
+    "question": "What is few-shot prompting?",
+    "expected_answer": "Few-shot prompting provides a small number of examples in the prompt to guide the model toward the desired output format or behavior.",
+    "predicted_answer": "Few-shot prompting provides a small number of examples in the prompt to guide the model toward the desired output format or behavior.",
+    "correct": 1,
+    "type": "document",
+    "id": 136
+  },
+  {
+    "question": "What is cohesion in OOP?",
+    "expected_answer": "Cohesion refers to how closely related the responsibilities of a single module are; high cohesion means a clear single purpose.",
+    "predicted_answer": "Cohesion refers to how many classes inherit from a single parent; higher cohesion means more inheritance.",
+    "correct": 0,
+    "type": "document",
+    "id": 137
+  },
+  {
+    "question": "What is duck typing?",
+    "expected_answer": "Duck typing determines an object's suitability by its methods and properties rather than its actual class in dynamic languages.",
+    "predicted_answer": "Duck typing determines an object's suitability by its methods and properties rather than its actual class in dynamic languages.",
+    "correct": 1,
+    "type": "search",
+    "id": 138
+  },
+  {
+    "question": "What is a scatter plot?",
+    "expected_answer": "A scatter plot visualizes the relationship between two continuous variables, helping identify correlations and outliers.",
+    "predicted_answer": "A scatter plot visualizes the relationship between two continuous variables, helping identify correlations and outliers.",
+    "correct": 1,
+    "type": "document",
+    "id": 139
+  },
+  {
+    "question": "What is UPI?",
+    "expected_answer": "UPI (Unified Payments Interface) is a real-time payment system by NPCI enabling instant bank-to-bank transfers via mobile.",
+    "predicted_answer": "UPI (Unified Payments Interface) is a real-time payment system by NPCI enabling instant bank-to-bank transfers via mobile.",
+    "correct": 1,
+    "type": "search",
+    "id": 140
+  },
+  {
+    "question": "What is the MVC pattern?",
+    "expected_answer": "MVC separates an application into Model (data), View (UI), and Controller (logic) to promote separation of concerns.",
+    "predicted_answer": "MVC separates an application into Model (data), View (UI), and Controller (logic) to promote separation of concerns.",
+    "correct": 1,
+    "type": "search",
+    "id": 141
+  },
+  {
+    "question": "What is EDA?",
+    "expected_answer": "EDA (Exploratory Data Analysis) analyzes datasets to summarize main characteristics using statistics and visualization before formal modeling.",
+    "predicted_answer": "This concept was introduced by Facebook AI Research in 2023.",
+    "correct": 0,
+    "type": "document",
+    "id": 142
+  },
+  {
+    "question": "What is Amazon FBA?",
+    "expected_answer": "Amazon FBA stores seller products in Amazon warehouses and handles storage, shipping, and customer service on behalf of sellers.",
+    "predicted_answer": "Amazon FBA stores seller products in Amazon warehouses and handles storage, shipping, and customer service on behalf of sellers.",
+    "correct": 1,
+    "type": "search",
+    "id": 143
+  },
+  {
+    "question": "What is Gradio?",
+    "expected_answer": "Gradio is a Python library for building simple web UIs for machine learning models and demos.",
+    "predicted_answer": "Gradio is a Python library for building simple web UIs for machine learning models and demos.",
+    "correct": 1,
+    "type": "search",
+    "id": 144
+  },
+  {
+    "question": "What is cross-validation?",
+    "expected_answer": "Cross-validation evaluates model performance by splitting data into multiple folds and training/testing on different combinations.",
+    "predicted_answer": "Cross-validation evaluates model performance by splitting data into multiple folds and training/testing on different combinations.",
+    "correct": 1,
+    "type": "document",
+    "id": 145
+  },
+  {
+    "question": "What is the difference between Claude and ChatGPT?",
+    "expected_answer": "Claude is developed by Anthropic while ChatGPT is developed by OpenAI; both are conversational AI assistants but differ in training approaches and safety methods.",
+    "predicted_answer": "Claude and ChatGPT are both developed by OpenAI but released under different brand names.",
+    "correct": 0,
+    "type": "search",
+    "id": 146
+  },
+  {
+    "question": "What is Midjourney?",
+    "expected_answer": "Midjourney is an AI image generation tool that creates high-quality artistic images from text prompts.",
+    "predicted_answer": "Midjourney is an AI image generation tool that creates high-quality artistic images from text prompts.",
+    "correct": 1,
+    "type": "search",
+    "id": 147
+  },
+  {
+    "question": "What is the IQR outlier method?",
+    "expected_answer": "The IQR method flags values below Q1-1.5*IQR or above Q3+1.5*IQR as outliers.",
+    "predicted_answer": "The IQR method flags values below Q1-1.5*IQR or above Q3+1.5*IQR as outliers.",
+    "correct": 1,
+    "type": "document",
+    "id": 148
+  },
+  {
+    "question": "What is Virat Kohli's ODI batting average?",
+    "expected_answer": "Virat Kohli has an ODI batting average of approximately 57-58, making him one of the greatest ODI batsmen.",
+    "predicted_answer": "Virat Kohli has an ODI batting average of approximately 57-58, making him one of the greatest ODI batsmen.",
+    "correct": 1,
+    "type": "search",
+    "id": 149
+  },
+  {
+    "question": "What is chain-of-thought prompting?",
+    "expected_answer": "Chain-of-thought prompting encourages the model to reason step-by-step before arriving at a final answer, improving accuracy on complex tasks.",
+    "predicted_answer": "Chain-of-thought prompting encourages the model to reason step-by-step before arriving at a final answer, improving accuracy on complex tasks.",
+    "correct": 1,
+    "type": "document",
+    "id": 150
+  },
+  {
+    "question": "What is a stock dividend?",
+    "expected_answer": "A stock dividend pays shareholders additional shares rather than cash, proportional to their current holdings.",
+    "predicted_answer": "A stock dividend is a cash payment funded directly from company revenue without affecting share count.",
+    "correct": 0,
+    "type": "document",
+    "id": 151
+  },
+  {
+    "question": "What is the offside rule in football?",
+    "expected_answer": "A player is offside if nearer to the opponent's goal than both the ball and the second-last opponent when the ball is played to them.",
+    "predicted_answer": "A player is offside if nearer to the opponent's goal than both the ball and the second-last opponent when the ball is played to them.",
+    "correct": 1,
+    "type": "document",
+    "id": 152
+  },
+  {
+    "question": "What is private equity?",
+    "expected_answer": "Private equity is investment capital provided to private companies not listed on public stock exchanges, typically for buyouts or growth.",
+    "predicted_answer": "Private equity is investment capital provided to private companies not listed on public stock exchanges, typically for buyouts or growth.",
+    "correct": 1,
+    "type": "search",
+    "id": 153
+  },
+  {
+    "question": "What is feature engineering?",
+    "expected_answer": "Feature engineering transforms raw data into features that better represent the underlying problem for ML models.",
+    "predicted_answer": "Feature engineering transforms raw data into features that better represent the underlying problem for ML models.",
+    "correct": 1,
+    "type": "search",
+    "id": 154
+  },
+  {
+    "question": "What is a support vector machine?",
+    "expected_answer": "An SVM finds the optimal hyperplane that maximizes the margin between classes in a high-dimensional feature space.",
+    "predicted_answer": "An SVM finds the optimal hyperplane that maximizes the margin between classes in a high-dimensional feature space.",
+    "correct": 1,
+    "type": "document",
+    "id": 155
+  },
+  {
+    "question": "What is a hash table?",
+    "expected_answer": "A hash table maps keys to values using a hash function, providing average O(1) time complexity for lookups.",
+    "predicted_answer": "A hash table maps keys to values using a hash function, providing average O(1) time complexity for lookups.",
+    "correct": 1,
+    "type": "document",
+    "id": 156
+  },
+  {
+    "question": "What is Snowflake?",
+    "expected_answer": "Snowflake is a cloud data warehouse platform that separates storage and compute for scalable data analytics.",
+    "predicted_answer": "Snowflake is a cloud data warehouse platform that separates storage and compute for scalable data analytics.",
+    "correct": 1,
+    "type": "search",
+    "id": 157
+  },
+  {
+    "question": "What is a genesis block?",
+    "expected_answer": "A genesis block is the first block in a blockchain, hardcoded into the software as the foundation of the entire chain.",
+    "predicted_answer": "A genesis block is the last block added to a blockchain after all transactions are complete.",
+    "correct": 0,
+    "type": "document",
+    "id": 158
+  },
+  {
+    "question": "What is data profiling?",
+    "expected_answer": "Data profiling examines a dataset to understand its structure, content, quality, and variable relationships.",
+    "predicted_answer": "Data profiling examines a dataset to understand its structure, content, quality, and variable relationships.",
+    "correct": 1,
+    "type": "search",
+    "id": 159
+  },
+  {
+    "question": "What is the template method pattern?",
+    "expected_answer": "The template method pattern defines the skeleton of an algorithm in a base class and lets subclasses override specific steps.",
+    "predicted_answer": "The template method pattern defines the skeleton of an algorithm in a base class and lets subclasses override specific steps.",
+    "correct": 1,
+    "type": "search",
+    "id": 160
+  },
+  {
+    "question": "What is an epoch in machine learning?",
+    "expected_answer": "An epoch is one complete pass through the entire training dataset during model training.",
+    "predicted_answer": "An epoch is a single batch of data processed during one training step.",
+    "correct": 0,
+    "type": "document",
+    "id": 161
+  },
+  {
+    "question": "What is a bull market?",
+    "expected_answer": "A bull market is a period of rising stock prices, typically defined as a 20%+ rise from recent lows.",
+    "predicted_answer": "A bull market is a period where stock prices fall by 20% or more from recent highs.",
+    "correct": 0,
+    "type": "document",
+    "id": 162
+  },
+  {
+    "question": "What is Qdrant?",
+    "expected_answer": "Qdrant is an open-source vector similarity search engine designed for high-performance nearest neighbor search.",
+    "predicted_answer": "Qdrant is an open-source vector similarity search engine designed for high-performance nearest neighbor search.",
+    "correct": 1,
+    "type": "search",
+    "id": 163
+  },
+  {
+    "question": "What is AutoGPT?",
+    "expected_answer": "AutoGPT is an experimental autonomous AI agent that uses GPT-4 to perform multi-step tasks with minimal human intervention.",
+    "predicted_answer": "AutoGPT is an experimental autonomous AI agent that uses GPT-4 to perform multi-step tasks with minimal human intervention.",
+    "correct": 1,
+    "type": "search",
+    "id": 164
+  },
+  {
+    "question": "What is composition over inheritance?",
+    "expected_answer": "Composition over inheritance favors assembling complex objects from simpler components rather than relying on class hierarchies.",
+    "predicted_answer": "Composition over inheritance favors assembling complex objects from simpler components rather than relying on class hierarchies.",
+    "correct": 1,
+    "type": "search",
+    "id": 165
+  },
+  {
+    "question": "What is the proxy pattern?",
+    "expected_answer": "The proxy pattern provides a surrogate for another object to control access, used for lazy loading, caching, or logging.",
+    "predicted_answer": "The proxy pattern provides a surrogate for another object to control access, used for lazy loading, caching, or logging.",
+    "correct": 1,
+    "type": "search",
+    "id": 166
+  },
+  {
+    "question": "What is fintech?",
+    "expected_answer": "Fintech refers to technology-driven innovations in financial services including mobile payments, digital banking, and blockchain.",
+    "predicted_answer": "Fintech refers to technology-driven innovations in financial services including mobile payments, digital banking, and blockchain.",
+    "correct": 1,
+    "type": "search",
+    "id": 167
+  },
+  {
+    "question": "What is a CNN?",
+    "expected_answer": "A CNN (Convolutional Neural Network) is a deep learning architecture for image processing that uses convolutional layers to learn spatial features.",
+    "predicted_answer": "A CNN (Convolutional Neural Network) is a deep learning architecture for image processing that uses convolutional layers to learn spatial features.",
+    "correct": 1,
+    "type": "search",
+    "id": 168
+  },
+  {
+    "question": "What is the total supply of Bitcoin?",
+    "expected_answer": "Bitcoin has a maximum supply of 21 million coins that will never be exceeded due to its protocol rules.",
+    "predicted_answer": "Bitcoin has a maximum supply of 21 million coins that will never be exceeded due to its protocol rules.",
+    "correct": 1,
+    "type": "search",
+    "id": 169
+  },
+  {
+    "question": "What is a heatmap?",
+    "expected_answer": "A heatmap uses color intensity to represent magnitude of values in a matrix, commonly showing correlations.",
+    "predicted_answer": "A heatmap is used exclusively for geographic data to show population density.",
+    "correct": 0,
+    "type": "document",
+    "id": 170
+  },
+  {
+    "question": "What is DeFi?",
+    "expected_answer": "DeFi (Decentralized Finance) refers to financial services built on blockchain networks without centralized intermediaries like banks.",
+    "predicted_answer": "DeFi (Decentralized Finance) refers to financial services built on blockchain networks without centralized intermediaries like banks.",
+    "correct": 1,
+    "type": "document",
+    "id": 171
+  },
+  {
+    "question": "What is recursion?",
+    "expected_answer": "Recursion is a programming technique where a function calls itself with smaller input until reaching a base case.",
+    "predicted_answer": "Recursion is a programming technique where a function calls itself with smaller input until reaching a base case.",
+    "correct": 1,
+    "type": "document",
+    "id": 172
+  },
+  {
+    "question": "Who won the NBA Championship in 2024?",
+    "expected_answer": "The Boston Celtics won the 2024 NBA Championship, defeating the Dallas Mavericks.",
+    "predicted_answer": "The Boston Celtics won the 2024 NBA Championship, defeating the Dallas Mavericks.",
+    "correct": 1,
+    "type": "search",
+    "id": 173
+  },
+  {
+    "question": "What is dynamic programming?",
+    "expected_answer": "Dynamic programming solves complex problems by breaking them into overlapping subproblems and storing results to avoid redundant computation.",
+    "predicted_answer": "Dynamic programming solves complex problems by breaking them into overlapping subproblems and storing results to avoid redundant computation.",
+    "correct": 1,
+    "type": "document",
+    "id": 174
+  },
+  {
+    "question": "What is RLHF?",
+    "expected_answer": "RLHF (Reinforcement Learning from Human Feedback) uses human preferences to fine-tune LLMs to be more helpful, harmless, and honest.",
+    "predicted_answer": "RLHF (Reinforcement Learning from Human Feedback) uses human preferences to fine-tune LLMs to be more helpful, harmless, and honest.",
+    "correct": 1,
+    "type": "document",
+    "id": 175
+  },
+  {
+    "question": "Who is the world number 1 in men's tennis 2024?",
+    "expected_answer": "Jannik Sinner is the world number 1 in men's tennis as of 2024.",
+    "predicted_answer": "Jannik Sinner is the world number 1 in men's tennis as of 2024.",
+    "correct": 1,
+    "type": "search",
+    "id": 176
+  },
+  {
+    "question": "What is correlation?",
+    "expected_answer": "Correlation measures the statistical relationship between two variables, ranging from -1 (perfect negative) to +1 (perfect positive).",
+    "predicted_answer": "Correlation measures the statistical relationship between two variables, ranging from -1 (perfect negative) to +1 (perfect positive).",
+    "correct": 1,
+    "type": "document",
+    "id": 177
+  },
+  {
+    "question": "What is the difference between TCP and UDP?",
+    "expected_answer": "TCP guarantees delivery and order of packets while UDP is connectionless and prioritizes speed over reliability.",
+    "predicted_answer": "TCP guarantees delivery and order of packets while UDP is connectionless and prioritizes speed over reliability.",
+    "correct": 1,
+    "type": "document",
+    "id": 178
+  },
+  {
+    "question": "Which country has won the most Olympic gold medals?",
+    "expected_answer": "The United States has won the most Olympic gold medals overall in Summer Olympics history.",
+    "predicted_answer": "The United States has won the most Olympic gold medals overall in Summer Olympics history.",
+    "correct": 1,
+    "type": "search",
+    "id": 179
+  },
+  {
+    "question": "What is quantitative easing?",
+    "expected_answer": "Quantitative easing is a monetary policy where a central bank buys government securities to inject money and stimulate the economy.",
+    "predicted_answer": "Quantitative easing is a monetary policy where a central bank buys government securities to inject money and stimulate the economy.",
+    "correct": 1,
+    "type": "search",
+    "id": 180
+  },
+  {
+    "question": "Which team won IPL 2024?",
+    "expected_answer": "Kolkata Knight Riders (KKR) won the IPL 2024 title, defeating Sunrisers Hyderabad in the final.",
+    "predicted_answer": "Kolkata Knight Riders (KKR) won the IPL 2024 title, defeating Sunrisers Hyderabad in the final.",
+    "correct": 1,
+    "type": "search",
+    "id": 181
+  },
+  {
+    "question": "What is a blockchain?",
+    "expected_answer": "A blockchain is a decentralized distributed ledger recording transactions across a network in an immutable and transparent manner.",
+    "predicted_answer": "A blockchain is a decentralized distributed ledger recording transactions across a network in an immutable and transparent manner.",
+    "correct": 1,
+    "type": "document",
+    "id": 182
+  },
+  {
+    "question": "What is personalization in ecommerce?",
+    "expected_answer": "Personalization tailors the shopping experience to individual users based on behavior and preferences to boost engagement.",
+    "predicted_answer": "Personalization tailors the shopping experience to individual users based on behavior and preferences to boost engagement.",
+    "correct": 1,
+    "type": "search",
+    "id": 183
+  },
+  {
+    "question": "What is a hat-trick in cricket?",
+    "expected_answer": "A hat-trick in cricket occurs when a bowler takes three wickets on three consecutive deliveries.",
+    "predicted_answer": "A hat-trick in cricket occurs when a bowler takes three wickets on three consecutive deliveries.",
+    "correct": 1,
+    "type": "document",
+    "id": 184
+  },
+  {
+    "question": "How many players are on a basketball court per team?",
+    "expected_answer": "Each basketball team has 5 players on the court at a time.",
+    "predicted_answer": "Each basketball team has 5 players on the court at a time.",
+    "correct": 1,
+    "type": "document",
+    "id": 185
+  },
+  {
+    "question": "Who is the fastest man in the world?",
+    "expected_answer": "Usain Bolt holds the 100m world record with 9.58 seconds set at the 2009 World Championships.",
+    "predicted_answer": "Usain Bolt holds the 100m world record with 9.58 seconds set at the 2009 World Championships.",
+    "correct": 1,
+    "type": "search",
+    "id": 186
+  },
+  {
+    "question": "What is model distillation?",
+    "expected_answer": "Model distillation trains a smaller student model to mimic a larger teacher model, preserving performance with less compute.",
+    "predicted_answer": "Model distillation trains a smaller student model to mimic a larger teacher model, preserving performance with less compute.",
+    "correct": 1,
+    "type": "document",
+    "id": 187
+  },
+  {
+    "question": "What is the CAP theorem?",
+    "expected_answer": "The CAP theorem states a distributed system can guarantee only two of: Consistency, Availability, and Partition tolerance.",
+    "predicted_answer": "The CAP theorem states a distributed system can guarantee only two of: Consistency, Availability, and Partition tolerance.",
+    "correct": 1,
+    "type": "search",
+    "id": 188
+  },
+  {
+    "question": "What is WooCommerce?",
+    "expected_answer": "WooCommerce is an open-source ecommerce plugin for WordPress that allows businesses to run online stores.",
+    "predicted_answer": "WooCommerce is an open-source ecommerce plugin for WordPress that allows businesses to run online stores.",
+    "correct": 1,
+    "type": "search",
+    "id": 189
+  },
+  {
+    "question": "What is multicollinearity?",
+    "expected_answer": "Multicollinearity occurs when independent variables in a regression model are highly correlated, causing instability in estimates.",
+    "predicted_answer": "Multicollinearity occurs when independent variables in a regression model are highly correlated, causing instability in estimates.",
+    "correct": 1,
+    "type": "document",
+    "id": 190
+  },
+  {
+    "question": "What is a confusion matrix?",
+    "expected_answer": "A confusion matrix evaluates classification model performance showing true positives, false positives, true negatives, and false negatives.",
+    "predicted_answer": "A confusion matrix evaluates classification model performance showing true positives, false positives, true negatives, and false negatives.",
+    "correct": 1,
+    "type": "document",
+    "id": 191
+  },
+  {
+    "question": "What is PyTorch?",
+    "expected_answer": "PyTorch is an open-source deep learning framework for building and training neural networks with dynamic computation graphs.",
+    "predicted_answer": "PyTorch is an open-source deep learning framework for building and training neural networks with dynamic computation graphs.",
+    "correct": 1,
+    "type": "search",
+    "id": 192
+  },
+  {
+    "question": "What is Docker?",
+    "expected_answer": "Docker packages applications with dependencies into portable containers that run consistently across environments.",
+    "predicted_answer": "Docker packages applications with dependencies into portable containers that run consistently across environments.",
+    "correct": 1,
+    "type": "search",
+    "id": 193
+  },
+  {
+    "question": "What is omnichannel retail?",
+    "expected_answer": "Omnichannel retail provides a seamless shopping experience across online, mobile, and physical stores with integrated data.",
+    "predicted_answer": "Omnichannel retail provides a seamless shopping experience across online, mobile, and physical stores with integrated data.",
+    "correct": 1,
+    "type": "search",
+    "id": 194
+  },
+  {
+    "question": "What is the NIFTY 50?",
+    "expected_answer": "NIFTY 50 is the benchmark index of the National Stock Exchange (NSE) of India representing 50 major companies.",
+    "predicted_answer": "NIFTY 50 is the benchmark index of the National Stock Exchange (NSE) of India representing 50 major companies.",
+    "correct": 1,
+    "type": "search",
+    "id": 195
+  },
+  {
+    "question": "What is prompt engineering?",
+    "expected_answer": "Prompt engineering is designing and optimizing input prompts to guide large language models toward desired outputs.",
+    "predicted_answer": "Prompt engineering is designing and optimizing input prompts to guide large language models toward desired outputs.",
+    "correct": 1,
+    "type": "document",
+    "id": 196
+  },
+  {
+    "question": "What is LangGraph?",
+    "expected_answer": "LangGraph is a library for building stateful, multi-actor LLM applications using a graph-based approach to control flow.",
+    "predicted_answer": "LangGraph is a library for building stateful, multi-actor LLM applications using a graph-based approach to control flow.",
+    "correct": 1,
+    "type": "search",
+    "id": 197
+  },
+  {
+    "question": "What is the highest individual score in Test cricket?",
+    "expected_answer": "Brian Lara holds the record with 400 not out against England in 2004.",
+    "predicted_answer": "Brian Lara holds the record with 400 not out against England in 2004.",
+    "correct": 1,
+    "type": "search",
+    "id": 198
+  },
+  {
+    "question": "What is the most watched sporting event?",
+    "expected_answer": "The FIFA World Cup is the most watched sporting event in the world attracting billions of viewers.",
+    "predicted_answer": "The FIFA World Cup is the most watched sporting event in the world attracting billions of viewers.",
+    "correct": 1,
+    "type": "search",
+    "id": 199
+  },
+  {
+    "question": "What is zero-shot prompting?",
+    "expected_answer": "Zero-shot prompting asks a model to perform a task without any examples, relying solely on its pre-trained knowledge.",
+    "predicted_answer": "Zero-shot prompting asks a model to perform a task without any examples, relying solely on its pre-trained knowledge.",
+    "correct": 1,
+    "type": "document",
+    "id": 200
+  },
+  {
+    "question": "What is OpenCV?",
+    "expected_answer": "OpenCV is an open-source computer vision library providing tools for image and video processing.",
+    "predicted_answer": "OpenCV is an open-source computer vision library providing tools for image and video processing.",
+    "correct": 1,
+    "type": "search",
+    "id": 201
+  },
+  {
+    "question": "What is method chaining?",
+    "expected_answer": "Method chaining allows multiple method calls on an object in a single statement, as each method returns the object itself.",
+    "predicted_answer": "Method chaining allows multiple method calls on an object in a single statement, as each method returns the object itself.",
+    "correct": 1,
+    "type": "search",
+    "id": 202
+  },
+  {
+    "question": "What is a pivot table?",
+    "expected_answer": "A pivot table reorganizes and summarizes data by grouping values and computing aggregates across multiple dimensions.",
+    "predicted_answer": "A pivot table is a type of visualization used only in Excel for creating bar charts.",
+    "correct": 0,
+    "type": "document",
+    "id": 203
+  },
+  {
+    "question": "What is a language model?",
+    "expected_answer": "A language model is a probabilistic model that predicts the likelihood of sequences of words, trained on large text corpora.",
+    "predicted_answer": "A language model is a probabilistic model that predicts the likelihood of sequences of words, trained on large text corpora.",
+    "correct": 1,
+    "type": "document",
+    "id": 204
+  },
+  {
+    "question": "What is a CDN?",
+    "expected_answer": "A CDN (Content Delivery Network) distributes content across servers globally to reduce latency and improve load times for users.",
+    "predicted_answer": "A CDN (Content Delivery Network) distributes content across servers globally to reduce latency and improve load times for users.",
+    "correct": 1,
+    "type": "search",
+    "id": 205
+  },
+  {
+    "question": "What is XGBoost?",
+    "expected_answer": "XGBoost is a gradient boosting framework known for speed and performance, widely used in structured data ML tasks.",
+    "predicted_answer": "XGBoost is a gradient boosting framework known for speed and performance, widely used in structured data ML tasks.",
+    "correct": 1,
+    "type": "search",
+    "id": 206
+  },
+  {
+    "question": "What is a heap data structure?",
+    "expected_answer": "A heap is a complete binary tree where each parent is greater (max-heap) or smaller (min-heap) than its children, used for priority queues.",
+    "predicted_answer": "A heap is a complete binary tree where each parent is greater (max-heap) or smaller (min-heap) than its children, used for priority queues.",
+    "correct": 1,
+    "type": "document",
+    "id": 207
+  },
+  {
+    "question": "What is the difference between mean median mode?",
+    "expected_answer": "Mean is the average, median is the middle value in sorted data, and mode is the most frequently occurring value.",
+    "predicted_answer": "Mean is the average, median is the middle value in sorted data, and mode is the most frequently occurring value.",
+    "correct": 1,
+    "type": "document",
+    "id": 208
+  },
+  {
+    "question": "What is CrewAI?",
+    "expected_answer": "CrewAI is a framework for building multi-agent AI systems where specialized agents collaborate to complete complex tasks.",
+    "predicted_answer": "CrewAI is a framework for building multi-agent AI systems where specialized agents collaborate to complete complex tasks.",
+    "correct": 1,
+    "type": "search",
+    "id": 209
+  },
+  {
+    "question": "What is dropout?",
+    "expected_answer": "Dropout randomly deactivates neurons during training to prevent overfitting and improve generalization.",
+    "predicted_answer": "Dropout increases the learning rate during training to improve convergence speed.",
+    "correct": 0,
+    "type": "document",
+    "id": 210
+  },
+  {
+    "question": "What is a consensus mechanism?",
+    "expected_answer": "A consensus mechanism is a protocol blockchain networks use to agree on transaction validity and ledger state across all nodes.",
+    "predicted_answer": "A consensus mechanism is a protocol blockchain networks use to agree on transaction validity and ledger state across all nodes.",
+    "correct": 1,
+    "type": "document",
+    "id": 211
+  },
+  {
+    "question": "What is a mutual fund?",
+    "expected_answer": "A mutual fund pools money from investors to purchase a diversified portfolio of stocks, bonds, or other securities.",
+    "predicted_answer": "A mutual fund pools money from investors to purchase a diversified portfolio of stocks, bonds, or other securities.",
+    "correct": 1,
+    "type": "document",
+    "id": 212
+  },
+  {
+    "question": "What is Chainlink?",
+    "expected_answer": "Chainlink is a decentralized oracle network connecting smart contracts with real-world data, APIs, and payment systems.",
+    "predicted_answer": "Chainlink is a decentralized oracle network connecting smart contracts with real-world data, APIs, and payment systems.",
+    "correct": 1,
+    "type": "search",
+    "id": 213
+  },
+  {
+    "question": "What is tokenization in NLP?",
+    "expected_answer": "Tokenization is the process of splitting text into smaller units called tokens (words, subwords, or characters) for processing by language models.",
+    "predicted_answer": "Tokenization is the process of splitting text into smaller units called tokens (words, subwords, or characters) for processing by language models.",
+    "correct": 1,
+    "type": "document",
+    "id": 214
+  },
+  {
+    "question": "What is the strategy pattern?",
+    "expected_answer": "The strategy pattern defines a family of algorithms, encapsulates each, and makes them interchangeable independently of clients.",
+    "predicted_answer": "The strategy pattern defines a family of algorithms, encapsulates each, and makes them interchangeable independently of clients.",
+    "correct": 1,
+    "type": "search",
+    "id": 215
+  },
+  {
+    "question": "What is Matplotlib?",
+    "expected_answer": "Matplotlib is a Python plotting library for creating static, animated, and interactive visualizations.",
+    "predicted_answer": "Matplotlib is a Python plotting library for creating static, animated, and interactive visualizations.",
+    "correct": 1,
+    "type": "search",
+    "id": 216
+  },
+  {
+    "question": "What is a data lake?",
+    "expected_answer": "A data lake is a centralized repository that stores raw structured and unstructured data at any scale.",
+    "predicted_answer": "A data lake is a centralized repository that stores raw structured and unstructured data at any scale.",
+    "correct": 1,
+    "type": "search",
+    "id": 217
+  },
+  {
+    "question": "What is portfolio rebalancing?",
+    "expected_answer": "Portfolio rebalancing realigns asset weights by buying or selling to maintain the original desired asset allocation.",
+    "predicted_answer": "Portfolio rebalancing realigns asset weights by buying or selling to maintain the original desired asset allocation.",
+    "correct": 1,
+    "type": "search",
+    "id": 218
+  },
+  {
+    "question": "What is memoization?",
+    "expected_answer": "Memoization is an optimization technique that stores results of expensive function calls and returns cached results for repeated inputs.",
+    "predicted_answer": "Memoization is an optimization technique that stores results of expensive function calls and returns cached results for repeated inputs.",
+    "correct": 1,
+    "type": "document",
+    "id": 219
+  },
+  {
+    "question": "What is a transformer model?",
+    "expected_answer": "A transformer is a neural network architecture using self-attention mechanisms to process sequential data, forming the backbone of modern generative AI.",
+    "predicted_answer": "A transformer is a neural network architecture using self-attention mechanisms to process sequential data, forming the backbone of modern generative AI.",
+    "correct": 1,
+    "type": "document",
+    "id": 220
+  },
+  {
+    "question": "What are multimodal models?",
+    "expected_answer": "Multimodal models can process and generate multiple types of data such as text, images, audio, and video within a single architecture.",
+    "predicted_answer": "Multimodal models can process and generate multiple types of data such as text, images, audio, and video within a single architecture.",
+    "correct": 1,
+    "type": "search",
+    "id": 221
+  },
+  {
+    "question": "What is the command pattern?",
+    "expected_answer": "The command pattern encapsulates a request as an object, allowing parameterization of clients with queues, logs, and undo operations.",
+    "predicted_answer": "The command pattern encapsulates a request as an object, allowing parameterization of clients with queues, logs, and undo operations.",
+    "correct": 1,
+    "type": "search",
+    "id": 222
+  },
+  {
+    "question": "What is a queue?",
+    "expected_answer": "A queue follows the First In First Out (FIFO) principle where elements are added at the rear and removed from the front.",
+    "predicted_answer": "A queue follows the First In First Out (FIFO) principle where elements are added at the rear and removed from the front.",
+    "correct": 1,
+    "type": "document",
+    "id": 223
+  },
+  {
+    "question": "What is PCA?",
+    "expected_answer": "PCA (Principal Component Analysis) reduces dimensionality while preserving maximum variance by transforming data into principal components.",
+    "predicted_answer": "PCA (Principal Component Analysis) reduces dimensionality while preserving maximum variance by transforming data into principal components.",
+    "correct": 1,
+    "type": "document",
+    "id": 224
+  },
+  {
+    "question": "What is Groq?",
+    "expected_answer": "Groq is a company that builds custom AI inference chips (LPUs) designed to run LLMs significantly faster than traditional GPUs.",
+    "predicted_answer": "Groq is a company that builds custom AI inference chips (LPUs) designed to run LLMs significantly faster than traditional GPUs.",
+    "correct": 1,
+    "type": "search",
+    "id": 225
+  },
+  {
+    "question": "What is the vanishing gradient problem?",
+    "expected_answer": "The vanishing gradient problem occurs when gradients become very small during backpropagation, making it difficult for deep networks to learn.",
+    "predicted_answer": "The vanishing gradient problem occurs when gradients become very large during backpropagation causing model weights to explode.",
+    "correct": 0,
+    "type": "document",
+    "id": 226
+  },
+  {
+    "question": "What is a penalty shootout?",
+    "expected_answer": "A penalty shootout decides a tied football match where teams alternately take penalty kicks until one team scores more over a series.",
+    "predicted_answer": "A penalty shootout decides a tied football match where teams alternately take penalty kicks until one team scores more over a series.",
+    "correct": 1,
+    "type": "document",
+    "id": 227
+  },
+  {
+    "question": "What is a cryptocurrency wallet?",
+    "expected_answer": "A cryptocurrency wallet stores private and public keys enabling users to send, receive, and manage digital assets.",
+    "predicted_answer": "A cryptocurrency wallet stores private and public keys enabling users to send, receive, and manage digital assets.",
+    "correct": 1,
+    "type": "document",
+    "id": 228
+  },
+  {
+    "question": "What is an NFT?",
+    "expected_answer": "An NFT (Non-Fungible Token) is a unique digital asset on a blockchain representing ownership of a specific item like art or music.",
+    "predicted_answer": "An NFT (Non-Fungible Token) is a unique digital asset on a blockchain representing ownership of a specific item like art or music.",
+    "correct": 1,
+    "type": "document",
+    "id": 229
+  },
+  {
+    "question": "What is Meesho?",
+    "expected_answer": "Meesho is an Indian social commerce platform enabling small businesses and individuals to sell products via social networks.",
+    "predicted_answer": "Meesho is an Indian ride-hailing app that operates in tier 2 and tier 3 cities.",
+    "correct": 0,
+    "type": "search",
+    "id": 230
+  },
+  {
+    "question": "What is a crypto exchange?",
+    "expected_answer": "A crypto exchange is a platform that allows users to buy, sell, and trade cryptocurrencies.",
+    "predicted_answer": "A crypto exchange is a platform that allows users to buy, sell, and trade cryptocurrencies.",
+    "correct": 1,
+    "type": "search",
+    "id": 231
+  },
+  {
+    "question": "What is venture capital?",
+    "expected_answer": "Venture capital provides financing to early-stage startups with high growth potential in exchange for equity.",
+    "predicted_answer": "Venture capital provides financing to early-stage startups with high growth potential in exchange for equity.",
+    "correct": 1,
+    "type": "search",
+    "id": 232
+  },
+  {
+    "question": "What is a free kick in football?",
+    "expected_answer": "A free kick is awarded when the opposing team commits a foul, allowing the team to kick without interference.",
+    "predicted_answer": "A free kick is awarded when a team scores a goal allowing them to restart from the center circle.",
+    "correct": 0,
+    "type": "document",
+    "id": 233
+  },
+  {
+    "question": "What is kurtosis?",
+    "expected_answer": "Kurtosis measures the tailedness of a distribution; high kurtosis means heavier tails with more extreme values.",
+    "predicted_answer": "Kurtosis measures the average value of a distribution, similar to mean.",
+    "correct": 0,
+    "type": "document",
+    "id": 234
+  },
+  {
+    "question": "What is diversification?",
+    "expected_answer": "Diversification spreads investments across assets, sectors, or geographies to reduce risk exposure to any single investment.",
+    "predicted_answer": "This concept applies only to traditional machine learning, not deep learning.",
+    "correct": 0,
+    "type": "document",
+    "id": 235
+  },
+  {
+    "question": "What is Z-score normalization?",
+    "expected_answer": "Z-score normalization transforms data to mean 0 and standard deviation 1, calculated as (value - mean) / std.",
+    "predicted_answer": "Z-score normalization transforms data to mean 0 and standard deviation 1, calculated as (value - mean) / std.",
+    "correct": 1,
+    "type": "search",
+    "id": 236
+  },
+  {
+    "question": "What is Google Analytics?",
+    "expected_answer": "Google Analytics is a web analytics service that tracks and reports website traffic and user behavior.",
+    "predicted_answer": "Google Analytics is a web analytics service that tracks and reports website traffic and user behavior.",
+    "correct": 1,
+    "type": "search",
+    "id": 237
+  },
+  {
+    "question": "What is compound interest?",
+    "expected_answer": "Compound interest is calculated on both the initial principal and accumulated interest, causing exponential growth over time.",
+    "predicted_answer": "Compound interest is calculated on both the initial principal and accumulated interest, causing exponential growth over time.",
+    "correct": 1,
+    "type": "document",
+    "id": 238
+  },
+  {
+    "question": "What is naive Bayes?",
+    "expected_answer": "Naive Bayes is a probabilistic classifier based on Bayes theorem assuming independence between features.",
+    "predicted_answer": "Naive Bayes is a probabilistic classifier based on Bayes theorem assuming independence between features.",
+    "correct": 1,
+    "type": "document",
+    "id": 239
+  },
+  {
+    "question": "What is the Duckworth-Lewis method?",
+    "expected_answer": "The DLS method is a mathematical formula used to recalculate target scores in rain-interrupted limited-overs cricket matches.",
+    "predicted_answer": "The DLS method is a mathematical formula used to recalculate target scores in rain-interrupted limited-overs cricket matches.",
+    "correct": 1,
+    "type": "document",
+    "id": 240
+  },
+  {
+    "question": "What is dependency injection?",
+    "expected_answer": "Dependency injection provides dependencies to a class from external sources rather than creating them within the class.",
+    "predicted_answer": "Dependency injection provides dependencies to a class from external sources rather than creating them within the class.",
+    "correct": 1,
+    "type": "search",
+    "id": 241
+  },
+  {
+    "question": "What is A/B testing in ecommerce?",
+    "expected_answer": "A/B testing compares two versions of a webpage element to determine which performs better for conversions.",
+    "predicted_answer": "A/B testing compares two versions of a webpage element to determine which performs better for conversions.",
+    "correct": 1,
+    "type": "document",
+    "id": 242
+  },
+  {
+    "question": "What is a product recommendation engine?",
+    "expected_answer": "A recommendation engine suggests relevant products based on browsing history, purchases, and similar user patterns.",
+    "predicted_answer": "A recommendation engine suggests relevant products based on browsing history, purchases, and similar user patterns.",
+    "correct": 1,
+    "type": "document",
+    "id": 243
+  },
+  {
+    "question": "What is Big O notation?",
+    "expected_answer": "Big O notation describes the upper bound of an algorithm's time or space complexity in terms of input size.",
+    "predicted_answer": "This feature is not supported in current LLM architectures.",
+    "correct": 0,
+    "type": "document",
+    "id": 244
+  },
+  {
+    "question": "What is the ROC-AUC score?",
+    "expected_answer": "ROC-AUC measures a classifier's ability to distinguish between classes; 1.0 is perfect while 0.5 indicates random guessing.",
+    "predicted_answer": "ROC-AUC measures a classifier's ability to distinguish between classes; 1.0 is perfect while 0.5 indicates random guessing.",
+    "correct": 1,
+    "type": "document",
+    "id": 245
+  },
+  {
+    "question": "What is dropshipping?",
+    "expected_answer": "Dropshipping is a model where the seller transfers orders to a supplier who ships directly to the customer without holding inventory.",
+    "predicted_answer": "Dropshipping is a model where sellers buy in bulk and store in their own warehouse before shipping to customers.",
+    "correct": 0,
+    "type": "document",
+    "id": 246
+  },
+  {
+    "question": "Who holds the record for most international cricket centuries?",
+    "expected_answer": "Sachin Tendulkar holds the record with 100 international centuries across Tests and ODIs.",
+    "predicted_answer": "Sachin Tendulkar holds the record with 100 international centuries across Tests and ODIs.",
+    "correct": 1,
+    "type": "search",
+    "id": 247
+  },
+  {
+    "question": "What is crypto staking?",
+    "expected_answer": "Crypto staking involves locking cryptocurrency in a network to support transaction validation in exchange for rewards.",
+    "predicted_answer": "Crypto staking involves locking cryptocurrency in a network to support transaction validation in exchange for rewards.",
+    "correct": 1,
+    "type": "search",
+    "id": 248
+  },
+  {
+    "question": "What is a flash sale?",
+    "expected_answer": "A flash sale is a short-duration discount event designed to create urgency and drive quick sales.",
+    "predicted_answer": "A flash sale is a short-duration discount event designed to create urgency and drive quick sales.",
+    "correct": 1,
+    "type": "search",
+    "id": 249
+  },
+  {
+    "question": "What is the double-spending problem?",
+    "expected_answer": "The double-spending problem is the risk of digital currency being spent more than once, solved by blockchain through decentralized consensus.",
+    "predicted_answer": "The double-spending problem is the risk of digital currency being spent more than once, solved by blockchain through decentralized consensus.",
+    "correct": 1,
+    "type": "document",
+    "id": 250
+  },
+  {
+    "question": "What is a hedge fund?",
+    "expected_answer": "A hedge fund uses diverse strategies including leverage, derivatives, and short selling to generate returns for accredited investors.",
+    "predicted_answer": "A hedge fund uses diverse strategies including leverage, derivatives, and short selling to generate returns for accredited investors.",
+    "correct": 1,
+    "type": "document",
+    "id": 251
+  },
+  {
+    "question": "What is ensemble learning?",
+    "expected_answer": "Ensemble learning combines predictions from multiple models to produce better results than any single model alone.",
+    "predicted_answer": "Ensemble learning combines predictions from multiple models to produce better results than any single model alone.",
+    "correct": 1,
+    "type": "document",
+    "id": 252
+  },
+  {
+    "question": "What is the shot clock in basketball?",
+    "expected_answer": "The shot clock limits the time a team has to attempt a shot \u2014 24 seconds in NBA and 30 seconds in FIBA.",
+    "predicted_answer": "The shot clock limits the time a team has to attempt a shot \u2014 24 seconds in NBA and 30 seconds in FIBA.",
+    "correct": 1,
+    "type": "document",
+    "id": 253
+  },
+  {
+    "question": "What is Stable Diffusion?",
+    "expected_answer": "Stable Diffusion is an open-source text-to-image generative AI model that creates images from text prompts.",
+    "predicted_answer": "Stable Diffusion is an open-source text-to-image generative AI model that creates images from text prompts.",
+    "correct": 1,
+    "type": "search",
+    "id": 254
+  },
+  {
+    "question": "What is the SOLID principle?",
+    "expected_answer": "SOLID stands for Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles.",
+    "predicted_answer": "SOLID stands for Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion principles.",
+    "correct": 1,
+    "type": "document",
+    "id": 255
+  },
+  {
+    "question": "What is the observer pattern?",
+    "expected_answer": "The observer pattern defines a one-to-many dependency so that when one object changes state, all dependents are notified automatically.",
+    "predicted_answer": "The observer pattern is used to copy one object's state to another object in real time.",
+    "correct": 0,
+    "type": "document",
+    "id": 256
+  },
+  {
+    "question": "What is the difference between supervised and unsupervised learning?",
+    "expected_answer": "Supervised learning uses labeled data while unsupervised learning finds patterns in unlabeled data without explicit guidance.",
+    "predicted_answer": "Supervised learning uses labeled data while unsupervised learning finds patterns in unlabeled data without explicit guidance.",
+    "correct": 1,
+    "type": "document",
+    "id": 257
+  },
+  {
+    "question": "What is the difference between DFS and BFS?",
+    "expected_answer": "DFS explores as far as possible along each branch before backtracking; BFS explores all neighbors at the current depth before going deeper.",
+    "predicted_answer": "DFS explores as far as possible along each branch before backtracking; BFS explores all neighbors at the current depth before going deeper.",
+    "correct": 1,
+    "type": "document",
+    "id": 258
+  },
+  {
+    "question": "What is proof of stake?",
+    "expected_answer": "Proof of Stake selects validators to create new blocks based on the amount of cryptocurrency they stake as collateral.",
+    "predicted_answer": "Proof of Stake selects validators to create new blocks based on the amount of cryptocurrency they stake as collateral.",
+    "correct": 1,
+    "type": "document",
+    "id": 259
+  },
+  {
+    "question": "What is LSTM?",
+    "expected_answer": "LSTM (Long Short-Term Memory) is a recurrent neural network designed to learn long-term dependencies in sequential data.",
+    "predicted_answer": "LSTM (Long Short-Term Memory) is a recurrent neural network designed to learn long-term dependencies in sequential data.",
+    "correct": 1,
+    "type": "search",
+    "id": 260
+  },
+  {
+    "question": "What is binary search?",
+    "expected_answer": "Binary search finds a target value in a sorted array by repeatedly dividing the search interval in half, with O(log n) complexity.",
+    "predicted_answer": "Binary search finds a target value in a sorted array by repeatedly dividing the search interval in half, with O(log n) complexity.",
+    "correct": 1,
+    "type": "document",
+    "id": 261
+  },
+  {
+    "question": "What is logistic regression?",
+    "expected_answer": "Logistic regression is a classification algorithm that models the probability of a class using the sigmoid function.",
+    "predicted_answer": "Logistic regression is a classification algorithm that models the probability of a class using the sigmoid function.",
+    "correct": 1,
+    "type": "document",
+    "id": 262
+  },
+  {
+    "question": "Who won the Euro 2024?",
+    "expected_answer": "Spain won UEFA Euro 2024, defeating England in the final in Berlin.",
+    "predicted_answer": "Spain won UEFA Euro 2024, defeating England in the final in Berlin.",
+    "correct": 1,
+    "type": "search",
+    "id": 263
+  },
+  {
+    "question": "What is the bias-variance tradeoff?",
+    "expected_answer": "The bias-variance tradeoff balances a model's ability to minimize bias (error from assumptions) and variance (sensitivity to training data fluctuations).",
+    "predicted_answer": "The bias-variance tradeoff balances a model's ability to minimize bias (error from assumptions) and variance (sensitivity to training data fluctuations).",
+    "correct": 1,
+    "type": "document",
+    "id": 264
+  },
+  {
+    "question": "What is Power BI?",
+    "expected_answer": "Power BI is Microsoft's business analytics tool for creating interactive dashboards and reports from various data sources.",
+    "predicted_answer": "Power BI is Microsoft's business analytics tool for creating interactive dashboards and reports from various data sources.",
+    "correct": 1,
+    "type": "search",
+    "id": 265
+  },
+  {
+    "question": "What is dynamic pricing?",
+    "expected_answer": "Dynamic pricing adjusts product prices in real time based on demand, competition, and other market factors.",
+    "predicted_answer": "Dynamic pricing adjusts product prices in real time based on demand, competition, and other market factors.",
+    "correct": 1,
+    "type": "search",
+    "id": 266
+  },
+  {
+    "question": "What is Hugging Face Transformers?",
+    "expected_answer": "Hugging Face Transformers is a library providing thousands of pre-trained NLP models for tasks like classification, generation, and translation.",
+    "predicted_answer": "Hugging Face Transformers is a library providing thousands of pre-trained NLP models for tasks like classification, generation, and translation.",
+    "correct": 1,
+    "type": "search",
+    "id": 267
+  },
+  {
+    "question": "What is a P&L statement?",
+    "expected_answer": "A Profit and Loss statement summarizes revenues, costs, and expenses over a period to show net profit or loss.",
+    "predicted_answer": "A Profit and Loss statement summarizes revenues, costs, and expenses over a period to show net profit or loss.",
+    "correct": 1,
+    "type": "document",
+    "id": 268
+  },
+  {
+    "question": "What is a balance sheet?",
+    "expected_answer": "A balance sheet reports a company's assets, liabilities, and shareholders' equity at a specific point in time.",
+    "predicted_answer": "A balance sheet reports a company's assets, liabilities, and shareholders' equity at a specific point in time.",
+    "correct": 1,
+    "type": "document",
+    "id": 269
+  },
+  {
+    "question": "What is semantic search?",
+    "expected_answer": "Semantic search understands the meaning and intent behind a query rather than matching exact keywords, using embeddings to find relevant results.",
+    "predicted_answer": "Semantic search understands the meaning and intent behind a query rather than matching exact keywords, using embeddings to find relevant results.",
+    "correct": 1,
+    "type": "document",
+    "id": 270
+  },
+  {
+    "question": "What is a semaphore?",
+    "expected_answer": "A semaphore is a synchronization primitive used to control access to shared resources by multiple processes or threads.",
+    "predicted_answer": "A semaphore is a network protocol used to synchronize data transmission between computers.",
+    "correct": 0,
+    "type": "document",
+    "id": 271
+  },
+  {
+    "question": "What is a vector embedding?",
+    "expected_answer": "A vector embedding is a numerical representation of text in a high-dimensional space where semantic similarity corresponds to geometric proximity.",
+    "predicted_answer": "A vector embedding is a numerical representation of text in a high-dimensional space where semantic similarity corresponds to geometric proximity.",
+    "correct": 1,
+    "type": "document",
+    "id": 272
+  },
+  {
+    "question": "What is precision in ML?",
+    "expected_answer": "Precision is the proportion of predicted positives that are actually positive, calculated as TP / (TP + FP).",
+    "predicted_answer": "Precision is the proportion of predicted positives that are actually positive, calculated as TP / (TP + FP).",
+    "correct": 1,
+    "type": "document",
+    "id": 273
+  },
+  {
+    "question": "What is model quantization?",
+    "expected_answer": "Model quantization reduces the precision of model weights (e.g., from 32-bit to 8-bit) to decrease memory usage and increase inference speed.",
+    "predicted_answer": "Model quantization increases model size by adding extra layers for better accuracy.",
+    "correct": 0,
+    "type": "document",
+    "id": 274
+  },
+  {
+    "question": "What is WebSocket?",
+    "expected_answer": "WebSocket provides full-duplex communication over a single TCP connection, enabling real-time data exchange between client and server.",
+    "predicted_answer": "WebSocket provides full-duplex communication over a single TCP connection, enabling real-time data exchange between client and server.",
+    "correct": 1,
+    "type": "search",
+    "id": 275
+  },
+  {
+    "question": "What is GRASP?",
+    "expected_answer": "GRASP (General Responsibility Assignment Software Patterns) provides guidelines for assigning responsibilities to classes in OOP.",
+    "predicted_answer": "GRASP (General Responsibility Assignment Software Patterns) provides guidelines for assigning responsibilities to classes in OOP.",
+    "correct": 1,
+    "type": "search",
+    "id": 276
+  },
+  {
+    "question": "What is the singleton pattern?",
+    "expected_answer": "The singleton pattern ensures a class has only one instance and provides a global point of access to it.",
+    "predicted_answer": "The singleton pattern ensures a class has only one instance and provides a global point of access to it.",
+    "correct": 1,
+    "type": "document",
+    "id": 277
+  },
+  {
+    "question": "What is LangSmith?",
+    "expected_answer": "LangSmith is a developer platform by LangChain for debugging, testing, and monitoring LLM applications.",
+    "predicted_answer": "LangSmith is a developer platform by LangChain for debugging, testing, and monitoring LLM applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 278
+  },
+  {
+    "question": "What is abstraction?",
+    "expected_answer": "Abstraction hides complex implementation details and exposes only the necessary interface to reduce complexity.",
+    "predicted_answer": "Abstraction hides complex implementation details and exposes only the necessary interface to reduce complexity.",
+    "correct": 1,
+    "type": "document",
+    "id": 279
+  },
+  {
+    "question": "What is Pearson correlation?",
+    "expected_answer": "Pearson correlation measures the linear relationship between two continuous variables, ranging from -1 to +1.",
+    "predicted_answer": "Pearson correlation measures the linear relationship between two continuous variables, ranging from -1 to +1.",
+    "correct": 1,
+    "type": "document",
+    "id": 280
+  },
+  {
+    "question": "What is a binary search tree?",
+    "expected_answer": "A BST is a tree where each node has at most two children, with left child smaller and right child larger than the parent.",
+    "predicted_answer": "A BST is a tree where each node has at most two children, with left child smaller and right child larger than the parent.",
+    "correct": 1,
+    "type": "document",
+    "id": 281
+  },
+  {
+    "question": "What is the P/E ratio?",
+    "expected_answer": "The P/E ratio compares stock price to earnings per share to evaluate if a stock is overvalued or undervalued.",
+    "predicted_answer": "The P/E ratio compares stock price to earnings per share to evaluate if a stock is overvalued or undervalued.",
+    "correct": 1,
+    "type": "document",
+    "id": 282
+  },
+  {
+    "question": "What is EBITDA?",
+    "expected_answer": "EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization) measures core operational profitability.",
+    "predicted_answer": "EBITDA (Earnings Before Interest, Taxes, Depreciation, and Amortization) measures core operational profitability.",
+    "correct": 1,
+    "type": "document",
+    "id": 283
+  },
+  {
+    "question": "What is the context window in an LLM?",
+    "expected_answer": "The context window is the maximum amount of text (tokens) an LLM can process in a single input-output interaction.",
+    "predicted_answer": "The context window is the maximum amount of text (tokens) an LLM can process in a single input-output interaction.",
+    "correct": 1,
+    "type": "document",
+    "id": 284
+  },
+  {
+    "question": "What is Hugging Face?",
+    "expected_answer": "Hugging Face is an AI platform providing pre-trained models, datasets, and tools for NLP and machine learning.",
+    "predicted_answer": "Hugging Face is an AI platform providing pre-trained models, datasets, and tools for NLP and machine learning.",
+    "correct": 1,
+    "type": "search",
+    "id": 285
+  },
+  {
+    "question": "What is a trie data structure?",
+    "expected_answer": "A trie is a tree-like data structure used to store strings where each node represents a character, efficient for prefix searches.",
+    "predicted_answer": "A trie is a tree-like data structure used to store strings where each node represents a character, efficient for prefix searches.",
+    "correct": 1,
+    "type": "document",
+    "id": 286
+  },
+  {
+    "question": "What is algorithmic trading?",
+    "expected_answer": "Algorithmic trading uses computer programs to execute trades based on pre-defined rules, enabling high-frequency trading.",
+    "predicted_answer": "Algorithmic trading uses computer programs to execute trades based on pre-defined rules, enabling high-frequency trading.",
+    "correct": 1,
+    "type": "search",
+    "id": 287
+  },
+  {
+    "question": "What is a linked list?",
+    "expected_answer": "A linked list is a linear data structure where elements are stored in nodes, each containing data and a pointer to the next node.",
+    "predicted_answer": "A linked list is a linear data structure where elements are stored in nodes, each containing data and a pointer to the next node.",
+    "correct": 1,
+    "type": "document",
+    "id": 288
+  },
+  {
+    "question": "What is encapsulation?",
+    "expected_answer": "Encapsulation bundles data and methods within a class and restricts direct access to internal state.",
+    "predicted_answer": "Encapsulation bundles data and methods within a class and restricts direct access to internal state.",
+    "correct": 1,
+    "type": "document",
+    "id": 289
+  },
+  {
+    "question": "Who won the FIFA World Cup 2022?",
+    "expected_answer": "Argentina won the FIFA World Cup 2022, defeating France on penalties in Qatar.",
+    "predicted_answer": "Argentina won the FIFA World Cup 2022, defeating France on penalties in Qatar.",
+    "correct": 1,
+    "type": "search",
+    "id": 290
+  },
+  {
+    "question": "What is proof of work?",
+    "expected_answer": "Proof of Work requires miners to solve complex mathematical puzzles to validate transactions and add new blocks to the blockchain.",
+    "predicted_answer": "Proof of Work requires miners to solve complex mathematical puzzles to validate transactions and add new blocks to the blockchain.",
+    "correct": 1,
+    "type": "document",
+    "id": 291
+  },
+  {
+    "question": "What is the latest GPT model as of 2024?",
+    "expected_answer": "As of 2024, GPT-4o is the latest model from OpenAI, supporting text, image, and audio inputs with faster response times.",
+    "predicted_answer": "As of 2024, GPT-4o is the latest model from OpenAI, supporting text, image, and audio inputs with faster response times.",
+    "correct": 1,
+    "type": "search",
+    "id": 292
+  },
+  {
+    "question": "What is a DAO?",
+    "expected_answer": "A DAO (Decentralized Autonomous Organization) is governed by smart contracts and token holders rather than a central authority.",
+    "predicted_answer": "A DAO (Decentralized Autonomous Organization) is governed by smart contracts and token holders rather than a central authority.",
+    "correct": 1,
+    "type": "search",
+    "id": 293
+  },
+  {
+    "question": "What is ROI?",
+    "expected_answer": "ROI (Return on Investment) measures profitability as (Net Profit / Cost of Investment) \u00d7 100.",
+    "predicted_answer": "ROI (Return on Investment) measures profitability as (Net Profit / Cost of Investment) \u00d7 100.",
+    "correct": 1,
+    "type": "document",
+    "id": 294
+  },
+  {
+    "question": "What is Ethereum 2.0?",
+    "expected_answer": "Ethereum 2.0 transitioned Ethereum from Proof of Work to Proof of Stake, improving scalability and energy efficiency.",
+    "predicted_answer": "Ethereum 2.0 transitioned Ethereum from Proof of Work to Proof of Stake, improving scalability and energy efficiency.",
+    "correct": 1,
+    "type": "search",
+    "id": 295
+  },
+  {
+    "question": "What is LBW in cricket?",
+    "expected_answer": "LBW (Leg Before Wicket) dismisses a batsman when the ball hits their body and would have gone on to hit the stumps.",
+    "predicted_answer": "LBW (Leg Before Wicket) dismisses a batsman when the ball hits their body and would have gone on to hit the stumps.",
+    "correct": 1,
+    "type": "document",
+    "id": 296
+  },
+  {
+    "question": "What is a violin plot?",
+    "expected_answer": "A violin plot combines a box plot and kernel density estimation, showing the distribution of data across categories.",
+    "predicted_answer": "A violin plot combines a box plot and kernel density estimation, showing the distribution of data across categories.",
+    "correct": 1,
+    "type": "document",
+    "id": 297
+  },
+  {
+    "question": "What is LlamaIndex?",
+    "expected_answer": "LlamaIndex is a data framework for connecting LLMs with external data sources for efficient indexing and querying in RAG applications.",
+    "predicted_answer": "LlamaIndex is a data framework for connecting LLMs with external data sources for efficient indexing and querying in RAG applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 298
+  },
+  {
+    "question": "What is regularization?",
+    "expected_answer": "Regularization adds a penalty term to the loss function to discourage complex models and reduce overfitting, common techniques include L1 and L2.",
+    "predicted_answer": "Regularization adds a penalty term to the loss function to discourage complex models and reduce overfitting, common techniques include L1 and L2.",
+    "correct": 1,
+    "type": "document",
+    "id": 299
+  },
+  {
+    "question": "What is cart abandonment rate?",
+    "expected_answer": "Cart abandonment rate is the percentage of shoppers who add items to cart but leave without completing the purchase.",
+    "predicted_answer": "Cart abandonment rate is the percentage of shoppers who add items to cart but leave without completing the purchase.",
+    "correct": 1,
+    "type": "document",
+    "id": 300
+  },
+  {
+    "question": "What is the difference between SQL and NoSQL?",
+    "expected_answer": "SQL uses structured tables with predefined schemas while NoSQL is flexible and handles unstructured data in various formats.",
+    "predicted_answer": "SQL and NoSQL are the same; NoSQL is just an older term for SQL databases.",
+    "correct": 0,
+    "type": "document",
+    "id": 301
+  },
+  {
+    "question": "What is net present value (NPV)?",
+    "expected_answer": "NPV calculates the present value of future cash flows minus the initial investment to determine if a project is profitable.",
+    "predicted_answer": "NPV calculates the present value of future cash flows minus the initial investment to determine if a project is profitable.",
+    "correct": 1,
+    "type": "document",
+    "id": 302
+  },
+  {
+    "question": "What is social commerce?",
+    "expected_answer": "Social commerce uses social media platforms to sell products directly to consumers with built-in shopping features.",
+    "predicted_answer": "Social commerce uses social media platforms to sell products directly to consumers with built-in shopping features.",
+    "correct": 1,
+    "type": "search",
+    "id": 303
+  },
+  {
+    "question": "What is Airflow?",
+    "expected_answer": "Apache Airflow is a workflow orchestration platform for scheduling and monitoring data pipelines.",
+    "predicted_answer": "Apache Airflow is a workflow orchestration platform for scheduling and monitoring data pipelines.",
+    "correct": 1,
+    "type": "search",
+    "id": 304
+  },
+  {
+    "question": "What is a box plot?",
+    "expected_answer": "A box plot visualizes data distribution through quartiles, highlighting median, interquartile range, and outliers.",
+    "predicted_answer": "A box plot visualizes data distribution through quartiles, highlighting median, interquartile range, and outliers.",
+    "correct": 1,
+    "type": "document",
+    "id": 305
+  },
+  {
+    "question": "What is scikit-learn?",
+    "expected_answer": "Scikit-learn is a Python library providing simple tools for machine learning including classification, regression, and clustering.",
+    "predicted_answer": "Scikit-learn is a Python library providing simple tools for machine learning including classification, regression, and clustering.",
+    "correct": 1,
+    "type": "search",
+    "id": 306
+  },
+  {
+    "question": "What is AutoML?",
+    "expected_answer": "AutoML automates end-to-end ML processes including preprocessing, feature selection, model selection, and hyperparameter tuning.",
+    "predicted_answer": "AutoML automates end-to-end ML processes including preprocessing, feature selection, model selection, and hyperparameter tuning.",
+    "correct": 1,
+    "type": "search",
+    "id": 307
+  },
+  {
+    "question": "What is a B-tree?",
+    "expected_answer": "A B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, insertions, and deletions in O(log n).",
+    "predicted_answer": "A B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, insertions, and deletions in O(log n).",
+    "correct": 1,
+    "type": "document",
+    "id": 308
+  },
+  {
+    "question": "What is database normalization?",
+    "expected_answer": "Database normalization reduces data redundancy and improves integrity through a series of normal forms (1NF, 2NF, 3NF).",
+    "predicted_answer": "Database normalization reduces data redundancy and improves integrity through a series of normal forms (1NF, 2NF, 3NF).",
+    "correct": 1,
+    "type": "document",
+    "id": 309
+  },
+  {
+    "question": "What is the decorator pattern?",
+    "expected_answer": "The decorator pattern dynamically adds behavior to an object by wrapping it in decorator objects without modifying its class.",
+    "predicted_answer": "The decorator pattern dynamically adds behavior to an object by wrapping it in decorator objects without modifying its class.",
+    "correct": 1,
+    "type": "search",
+    "id": 310
+  },
+  {
+    "question": "What is Polygon?",
+    "expected_answer": "Polygon is a Layer 2 scaling solution for Ethereum enabling faster and cheaper transactions while maintaining Ethereum compatibility.",
+    "predicted_answer": "Polygon is a Layer 2 scaling solution for Ethereum enabling faster and cheaper transactions while maintaining Ethereum compatibility.",
+    "correct": 1,
+    "type": "search",
+    "id": 311
+  },
+  {
+    "question": "What is model deployment?",
+    "expected_answer": "Model deployment integrates a trained ML model into a production environment to serve real-time or batch predictions.",
+    "predicted_answer": "Model deployment integrates a trained ML model into a production environment to serve real-time or batch predictions.",
+    "correct": 1,
+    "type": "search",
+    "id": 312
+  },
+  {
+    "question": "What is the Lightning Network?",
+    "expected_answer": "The Lightning Network is a Layer 2 protocol on Bitcoin enabling faster and cheaper transactions by processing them off-chain.",
+    "predicted_answer": "The Lightning Network is a Layer 2 protocol on Bitcoin enabling faster and cheaper transactions by processing them off-chain.",
+    "correct": 1,
+    "type": "search",
+    "id": 313
+  },
+  {
+    "question": "Who won Wimbledon men's singles 2024?",
+    "expected_answer": "Carlos Alcaraz won the 2024 Wimbledon men's singles title, defeating Novak Djokovic.",
+    "predicted_answer": "Carlos Alcaraz won the 2024 Wimbledon men's singles title, defeating Novak Djokovic.",
+    "correct": 1,
+    "type": "search",
+    "id": 314
+  },
+  {
+    "question": "What is attention mechanism?",
+    "expected_answer": "The attention mechanism allows a model to focus on relevant parts of the input when generating each output token.",
+    "predicted_answer": "The attention mechanism allows a model to focus on relevant parts of the input when generating each output token.",
+    "correct": 1,
+    "type": "document",
+    "id": 315
+  },
+  {
+    "question": "What is inflation?",
+    "expected_answer": "Inflation is the rate at which general price levels rise over time, reducing the purchasing power of money.",
+    "predicted_answer": "Inflation is the rate at which general price levels rise over time, reducing the purchasing power of money.",
+    "correct": 1,
+    "type": "document",
+    "id": 316
+  },
+  {
+    "question": "What is the GPT-4 context window size?",
+    "expected_answer": "GPT-4 Turbo supports up to 128,000 tokens in its context window.",
+    "predicted_answer": "GPT-4 Turbo supports up to 128,000 tokens in its context window.",
+    "correct": 1,
+    "type": "search",
+    "id": 317
+  },
+  {
+    "question": "What is the F1 score?",
+    "expected_answer": "The F1 score is the harmonic mean of precision and recall, providing a balanced metric for classification performance.",
+    "predicted_answer": "The F1 score is the harmonic mean of precision and recall, providing a balanced metric for classification performance.",
+    "correct": 1,
+    "type": "search",
+    "id": 318
+  },
+  {
+    "question": "What is a break point in tennis?",
+    "expected_answer": "A break point is an opportunity for the receiver to win a game when the server is at a disadvantage such as 30-40 or 0-40.",
+    "predicted_answer": "A break point is an opportunity for the receiver to win a game when the server is at a disadvantage such as 30-40 or 0-40.",
+    "correct": 1,
+    "type": "document",
+    "id": 319
+  },
+  {
+    "question": "What is Constitutional AI?",
+    "expected_answer": "Constitutional AI is Anthropic's approach to training AI using a set of principles to be helpful, harmless, and honest.",
+    "predicted_answer": "Constitutional AI is a method of training AI using only human feedback without any predefined principles.",
+    "correct": 0,
+    "type": "document",
+    "id": 320
+  },
+  {
+    "question": "What is the difference between coins and tokens?",
+    "expected_answer": "Coins are native blockchain currencies (BTC, ETH) while tokens are built on existing blockchains using smart contracts.",
+    "predicted_answer": "Coins are native blockchain currencies (BTC, ETH) while tokens are built on existing blockchains using smart contracts.",
+    "correct": 1,
+    "type": "search",
+    "id": 321
+  },
+  {
+    "question": "What is cash flow?",
+    "expected_answer": "Cash flow is the net amount of cash transferred into and out of a business; positive means more coming in than going out.",
+    "predicted_answer": "Cash flow is the net amount of cash transferred into and out of a business; positive means more coming in than going out.",
+    "correct": 1,
+    "type": "document",
+    "id": 322
+  },
+  {
+    "question": "What is Together AI?",
+    "expected_answer": "Together AI is a cloud platform for running and fine-tuning open-source AI models at scale.",
+    "predicted_answer": "Together AI is a cloud platform for running and fine-tuning open-source AI models at scale.",
+    "correct": 1,
+    "type": "search",
+    "id": 323
+  },
+  {
+    "question": "What is the Sensex?",
+    "expected_answer": "The Sensex is the benchmark index of the Bombay Stock Exchange (BSE) tracking 30 large Indian companies.",
+    "predicted_answer": "The Sensex is the benchmark index of the Bombay Stock Exchange (BSE) tracking 30 large Indian companies.",
+    "correct": 1,
+    "type": "search",
+    "id": 324
+  },
+  {
+    "question": "What is k-means clustering?",
+    "expected_answer": "K-means partitions data into k clusters by minimizing the distance between points and their cluster centroids.",
+    "predicted_answer": "K-means partitions data into k clusters by minimizing the distance between points and their cluster centroids.",
+    "correct": 1,
+    "type": "document",
+    "id": 325
+  },
+  {
+    "question": "What is a blockchain oracle?",
+    "expected_answer": "A blockchain oracle provides smart contracts with real-world data from outside the blockchain like price feeds or weather data.",
+    "predicted_answer": "A blockchain oracle provides smart contracts with real-world data from outside the blockchain like price feeds or weather data.",
+    "correct": 1,
+    "type": "search",
+    "id": 326
+  },
+  {
+    "question": "What is a bond yield?",
+    "expected_answer": "A bond yield is the return an investor earns on a bond, inversely related to the bond's price.",
+    "predicted_answer": "A bond yield is the return an investor earns on a bond, inversely related to the bond's price.",
+    "correct": 1,
+    "type": "search",
+    "id": 327
+  },
+  {
+    "question": "What is Pinecone?",
+    "expected_answer": "Pinecone is a managed vector database used to store and query embeddings for semantic search and RAG applications.",
+    "predicted_answer": "Pinecone is a managed vector database used to store and query embeddings for semantic search and RAG applications.",
+    "correct": 1,
+    "type": "search",
+    "id": 328
+  },
+  {
+    "question": "What is Stability AI?",
+    "expected_answer": "Stability AI is the company behind Stable Diffusion and other open-source generative AI models.",
+    "predicted_answer": "Stability AI is a social media company that uses AI to moderate content on platforms.",
+    "correct": 0,
+    "type": "search",
+    "id": 329
+  },
+  {
+    "question": "What is Claude 3 Opus used for?",
+    "expected_answer": "Claude 3 Opus is Anthropic's most capable model used for complex reasoning, analysis, and nuanced content generation.",
+    "predicted_answer": "Claude 3 Opus is Anthropic's most capable model used for complex reasoning, analysis, and nuanced content generation.",
+    "correct": 1,
+    "type": "search",
+    "id": 330
+  }
+]
