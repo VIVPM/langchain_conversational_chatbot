@@ -1,14 +1,14 @@
 """
 QA Evaluation Script - 330 Samples
-Uses QAEvalChain approach with LangChain + SambaNova (gpt-oss-120b) as the evaluator.
+Uses QAEvalChain approach with LangChain + Gemini 2.5 Flash (Google GenAI) as the evaluator.
 
 Requirements:
-    pip install langchain langchain-openai openai python-dotenv
+    pip install langchain langchain-google-genai google-generativeai python-dotenv
 
 Setup:
     Create a .env file with:
-        SAMBANOVA_API_KEY=your_key_here
-    OR export SAMBANOVA_API_KEY=your_key_here
+        GEMINI_API_KEY=your_key_here
+    OR export GEMINI_API_KEY=your_key_here
 
 Usage:
     python eval_330_qaevalchain.py
@@ -23,10 +23,10 @@ import os
 import time
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path='../.env')
 
 # ── Argument Parser ───────────────────────────────────────────────────────────
-parser = argparse.ArgumentParser(description="QA Evaluation using QAEvalChain + SambaNova")
+parser = argparse.ArgumentParser(description="QA Evaluation using QAEvalChain + Gemini 2.5 Flash")
 parser.add_argument("--file",    default="qa_eval_dataset.json", help="Path to JSON dataset file")
 parser.add_argument("--verbose", action="store_true",            help="Print each question result")
 parser.add_argument("--sample",  type=int, default=None,         help="Run on first N samples only (for testing)")
@@ -34,7 +34,7 @@ args = parser.parse_args()
 
 # ── Load Data ─────────────────────────────────────────────────────────────────
 print(f"\n{'='*62}")
-print("  QA EVALUATION USING QAEvalChain + SambaNova gpt-oss-120b")
+print("  QA EVALUATION USING QAEvalChain + Gemini 2.5 Flash")
 print(f"{'='*62}")
 print(f"\nLoading dataset : {args.file}")
 
@@ -47,46 +47,43 @@ if args.sample:
 
 print(f"Loaded {len(dataset)} samples\n")
 
-# ── SambaNova Config ──────────────────────────────────────────────────────────
-SAMBANOVA_API_KEY  = os.getenv("SAMBANOVA_API_KEY", "")
-SAMBANOVA_BASE_URL = "https://api.sambanova.ai/v1"
-SAMBANOVA_MODEL    = "Meta-Llama-3.1-405B-Instruct"   # gpt-oss-120b maps to this
+# ── Gemini 2.5 Flash Config ───────────────────────────────────────────────────
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL   = "gemini-2.5-flash"
 
-# ── Initialize LangChain QAEvalChain with SambaNova ───────────────────────────
+# ── Initialize LangChain QAEvalChain with Gemini 2.5 Flash ────────────────────
 USE_LANGCHAIN = False
 
 try:
     from langchain.evaluation.qa import QAEvalChain
-    from langchain_openai import ChatOpenAI
+    from langchain_google_genai import ChatGoogleGenerativeAI
 
-    if not SAMBANOVA_API_KEY:
+    if not GEMINI_API_KEY:
         raise ValueError(
-            "SAMBANOVA_API_KEY not set.\n"
-            "  Set it in .env file or run: export SAMBANOVA_API_KEY=your_key_here"
+            "GEMINI_API_KEY not set.\n"
+            "  Set it in .env file or run: export GEMINI_API_KEY=your_key_here"
         )
 
-    print("Initializing QAEvalChain with SambaNova gpt-oss-120b...")
-    llm = ChatOpenAI(
-        model           = SAMBANOVA_MODEL,
-        openai_api_key  = SAMBANOVA_API_KEY,
-        openai_api_base = SAMBANOVA_BASE_URL,
-        temperature     = 0,
-        max_tokens      = 256,
+    print("Initializing QAEvalChain with Gemini 2.5 Flash...")
+    llm = ChatGoogleGenerativeAI(
+        model       = GEMINI_MODEL,
+        google_api_key = GEMINI_API_KEY,
+        temperature = 0,
+        max_tokens  = 256,
     )
     eval_chain    = QAEvalChain.from_llm(llm)
     USE_LANGCHAIN = True
     print(f"QAEvalChain ready")
-    print(f"   Model    : {SAMBANOVA_MODEL}")
-    print(f"   Provider : SambaNova Cloud")
-    print(f"   Base URL : {SAMBANOVA_BASE_URL}\n")
+    print(f"   Model    : {GEMINI_MODEL}")
+    print(f"   Provider : Google GenAI\n")
 
 except ValueError as ve:
     print(f"WARNING: {ve}")
     print("   Falling back to ground-truth label evaluation.\n")
 
 except ImportError:
-    print("WARNING: LangChain not installed. Falling back to ground-truth labels.")
-    print("    Install: pip install langchain langchain-openai\n")
+    print("WARNING: langchain-google-genai not installed. Falling back to ground-truth labels.")
+    print("    Install: pip install langchain langchain-google-genai google-generativeai\n")
 
 except Exception as e:
     print(f"WARNING: Could not initialise QAEvalChain: {e}")
@@ -110,7 +107,7 @@ print(f"{'─'*62}\n")
 results = []
 
 if USE_LANGCHAIN:
-    print("SambaNova gpt-oss-120b evaluating answers...\n")
+    print("Gemini 2.5 Flash evaluating answers...\n")
     try:
         graded = eval_chain.evaluate(examples, predictions)
 
@@ -125,7 +122,7 @@ if USE_LANGCHAIN:
                 "expected_answer"    : item["expected_answer"],
                 "predicted_answer"   : item["predicted_answer"],
                 "ground_truth_label" : item["correct"],
-                "sambanova_verdict"  : grade.get("results", "UNKNOWN").strip(),
+                "gemini_verdict"     : grade.get("results", "UNKNOWN").strip(),
                 "evalchain_correct"  : 1 if is_correct else 0,
             }
             results.append(result)
@@ -159,7 +156,7 @@ if not USE_LANGCHAIN:
             "expected_answer"    : item["expected_answer"],
             "predicted_answer"   : item["predicted_answer"],
             "ground_truth_label" : item["correct"],
-            "sambanova_verdict"  : "CORRECT" if is_correct else "INCORRECT",
+            "gemini_verdict"     : "CORRECT" if is_correct else "INCORRECT",
             "evalchain_correct"  : item["correct"],
         })
 
@@ -220,7 +217,7 @@ print(f"  After  RAG              : {hallucination_after:.1f}% hallucination rat
 print(f"  Hallucination Reduction : {hallucination_reduction:.1f}%\n")
 
 evaluator_label = (
-    "SambaNova gpt-oss-120b via QAEvalChain"
+    "Gemini 2.5 Flash via QAEvalChain"
     if USE_LANGCHAIN else
     "Ground Truth Labels (fallback — no API key)"
 )
@@ -230,8 +227,8 @@ print(f"  Evaluator : {evaluator_label}")
 output_path = "eval_330_results.json"
 summary = {
     "evaluation_method"  : evaluator_label,
-    "model"              : SAMBANOVA_MODEL,
-    "provider"           : "SambaNova Cloud",
+    "model"              : GEMINI_MODEL,
+    "provider"           : "Google GenAI",
     "total_samples"      : total,
     "overall_accuracy"   : round(overall_acc, 2),
     "document_rag": {
