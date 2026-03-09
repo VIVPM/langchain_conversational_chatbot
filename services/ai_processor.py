@@ -9,7 +9,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
-from langchain_community.utilities import GoogleSerperAPIWrapper
+from tavily import TavilyClient
 from config import PINECONE_API_KEY, PINECONE_INDEX_NAME
 from utils.common_utils import chunk_id, extract_text_from_file
 from services.pdf_processor import extract_pdf_content
@@ -96,20 +96,20 @@ def index_docs(vectorstore, docs):
         raise RuntimeError(f"Failed to index documents: {str(e)[:100]}")
 
 # --- Search ---
-def web_search_answer(llm, serper_api_key: str, question: str) -> tuple[str, list[str]]:
+def web_search_answer(llm, tavily_api_key: str, question: str) -> tuple[str, list[str]]:
     try:
-        search_tool = GoogleSerperAPIWrapper(serper_api_key=serper_api_key, k=5)
-        sr = search_tool.results(question)
-        organic = sr.get("organic", [])
+        client = TavilyClient(api_key=tavily_api_key)
+        sr = client.search(query=question, search_depth="advanced", max_results=5)
+        results = sr.get("results", [])
         search_results = "\n".join(
-            f"Snippet: {o.get('snippet','')}\nLink: {o.get('link','')}" for o in organic
+            f"Snippet: {r.get('content','')}\nLink: {r.get('url','')}" for r in results
         )
         prompt = PromptTemplate.from_template(
             "Based on these web search results, answer concisely and include key sources.\n\n{results}\n\nQuestion: {q}\n\nAnswer:"
         )
         chain = LLMChain(llm=llm, prompt=prompt, output_key="ans")
         ans = chain({"results": search_results, "q": question})["ans"].strip()
-        sources = [o.get("link","") for o in organic if o.get("link")]
+        sources = [r.get("url", "") for r in results if r.get("url")]
         return ans, sources
     except Exception as e:
         return f"Web search failed: {str(e)[:100]}", []

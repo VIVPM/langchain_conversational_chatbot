@@ -19,7 +19,7 @@ graph LR
         Guard --> Memory["🧠 Hybrid Memory<br>(Recent 6 msgs + Summary)"]
         Memory --> Router{"Query Router"}
         Router -->|docs indexed| RAG["📚 RAG Pipeline"]
-        Router -->|web search on| Web["🌐 Web Search<br>(Google Serper)"]
+        Router -->|web search on| Web["🌐 Web Search<br>(Tavily)"]
         Router -->|no docs| Direct["💡 Direct LLM"]
     end
 
@@ -54,7 +54,7 @@ graph LR
 
 - **Multi-format Document Ingestion**: PDF (with table extraction), TXT, DOCX
 - **Hybrid RAG**: Vector search via Pinecone with MMR for diversity
-- **Web Search**: Optional Google Serper integration for real-time information
+- **Web Search**: Optional Tavily AI integration for real-time information
 - **Hybrid Memory**: Keeps recent messages verbatim, summarizes older context
 - **Content Moderation**: Detoxify-based input guardrails
 - **Multi-model Support**: 12+ LLMs via SambaNova Cloud
@@ -120,7 +120,7 @@ streamlit run app.py
 | SambaNova | LLM inference | [SambaNova Cloud](https://cloud.sambanova.ai) |
 | Pinecone | Vector storage | [Pinecone](https://pinecone.io) |
 | Supabase | Auth + chat persistence | [Supabase](https://supabase.com) |
-| Serper (optional) | Web search | [Serper](https://serper.dev) |
+| Tavily (optional) | Web search | [Tavily](https://app.tavily.com) |
 
 ## How It Works
 
@@ -128,7 +128,7 @@ streamlit run app.py
 2. **Embed & Index** → BGE-large embeddings stored in Pinecone under user namespace
 3. **Query** → User question checked for toxicity, then routed:
    - If documents indexed → RAG retrieval (MMR, k=10)
-   - If web search enabled → Serper API fetch
+   - If web search enabled → Tavily AI search
    - Else → Direct LLM response with conversation context
 4. **Memory** → Recent 6 messages kept verbatim; older messages summarized after 15 total
 
@@ -154,7 +154,7 @@ For the 170 questions that required answering directly from uploaded documents, 
 
 ### 🌐 Internet Search Accuracy — **95.6%** *(153 / 160 correct)*
 
-For the 160 questions routed to live web search via Google Serper, QuickBrain achieved a standout accuracy of **95.6%** — the highest of any subsystem. This highlights that when the query router correctly identifies real-time or general-knowledge questions and delegates to web search, the pipeline is close to flawless. The gap between RAG and web search accuracy also reflects the inherent challenge of grounding answers in user-uploaded, potentially incomplete documents versus the breadth of indexed web content.
+For the 160 questions routed to live web search via Tavily AI, QuickBrain achieved a standout accuracy of **95.6%** — the highest of any subsystem. This highlights that when the query router correctly identifies real-time or general-knowledge questions and delegates to web search, the pipeline is close to flawless. The gap between RAG and web search accuracy also reflects the inherent challenge of grounding answers in user-uploaded, potentially incomplete documents versus the breadth of indexed web content.
 
 ---
 

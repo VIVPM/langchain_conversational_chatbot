@@ -21,6 +21,7 @@ import json
 import argparse
 import os
 import time
+import sys
 from dotenv import load_dotenv
 
 load_dotenv(dotenv_path='../.env')
@@ -66,7 +67,7 @@ try:
 
     print("Initializing QAEvalChain with Gemini 2.5 Flash...")
     llm = ChatGoogleGenerativeAI(
-        model       = GEMINI_MODEL,
+        model = GEMINI_MODEL,
         google_api_key = GEMINI_API_KEY,
         temperature = 0,
         max_tokens  = 256,
@@ -79,15 +80,16 @@ try:
 
 except ValueError as ve:
     print(f"WARNING: {ve}")
-    print("   Falling back to ground-truth label evaluation.\n")
+    sys.exit(1)
 
 except ImportError:
-    print("WARNING: langchain-google-genai not installed. Falling back to ground-truth labels.")
+    print("WARNING: langchain-google-genai not installed.")
     print("    Install: pip install langchain langchain-google-genai google-generativeai\n")
+    sys.exit(1)
 
 except Exception as e:
     print(f"WARNING: Could not initialise QAEvalChain: {e}")
-    print("   Falling back to ground-truth label evaluation.\n")
+    sys.exit(1)
 
 # ── Prepare Examples & Predictions for QAEvalChain ────────────────────────────
 examples = [
@@ -121,7 +123,6 @@ if USE_LANGCHAIN:
                 "type"               : item["type"],
                 "expected_answer"    : item["expected_answer"],
                 "predicted_answer"   : item["predicted_answer"],
-                "ground_truth_label" : item["correct"],
                 "gemini_verdict"     : grade.get("results", "UNKNOWN").strip(),
                 "evalchain_correct"  : 1 if is_correct else 0,
             }
@@ -140,30 +141,7 @@ if USE_LANGCHAIN:
 
     except Exception as e:
         print(f"QAEvalChain call failed: {e}")
-        print("   Falling back to ground-truth labels.\n")
-        USE_LANGCHAIN = False
-        results = []
-
-if not USE_LANGCHAIN:
-    # Fallback: use the pre-labelled correct field from JSON
-    print("Using pre-labelled ground truth from dataset...\n")
-    for item in dataset:
-        is_correct = item["correct"] == 1
-        results.append({
-            "id"                 : item["id"],
-            "question"           : item["question"],
-            "type"               : item["type"],
-            "expected_answer"    : item["expected_answer"],
-            "predicted_answer"   : item["predicted_answer"],
-            "ground_truth_label" : item["correct"],
-            "gemini_verdict"     : "CORRECT" if is_correct else "INCORRECT",
-            "evalchain_correct"  : item["correct"],
-        })
-
-        if args.verbose:
-            icon = "PASS" if is_correct else "FAIL"
-            print(f"  [{item['id']:3d}] {icon} [{item['type'].upper():<8}] "
-                  f"{item['question'][:55]}")
+        sys.exit(1)
 
 # ── Compute Metrics ───────────────────────────────────────────────────────────
 total          = len(results)
@@ -216,11 +194,7 @@ print(f"  Before RAG (baseline)   : {hallucination_before:.1f}% hallucination ra
 print(f"  After  RAG              : {hallucination_after:.1f}% hallucination rate")
 print(f"  Hallucination Reduction : {hallucination_reduction:.1f}%\n")
 
-evaluator_label = (
-    "Gemini 2.5 Flash via QAEvalChain"
-    if USE_LANGCHAIN else
-    "Ground Truth Labels (fallback — no API key)"
-)
+evaluator_label = "Gemini 2.5 Flash via QAEvalChain"
 print(f"  Evaluator : {evaluator_label}")
 
 # ── Save Results ──────────────────────────────────────────────────────────────

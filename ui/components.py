@@ -22,13 +22,13 @@ def render_auth_buttons(st):
         st.session_state.show_signup = False
         st.rerun()
 
-def render_web_search_toggle(st, serper_api_key: str | None):
-    enabled = st.session_state.use_web_search and bool(serper_api_key)
+def render_web_search_toggle(st, tavily_api_key: str | None):
+    enabled = st.session_state.use_web_search and bool(tavily_api_key)
     ws_label = f"Web search: {'On' if enabled else 'Off'}"
-    new_val = st.sidebar.toggle(ws_label, value=enabled, disabled=not serper_api_key, key="web_search_toggle")
+    new_val = st.sidebar.toggle(ws_label, value=enabled, disabled=not tavily_api_key, key="web_search_toggle")
     st.session_state.use_web_search = bool(new_val)
-    if not serper_api_key:
-        st.sidebar.caption("Add a Serper API key to enable web search.")
+    if not tavily_api_key:
+        st.sidebar.caption("Add a Tavily API key to enable web search.")
 
 def on_open_chat(chat_id: str):
     st.session_state.selected_chat_id = chat_id
